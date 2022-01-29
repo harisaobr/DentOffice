@@ -39,8 +39,8 @@ namespace DentOffice.WinUI.Termini
             this.Hitan = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.IsOdobren = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.IsNaCekanju = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.btnUcitajTermine = new System.Windows.Forms.Button();
             this.txtRazlog = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTermini)).BeginInit();
             this.SuspendLayout();
@@ -52,7 +52,7 @@ namespace DentOffice.WinUI.Termini
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(850, 580);
+            this.groupBox1.Size = new System.Drawing.Size(1164, 580);
             this.groupBox1.TabIndex = 23;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Termini";
@@ -78,7 +78,7 @@ namespace DentOffice.WinUI.Termini
             this.dgvTermini.ReadOnly = true;
             this.dgvTermini.RowHeadersWidth = 51;
             this.dgvTermini.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvTermini.Size = new System.Drawing.Size(842, 557);
+            this.dgvTermini.Size = new System.Drawing.Size(1156, 557);
             this.dgvTermini.TabIndex = 0;
             // 
             // TerminId
@@ -154,30 +154,30 @@ namespace DentOffice.WinUI.Termini
             this.IsNaCekanju.ReadOnly = true;
             this.IsNaCekanju.Width = 70;
             // 
-            // btnUcitajTermine
-            // 
-            this.btnUcitajTermine.Location = new System.Drawing.Point(678, 32);
-            this.btnUcitajTermine.Name = "btnUcitajTermine";
-            this.btnUcitajTermine.Size = new System.Drawing.Size(159, 23);
-            this.btnUcitajTermine.TabIndex = 26;
-            this.btnUcitajTermine.Text = "Ucitaj termine";
-            this.btnUcitajTermine.UseVisualStyleBackColor = true;
-            this.btnUcitajTermine.Click += new System.EventHandler(this.btnUcitajTermine_Click);
-            // 
             // txtRazlog
             // 
             this.txtRazlog.Location = new System.Drawing.Point(27, 32);
             this.txtRazlog.Name = "txtRazlog";
             this.txtRazlog.Size = new System.Drawing.Size(383, 22);
             this.txtRazlog.TabIndex = 27;
+            this.txtRazlog.TextChanged += new System.EventHandler(this.txtRazlog_TextChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(29, 11);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(56, 17);
+            this.label1.TabIndex = 28;
+            this.label1.Text = "Razlog:";
             // 
             // frmPregledTermina
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1035, 734);
+            this.ClientSize = new System.Drawing.Size(1202, 734);
+            this.Controls.Add(this.label1);
             this.Controls.Add(this.txtRazlog);
-            this.Controls.Add(this.btnUcitajTermine);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmPregledTermina";
             this.Text = "Lista termina";
@@ -192,7 +192,6 @@ namespace DentOffice.WinUI.Termini
         #endregion
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView dgvTermini;
-        private System.Windows.Forms.Button btnUcitajTermine;
         private System.Windows.Forms.TextBox txtRazlog;
         private System.Windows.Forms.DataGridViewTextBoxColumn TerminId;
         private System.Windows.Forms.DataGridViewTextBoxColumn Pacijent;
@@ -202,5 +201,6 @@ namespace DentOffice.WinUI.Termini
         private System.Windows.Forms.DataGridViewCheckBoxColumn Hitan;
         private System.Windows.Forms.DataGridViewCheckBoxColumn IsOdobren;
         private System.Windows.Forms.DataGridViewCheckBoxColumn IsNaCekanju;
+        private System.Windows.Forms.Label label1;
     }
 }

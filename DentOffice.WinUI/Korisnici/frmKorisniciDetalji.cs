@@ -1,4 +1,5 @@
-﻿using DentOffice.Model.Requests;
+﻿using DentOffice.Model;
+using DentOffice.Model.Requests;
 using DentOffice.WinUI.Helper;
 using System;
 using System.Collections.Generic;
@@ -57,7 +58,8 @@ namespace DentOffice.WinUI.Korisnik
                     DatumRodjenja = Convert.ToString(dtpDatum.Text),
                     Adresa = txtAdresa.Text,
                     Password = txtPassword.Text,
-                    PasswordConfirmation = txtPasswordConf.Text
+                    PasswordConfirmation = txtPasswordConf.Text,
+                    Spol = (Spol)cmbSpol.SelectedItem
                 };
                 if (cmbGrad.SelectedValue != null)
                     request.GradID = int.Parse(cmbGrad.SelectedValue.ToString());
@@ -89,6 +91,7 @@ namespace DentOffice.WinUI.Korisnik
 
         private async void frmKorisniciDetalji_Load(object sender, EventArgs e)
         {
+            UcitajSpolove();
             await LoadGradove();
             if (_id.HasValue)
             {
@@ -107,6 +110,15 @@ namespace DentOffice.WinUI.Korisnik
                 if(korisnik.Slika != null && korisnik.Slika.Length > 0)
                 {
                     pic_Slika.Image = ImageHelper.ByteArrayToImage(korisnik.Slika);
+                }
+
+                foreach (Spol item in cmbSpol.Items)
+                {
+                    if (item == korisnik.Spol)
+                    {
+                        cmbSpol.SelectedItem = item;
+                        break;
+                    }
                 }
             }
         }
@@ -211,6 +223,11 @@ namespace DentOffice.WinUI.Korisnik
 
                 pic_Slika.Image = ImageHelper.ByteArrayToImage(Slika);
             }
+        }
+
+        private void UcitajSpolove()
+        {
+            cmbSpol.DataSource = Enum.GetValues(typeof(Spol)).Cast<Spol>().ToList();
         }
     }
 }

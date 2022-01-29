@@ -60,6 +60,8 @@ namespace DentOffice.WinUI.Korisnik
             this.label10 = new System.Windows.Forms.Label();
             this.label12 = new System.Windows.Forms.Label();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.label13 = new System.Windows.Forms.Label();
+            this.cmbSpol = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_Slika)).BeginInit();
             this.SuspendLayout();
@@ -251,7 +253,7 @@ namespace DentOffice.WinUI.Korisnik
             this.cmbGrad.FormattingEnabled = true;
             this.cmbGrad.Location = new System.Drawing.Point(12, 509);
             this.cmbGrad.Name = "cmbGrad";
-            this.cmbGrad.Size = new System.Drawing.Size(555, 24);
+            this.cmbGrad.Size = new System.Drawing.Size(200, 24);
             this.cmbGrad.TabIndex = 24;
             // 
             // label11
@@ -295,11 +297,30 @@ namespace DentOffice.WinUI.Korisnik
             // 
             this.openFileDialog.FileName = "openFileDialog";
             // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Location = new System.Drawing.Point(217, 489);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(36, 17);
+            this.label13.TabIndex = 31;
+            this.label13.Text = "Spol";
+            // 
+            // cmbSpol
+            // 
+            this.cmbSpol.FormattingEnabled = true;
+            this.cmbSpol.Location = new System.Drawing.Point(220, 509);
+            this.cmbSpol.Name = "cmbSpol";
+            this.cmbSpol.Size = new System.Drawing.Size(200, 24);
+            this.cmbSpol.TabIndex = 30;
+            // 
             // frmKorisniciDetalji
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(941, 619);
+            this.Controls.Add(this.label13);
+            this.Controls.Add(this.cmbSpol);
             this.Controls.Add(this.label12);
             this.Controls.Add(this.label10);
             this.Controls.Add(this.pic_Slika);
@@ -386,5 +407,7 @@ namespace DentOffice.WinUI.Korisnik
         private System.Windows.Forms.PictureBox pic_Slika;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.Label label13;
+        private System.Windows.Forms.ComboBox cmbSpol;
     }
 }

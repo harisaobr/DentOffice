@@ -22,11 +22,6 @@ namespace DentOffice.WinUI.Korisnik
             dgvKorisnici.AutoGenerateColumns = false;
         }
 
-        private async void btnPrikazi_Click(object sender, EventArgs e)
-        {
-            await UcitajKorisnike();
-        }
-
         private async Task UcitajKorisnike()
         {
             var search = new KorisnikSearchRequest()
@@ -49,6 +44,11 @@ namespace DentOffice.WinUI.Korisnik
         }
 
         private async void frmKorisnici_Load(object sender, EventArgs e)
+        {
+            await UcitajKorisnike();
+        }
+
+        private async void txtPretraga_TextChanged(object sender, EventArgs e)
         {
             await UcitajKorisnike();
         }

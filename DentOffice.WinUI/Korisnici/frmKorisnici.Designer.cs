@@ -31,7 +31,6 @@ namespace DentOffice.WinUI.Korisnik
         {
             this.Korisnici = new System.Windows.Forms.GroupBox();
             this.dgvKorisnici = new System.Windows.Forms.DataGridView();
-            this.btnPrikazi = new System.Windows.Forms.Button();
             this.txtPretraga = new System.Windows.Forms.TextBox();
             this.KorisničkoIme = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Ime = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -39,6 +38,7 @@ namespace DentOffice.WinUI.Korisnik
             this.Email = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.JMBG = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Grad = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.Spol = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.ObavljenoPregleda = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Korisnici.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvKorisnici)).BeginInit();
@@ -49,7 +49,7 @@ namespace DentOffice.WinUI.Korisnik
             this.Korisnici.Controls.Add(this.dgvKorisnici);
             this.Korisnici.Location = new System.Drawing.Point(12, 127);
             this.Korisnici.Name = "Korisnici";
-            this.Korisnici.Size = new System.Drawing.Size(1010, 311);
+            this.Korisnici.Size = new System.Drawing.Size(1311, 311);
             this.Korisnici.TabIndex = 0;
             this.Korisnici.TabStop = false;
             this.Korisnici.Text = "Korisnici";
@@ -66,6 +66,7 @@ namespace DentOffice.WinUI.Korisnik
             this.Email,
             this.JMBG,
             this.Grad,
+            this.Spol,
             this.ObavljenoPregleda});
             this.dgvKorisnici.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvKorisnici.Location = new System.Drawing.Point(3, 18);
@@ -74,19 +75,9 @@ namespace DentOffice.WinUI.Korisnik
             this.dgvKorisnici.RowHeadersWidth = 51;
             this.dgvKorisnici.RowTemplate.Height = 24;
             this.dgvKorisnici.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvKorisnici.Size = new System.Drawing.Size(1004, 290);
+            this.dgvKorisnici.Size = new System.Drawing.Size(1305, 290);
             this.dgvKorisnici.TabIndex = 0;
             this.dgvKorisnici.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvKorisnici_CellContentClick);
-            // 
-            // btnPrikazi
-            // 
-            this.btnPrikazi.Location = new System.Drawing.Point(944, 45);
-            this.btnPrikazi.Name = "btnPrikazi";
-            this.btnPrikazi.Size = new System.Drawing.Size(75, 23);
-            this.btnPrikazi.TabIndex = 1;
-            this.btnPrikazi.Text = "Prikazi";
-            this.btnPrikazi.UseVisualStyleBackColor = true;
-            this.btnPrikazi.Click += new System.EventHandler(this.btnPrikazi_Click);
             // 
             // txtPretraga
             // 
@@ -94,6 +85,7 @@ namespace DentOffice.WinUI.Korisnik
             this.txtPretraga.Name = "txtPretraga";
             this.txtPretraga.Size = new System.Drawing.Size(436, 22);
             this.txtPretraga.TabIndex = 2;
+            this.txtPretraga.TextChanged += new System.EventHandler(this.txtPretraga_TextChanged);
             // 
             // KorisničkoIme
             // 
@@ -111,7 +103,7 @@ namespace DentOffice.WinUI.Korisnik
             this.Ime.MinimumWidth = 6;
             this.Ime.Name = "Ime";
             this.Ime.ReadOnly = true;
-            this.Ime.Width = 125;
+            this.Ime.Width = 80;
             // 
             // Prezime
             // 
@@ -120,7 +112,7 @@ namespace DentOffice.WinUI.Korisnik
             this.Prezime.MinimumWidth = 6;
             this.Prezime.Name = "Prezime";
             this.Prezime.ReadOnly = true;
-            this.Prezime.Width = 125;
+            this.Prezime.Width = 80;
             // 
             // Email
             // 
@@ -138,7 +130,6 @@ namespace DentOffice.WinUI.Korisnik
             this.JMBG.MinimumWidth = 6;
             this.JMBG.Name = "JMBG";
             this.JMBG.ReadOnly = true;
-            this.JMBG.Width = 125;
             // 
             // Grad
             // 
@@ -148,7 +139,15 @@ namespace DentOffice.WinUI.Korisnik
             this.Grad.Name = "Grad";
             this.Grad.ReadOnly = true;
             this.Grad.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.Grad.Width = 125;
+            // 
+            // Spol
+            // 
+            this.Spol.DataPropertyName = "Spol";
+            this.Spol.HeaderText = "Spol";
+            this.Spol.MinimumWidth = 6;
+            this.Spol.Name = "Spol";
+            this.Spol.ReadOnly = true;
+            this.Spol.Width = 55;
             // 
             // ObavljenoPregleda
             // 
@@ -158,18 +157,17 @@ namespace DentOffice.WinUI.Korisnik
             this.ObavljenoPregleda.Name = "ObavljenoPregleda";
             this.ObavljenoPregleda.ReadOnly = true;
             this.ObavljenoPregleda.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.ObavljenoPregleda.Width = 135;
+            this.ObavljenoPregleda.Width = 125;
             // 
             // frmKorisnici
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1611, 450);
+            this.ClientSize = new System.Drawing.Size(1337, 450);
             this.Controls.Add(this.txtPretraga);
-            this.Controls.Add(this.btnPrikazi);
             this.Controls.Add(this.Korisnici);
             this.Name = "frmKorisnici";
-            this.Text = "a ";
+            this.Text = "Lista korisnika";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmKorisnici_Load);
             this.Korisnici.ResumeLayout(false);
@@ -183,7 +181,6 @@ namespace DentOffice.WinUI.Korisnik
 
         private System.Windows.Forms.GroupBox Korisnici;
         private System.Windows.Forms.DataGridView dgvKorisnici;
-        private System.Windows.Forms.Button btnPrikazi;
         private System.Windows.Forms.TextBox txtPretraga;
         private System.Windows.Forms.DataGridViewTextBoxColumn KorisničkoIme;
         private System.Windows.Forms.DataGridViewTextBoxColumn Ime;
@@ -191,6 +188,7 @@ namespace DentOffice.WinUI.Korisnik
         private System.Windows.Forms.DataGridViewTextBoxColumn Email;
         private System.Windows.Forms.DataGridViewTextBoxColumn JMBG;
         private System.Windows.Forms.DataGridViewTextBoxColumn Grad;
+        private System.Windows.Forms.DataGridViewTextBoxColumn Spol;
         private System.Windows.Forms.DataGridViewTextBoxColumn ObavljenoPregleda;
     }
 }

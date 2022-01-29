@@ -21,6 +21,10 @@ namespace DentOffice.WinUI.Termini
         public frmTermini()
         {
             InitializeComponent();
+            if (_id.HasValue)
+                Text = "Uređivanje termina";
+            else
+                Text = "Dodavanje termina";
         }
 
         private async Task LoadUsluge()

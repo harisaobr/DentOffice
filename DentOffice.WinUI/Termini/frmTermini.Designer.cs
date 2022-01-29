@@ -38,6 +38,7 @@ namespace DentOffice.WinUI.Termini
             this.dtpDatum = new System.Windows.Forms.DateTimePicker();
             this.btnSpremi = new System.Windows.Forms.Button();
             this.cmbPacijent = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // txtRazlog
@@ -85,7 +86,7 @@ namespace DentOffice.WinUI.Termini
             // cbHitno
             // 
             this.cbHitno.AutoSize = true;
-            this.cbHitno.Location = new System.Drawing.Point(105, 315);
+            this.cbHitno.Location = new System.Drawing.Point(27, 333);
             this.cbHitno.Name = "cbHitno";
             this.cbHitno.Size = new System.Drawing.Size(71, 21);
             this.cbHitno.TabIndex = 9;
@@ -94,16 +95,18 @@ namespace DentOffice.WinUI.Termini
             // 
             // dtpDatum
             // 
-            this.dtpDatum.Location = new System.Drawing.Point(27, 252);
+            this.dtpDatum.CustomFormat = "dd.MM.yyyy HH:mm";
+            this.dtpDatum.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpDatum.Location = new System.Drawing.Point(27, 272);
             this.dtpDatum.Name = "dtpDatum";
             this.dtpDatum.Size = new System.Drawing.Size(547, 22);
             this.dtpDatum.TabIndex = 10;
             // 
             // btnSpremi
             // 
-            this.btnSpremi.Location = new System.Drawing.Point(499, 313);
+            this.btnSpremi.Location = new System.Drawing.Point(499, 333);
             this.btnSpremi.Name = "btnSpremi";
-            this.btnSpremi.Size = new System.Drawing.Size(75, 23);
+            this.btnSpremi.Size = new System.Drawing.Size(75, 31);
             this.btnSpremi.TabIndex = 11;
             this.btnSpremi.Text = "Spremi";
             this.btnSpremi.UseVisualStyleBackColor = true;
@@ -117,11 +120,21 @@ namespace DentOffice.WinUI.Termini
             this.cmbPacijent.Size = new System.Drawing.Size(546, 24);
             this.cmbPacijent.TabIndex = 12;
             // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(24, 252);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(105, 17);
+            this.label4.TabIndex = 13;
+            this.label4.Text = "Datum i vrijeme";
+            // 
             // frmTermini
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(635, 450);
+            this.ClientSize = new System.Drawing.Size(603, 450);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.cmbPacijent);
             this.Controls.Add(this.btnSpremi);
             this.Controls.Add(this.dtpDatum);
@@ -131,6 +144,7 @@ namespace DentOffice.WinUI.Termini
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtRazlog);
+            this.MaximizeBox = false;
             this.Name = "frmTermini";
             this.Load += new System.EventHandler(this.frmTermini_Load);
             this.ResumeLayout(false);
@@ -148,5 +162,6 @@ namespace DentOffice.WinUI.Termini
         private System.Windows.Forms.DateTimePicker dtpDatum;
         private System.Windows.Forms.Button btnSpremi;
         private System.Windows.Forms.ComboBox cmbPacijent;
+        private System.Windows.Forms.Label label4;
     }
 }

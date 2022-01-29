@@ -40,7 +40,7 @@ namespace DentOffice.WinUI.Termini
             }
         }
 
-        private async void btnUcitajTermine_Click(object sender, EventArgs e)
+        private async void txtRazlog_TextChanged(object sender, EventArgs e)
         {
             await UcitajTermine();
         }
