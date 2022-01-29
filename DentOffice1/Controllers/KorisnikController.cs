@@ -1,5 +1,6 @@
 ﻿using DentOffice.Model.Requests;
 using DentOffice.WebAPI.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -20,12 +21,14 @@ namespace DentOffice.WebAPI.Controllers
         }
 
         [HttpGet]
+        [Authorize]
         public IList<Model.Korisnik> GetAll([FromQuery] KorisnikSearchRequest request)
         {
             return _service.GetAll(request);
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         public Model.Korisnik GetById(int id)
         {
             return _service.GetById(id);
@@ -38,12 +41,14 @@ namespace DentOffice.WebAPI.Controllers
         }
 
         [HttpPut("{id}")]
+        [Authorize]
         public Model.Korisnik Update(int id, [FromBody] KorisnikInsertRequest request)
         {
             return _service.Update(id, request);
         }
 
         [HttpPut("KorisnikPacijenti/{id}")]
+        [Authorize]
         public Model.Pacijent Update(int id, [FromBody] KorisniciPacijentUpdateRequest request)
         {
             return _service.Update(id, request);
@@ -51,6 +56,7 @@ namespace DentOffice.WebAPI.Controllers
 
 
         [HttpGet("KorisnikPacijenti")]
+        [Authorize]
         public IList<Model.KorisnikPacijent> GetAllKorisnikPacijenti([FromQuery] Model.Requests.KorisnikSearchRequest request)
         {
             return _service.GetAllKorisnikPacijenti(request);
@@ -58,9 +64,18 @@ namespace DentOffice.WebAPI.Controllers
 
 
         [HttpGet("KorisnikPacijenti/{id}")]
+        [Authorize]
         public Model.KorisnikPacijent GetByIdKorisnikPacijenti(int id)
         {
             return _service.GetByIdKorisnikPacijent(id);
+        }
+
+
+        [HttpGet("Profil")]
+        [Authorize]
+        public Model.Korisnik Profil()
+        {
+            return _service.Profil();
         }
     }
 }

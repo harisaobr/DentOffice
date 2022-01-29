@@ -3,6 +3,7 @@ using DentOffice.Model;
 using DentOffice.Model.Requests;
 using DentOffice.WebAPI.Database;
 using DentOffice.WebAPI.Exceptions;
+using DentOffice.WebAPI.Helpers;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -17,6 +18,9 @@ namespace DentOffice.WebAPI.Services
     {
         private readonly eDentOfficeContext _context;
         private readonly IMapper _mapper;
+
+        public Model.Korisnik LogiraniKorisnik { get; private set; }
+
         public KorisnikService(eDentOfficeContext context, IMapper mapper)
         {
             _context = context;
@@ -113,8 +117,8 @@ namespace DentOffice.WebAPI.Services
 
             _context.Add(entity);
 
-            entity.LozinkaSalt = GenerateSalt();
-            entity.LozinkaHash = GenerateHash(entity.LozinkaSalt, request.Password);
+            entity.LozinkaSalt = PasswordHelper.GenerateSalt();
+            entity.LozinkaHash = PasswordHelper.GenerateHash(entity.LozinkaSalt, request.Password);
             _context.SaveChanges();
             var temp = _context.Ulogas.FirstOrDefault(i => i.UlogaId == entity.UlogaId);
             if (temp != null && temp.Naziv == "Pacijent")
@@ -158,8 +162,8 @@ namespace DentOffice.WebAPI.Services
                 {
                     throw new UserException("Password i potvrda se ne slažu!");
                 }
-                entity.LozinkaSalt = GenerateSalt();
-                entity.LozinkaHash = GenerateHash(entity.LozinkaSalt, request.Password);
+                entity.LozinkaSalt = PasswordHelper.GenerateSalt();
+                entity.LozinkaHash = PasswordHelper.GenerateHash(entity.LozinkaSalt, request.Password);
             }
 
             _context.SaveChanges();
@@ -292,8 +296,8 @@ namespace DentOffice.WebAPI.Services
                 {
                     throw new UserException("Password i potvrda se ne slažu!");
                 }
-                korisnik.LozinkaSalt = GenerateSalt();
-                korisnik.LozinkaHash = GenerateHash(korisnik.LozinkaSalt, request.Password);
+                korisnik.LozinkaSalt = PasswordHelper.GenerateSalt();
+                korisnik.LozinkaHash = PasswordHelper.GenerateHash(korisnik.LozinkaSalt, request.Password);
             }
 
             _context.SaveChanges();
@@ -344,8 +348,8 @@ namespace DentOffice.WebAPI.Services
                 {
                     throw new UserException("Password i potvrda se ne slažu!");
                 }
-                korisnik.LozinkaSalt = GenerateSalt();
-                korisnik.LozinkaHash = GenerateHash(korisnik.LozinkaSalt, request.Password);
+                korisnik.LozinkaSalt = PasswordHelper.GenerateSalt();
+                korisnik.LozinkaHash = PasswordHelper.GenerateHash(korisnik.LozinkaSalt, request.Password);
             }
 
 
@@ -353,26 +357,7 @@ namespace DentOffice.WebAPI.Services
 
             return _mapper.Map<Model.KorisnikPacijent>(korisnik);
         }
-        public static string GenerateSalt()
-        {
-            var buf = new byte[16];
-            (new RNGCryptoServiceProvider()).GetBytes(buf);
-            return Convert.ToBase64String(buf);
-        }
-        public static string GenerateHash(string salt, string password)
-        {
-            byte[] src = Convert.FromBase64String(salt);
-            byte[] bytes = Encoding.Unicode.GetBytes(password);
-            byte[] dst = new byte[src.Length + bytes.Length];
-
-            System.Buffer.BlockCopy(src, 0, dst, 0, src.Length);
-            System.Buffer.BlockCopy(bytes, 0, dst, src.Length, bytes.Length);
-
-            HashAlgorithm algorithm = HashAlgorithm.Create("SHA1");
-            byte[] inArray = algorithm.ComputeHash(dst);
-            return Convert.ToBase64String(inArray);
-        }
-
+     
 
         public Model.Korisnik GetNajboljiStomatolog()
         {
@@ -396,6 +381,38 @@ namespace DentOffice.WebAPI.Services
         public bool Delete(int id)
         {
             throw new NotImplementedException();
+        }
+
+        public Model.Korisnik Profil()
+        {
+            var query = _context.Korisniks.AsQueryable();
+
+            query = query.Include(x => x.Uloga);
+            query = query.Include(x => x.Grad.Drzava);
+
+            return _mapper.Map<Model.Korisnik>(query.FirstOrDefault(x => x.KorisnikId == LogiraniKorisnik.KorisnikID));
+        }
+
+        public async Task<Model.Korisnik> Login(string username, string password)
+        {
+            var entity = await _context.Korisniks
+                .Where(x => x.KorisnickoIme == username)
+                .Include(x => x.Grad.Drzava)
+                .Include(x => x.Uloga)
+                .FirstOrDefaultAsync();
+
+            if (entity != null)
+            {
+                if (PasswordHelper.GenerateHash(entity.LozinkaSalt, password) == entity.LozinkaHash)
+                    return _mapper.Map<Model.Korisnik>(entity);
+            }
+
+            throw new UserException("Pogrešan username ili password");
+        }
+
+        public void SetLogiraniKorisnik(Model.Korisnik korisnik)
+        {
+            LogiraniKorisnik = korisnik;
         }
     }
 

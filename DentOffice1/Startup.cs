@@ -20,6 +20,8 @@ using System.Linq;
 using System.Threading.Tasks;
 using DentOffice.WebAPI.Services.Interfaces;
 using DentOffice.WebAPI.Controllers;
+using DentOffice.WebAPI.Security;
+using Microsoft.AspNetCore.Authentication;
 
 namespace DentOffice1
 {
@@ -37,13 +39,28 @@ namespace DentOffice1
         {
             services.AddMvc(x => x.Filters.Add<ErrorFilter>()).SetCompatibilityVersion(CompatibilityVersion.Version_3_0);
             services.AddAutoMapper(typeof(Startup));
-            services.AddRazorPages();
             services.AddControllers();
 
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "My API", Version = "v1" });
-               
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "DentOffice.WebAPI", Version = "v1" });
+
+                c.AddSecurityDefinition("basicAuth", new OpenApiSecurityScheme
+                {
+                    Type = SecuritySchemeType.Http,
+                    Scheme = "basic"
+                });
+
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement
+                {
+                    {
+                        new OpenApiSecurityScheme
+                        {
+                            Reference = new OpenApiReference { Type = ReferenceType.SecurityScheme, Id = "basicAuth" }
+                        },
+                        new string[]{}
+                    }
+                });
             });
 
             services.AddScoped<IKorisnikService, KorisnikService>();
@@ -66,6 +83,9 @@ namespace DentOffice1
                     Configuration.GetConnectionString("UserDatabase"));
             }, ServiceLifetime.Transient);
 
+            services.AddAuthentication("BasicAuthentication")
+               .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -84,10 +104,9 @@ namespace DentOffice1
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
-
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
             app.UseSwagger();
          

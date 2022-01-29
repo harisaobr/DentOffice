@@ -23,7 +23,8 @@ namespace DentOffice.Model
         public Grad Grad { get; set; }
 
         public int ObavljenoPregleda { get; set; }
-
+        public Uloga Uloga { get; set; }
+        public int UlogaID { get; set; }
     }
 
     public enum Spol

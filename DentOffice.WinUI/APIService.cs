@@ -9,6 +9,7 @@ using DentOffice.Model;
 using System.Windows.Forms;
 using DentOffice.WinUI.Properties;
 using Microsoft.AspNetCore.Mvc;
+using System.Net;
 
 namespace DentOffice.WinUI
 {
@@ -19,12 +20,13 @@ namespace DentOffice.WinUI
         public static string Username { get; set; }
         public static string Password { get; set; }
         public static int Permisije { get; set; }
-        public static int KorisnikId { get; set; }
+        public static Model.Korisnik LogiraniKorisnik { get; set; }
+
         public APIService(string route)
         {
             _route = route;
         }
-        public async Task<T> GetAll<T>(object search, string action = null)
+        public async Task<T> GetAll<T>(object search = null, string action = null)
         {
             var url = $"{Properties.Settings.Default.APIUrl}/{_route}";
             if (action != null)
@@ -66,6 +68,17 @@ namespace DentOffice.WinUI
 
         private static async Task HandleFlurlException(FlurlHttpException ex)
         {
+            if (ex.StatusCode == (int)HttpStatusCode.Unauthorized)
+            {
+                MessageBox.Show("Greška prilikom authentifikacje.", "Neautorizovani pristup", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            if (ex.StatusCode == (int)HttpStatusCode.Forbidden)
+            {
+                MessageBox.Show("Nemate pravo pristupa.", "Zabranjen pristup", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
             object errors = null;
             try
             {

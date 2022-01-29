@@ -1,5 +1,4 @@
-﻿using DentOffice.WinUI.DAL;
-using DentOffice.WinUI.Korisnik;
+﻿using DentOffice.WinUI.Korisnik;
 using DentOffice.WinUI.Pacijenti;
 using DentOffice.WinUI.Pregled;
 using DentOffice.WinUI.Termini;
@@ -116,7 +115,7 @@ namespace DentOffice.WinUI
 
         private void noviPacijentToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmPAcijentiDetalji frm = new frmPAcijentiDetalji();
+            frmPacijentiDetalji frm = new frmPacijentiDetalji();
             frm.ShowDialog();
         }
 

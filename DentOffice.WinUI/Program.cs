@@ -17,7 +17,10 @@ namespace DentOffice.WinUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new frmIndex());
+
+            Form frm = new frmLogin();
+            if(frm.ShowDialog() == DialogResult.OK)
+                Application.Run(new frmIndex());
         }
     }
 }
