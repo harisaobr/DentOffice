@@ -1,4 +1,5 @@
 ﻿using DentOffice.WebAPI.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -15,12 +16,14 @@ namespace DentOffice.WebAPI.Controllers
         {
             _service = service;
         }
+        [Authorize]
         [HttpPost]
         public T Insert(TInsert request)
         {
             return _service.Insert(request);
         }
 
+        [Authorize]
         [HttpPut("{id}")]
         public T Update(int id, [FromBody] TUpdate request)
         {

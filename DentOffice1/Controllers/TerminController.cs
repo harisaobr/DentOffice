@@ -2,6 +2,7 @@
 using DentOffice.WebAPI.Database;
 using DentOffice.WebAPI.Services;
 using DentOffice.WebAPI.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -12,9 +13,10 @@ using System.Threading.Tasks;
 namespace DentOffice.WebAPI.Controllers
 {
     [Route("api/[controller]")]
+    [Authorize]
     [ApiController]
     public class TerminController : ControllerBase
-    { 
+    {
         private static ITerminService _terminService;
 
         public TerminController(ITerminService terminService)

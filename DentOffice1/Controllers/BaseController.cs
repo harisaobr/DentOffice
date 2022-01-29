@@ -1,4 +1,5 @@
 ﻿using DentOffice.WebAPI.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -19,13 +20,15 @@ namespace DentOffice.WebAPI.Controllers
             _service = service;
         }
 
-         [HttpGet]
+        [HttpGet]
+        [Authorize]
         public virtual IList<T> GetAll([FromQuery] TSearch request = default)
         {
             return _service.GetAll(request);
         }
 
         [HttpGet("{id}")]
+        [Authorize]
         public T GetById(int id)
         {
             return _service.GetById(id);
