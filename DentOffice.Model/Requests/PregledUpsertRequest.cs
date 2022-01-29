@@ -20,7 +20,6 @@ namespace DentOffice.Model.Requests
         [Range(1, 480, ErrorMessage = "Trajanje pregleda ne moze biti manje od 1 minute i vece od 480 minuta")]
         public int TrajanjePregleda { get; set; }
     
-        [Required]
         [StringLength(200)]
         public string Napomena { get; set; }
        

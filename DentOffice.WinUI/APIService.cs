@@ -8,6 +8,7 @@ using Flurl;
 using DentOffice.Model;
 using System.Windows.Forms;
 using DentOffice.WinUI.Properties;
+using Microsoft.AspNetCore.Mvc;
 
 namespace DentOffice.WinUI
 {
@@ -34,24 +35,14 @@ namespace DentOffice.WinUI
                 url += "?";
                 url += await search.ToQueryString();
             }
-            
+
             try
             {
                 return await url.WithBasicAuth(Username, Password).GetJsonAsync<T>();
             }
             catch (FlurlHttpException ex)
             {
-                object errors = null;
-                try
-                {
-                    errors = await ex.GetResponseJsonAsync<object>();
-                }
-                catch (Exception)
-                {
-                    errors = await ex.GetResponseStringAsync();
-                }
-
-                MessageBox.Show(errors.ToString(), "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                await HandleFlurlException(ex);
                 return default;
             }
         }
@@ -68,20 +59,50 @@ namespace DentOffice.WinUI
             }
             catch (FlurlHttpException ex)
             {
-                object errors = null;
+                await HandleFlurlException(ex);
+                return default;
+            }
+        }
+
+        private static async Task HandleFlurlException(FlurlHttpException ex)
+        {
+            object errors = null;
+            try
+            {
+                errors = await ex.GetResponseJsonAsync<ValidationProblemDetails>();
+                if (errors is ValidationProblemDetails e1)
+                {
+                    var stringBuilder = new StringBuilder();
+                    foreach (var error in e1.Errors)
+                    {
+                        stringBuilder.AppendLine($"{error.Key}, {string.Join(",", error.Value)}");
+                    }
+                    foreach (var error in e1.Extensions)
+                    {
+                        stringBuilder.AppendLine($"{error.Key}, {string.Join(",", error.Value)}");
+                    }
+
+                    MessageBox.Show(stringBuilder.ToString(), "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                }
+            }
+            catch (Exception)
+            {
                 try
                 {
                     errors = await ex.GetResponseJsonAsync<object>();
+
                 }
                 catch (Exception)
                 {
                     errors = await ex.GetResponseStringAsync();
                 }
-
                 MessageBox.Show(errors.ToString(), "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return default;
+
             }
+
         }
+
         public async Task<T> Insert<T>(object request, string action = null)
         {
             var url = $"{Properties.Settings.Default.APIUrl}/{_route}";
@@ -94,17 +115,8 @@ namespace DentOffice.WinUI
             }
             catch (FlurlHttpException ex)
             {
-                object errors = null;
-                try
-                {
-                    errors = await ex.GetResponseJsonAsync<object>();
-                }
-                catch (Exception)
-                {
-                    errors = await ex.GetResponseStringAsync();
-                }
+                await HandleFlurlException(ex);
 
-                MessageBox.Show(errors.ToString(), "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return default;
             }
 
@@ -122,17 +134,8 @@ namespace DentOffice.WinUI
             }
             catch (FlurlHttpException ex)
             {
-                object errors = null;
-                try
-                {
-                    errors = await ex.GetResponseJsonAsync<object>();
-                }
-                catch (Exception)
-                {
-                    errors = await ex.GetResponseStringAsync();
-                }
+                await HandleFlurlException(ex);
 
-                MessageBox.Show(errors.ToString(), "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return default;
             }
 

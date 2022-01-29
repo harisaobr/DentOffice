@@ -35,7 +35,6 @@ namespace DentOffice.WinUI.Pregled
             await LoadPacijent();
             await LoadUsluge();
 
-
         }
         private async Task LoadLijekovi()
         {
@@ -72,38 +71,39 @@ namespace DentOffice.WinUI.Pregled
         }
 
 
-        private PregledUpsertRequest UpdateRequest = new PregledUpsertRequest();
+        private PregledUpsertRequest Request = new PregledUpsertRequest();
 
-        private async void txtSnimiPregled_Click(object sender, EventArgs e)
+        private async void btnSnimiPregled_Click(object sender, EventArgs e)
         {
             if (this.ValidateChildren())
             {
-
                 int.TryParse(cmbDijagnoza.SelectedValue.ToString(), out int convertDijagnoza);
                 int.TryParse(cmbLijek.SelectedValue.ToString(), out int convertLijek);
                 int.TryParse(txtTrajanje.Text, out int convertTrajanje);
 
-                if (_id.HasValue)
+                Request.KorisnikId = APIService.KorisnikId;
+                Request.DijagnozaId = convertDijagnoza;
+                Request.LijekId = convertLijek;
+                Request.TrajanjePregleda = convertTrajanje;
+                Request.Napomena = txtNapomenaPregleda.Text;
+
+                try
                 {
-                    UpdateRequest.KorisnikId = APIService.KorisnikId;
-                    UpdateRequest.DijagnozaId = convertDijagnoza;
-                    UpdateRequest.LijekId = convertLijek;
-                    UpdateRequest.TrajanjePregleda = convertTrajanje;
-                    UpdateRequest.Napomena = txtNapomenaPregleda.Text;
+                    Model.Pregled entity = null;
+                    if (_id.HasValue)
+                        entity = await _servicePregled.Update<Model.Pregled>(_id, Request);
+                    else
+                        entity = await _servicePregled.Insert<Model.Pregled>(Request);
 
-                    try
-                    {
-                        var temp = await _servicePregled.Update<Model.Korisnik>(_id, UpdateRequest);
-
-                        MessageBox.Show("Uspješno ste uredili pregled!");
-
-                    }
-                    catch (Exception exception)
-                    {
-                        MessageBox.Show("Operacija neuspjela! " + exception.Message);
-                    }
+                    if (entity != null)
+                        MessageBox.Show("Uspješno ste " + (_id.HasValue ? "uredili" : "dodali") + " pregled!");
 
                 }
+                catch (Exception exception)
+                {
+                    MessageBox.Show("Operacija neuspjela! " + exception.Message);
+                }
+
             }
         }
 

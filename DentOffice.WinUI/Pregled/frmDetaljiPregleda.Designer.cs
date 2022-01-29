@@ -29,7 +29,7 @@ namespace DentOffice.WinUI.Pregled
         /// </summary>
         private void InitializeComponent()
         {
-            this.txtSnimiPregled = new System.Windows.Forms.Button();
+            this.btnSnimiPregled = new System.Windows.Forms.Button();
             this.txtNapomenaPregleda = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
             this.txtTrajanje = new System.Windows.Forms.TextBox();
@@ -46,14 +46,15 @@ namespace DentOffice.WinUI.Pregled
             this.dtpDatum = new System.Windows.Forms.DateTimePicker();
             this.SuspendLayout();
             // 
-            // txtSnimiPregled
+            // btnSnimiPregled
             // 
-            this.txtSnimiPregled.Location = new System.Drawing.Point(185, 348);
-            this.txtSnimiPregled.Name = "txtSnimiPregled";
-            this.txtSnimiPregled.Size = new System.Drawing.Size(267, 55);
-            this.txtSnimiPregled.TabIndex = 64;
-            this.txtSnimiPregled.Text = "Snimi pregled";
-            this.txtSnimiPregled.UseVisualStyleBackColor = true;
+            this.btnSnimiPregled.Location = new System.Drawing.Point(185, 348);
+            this.btnSnimiPregled.Name = "btnSnimiPregled";
+            this.btnSnimiPregled.Size = new System.Drawing.Size(267, 55);
+            this.btnSnimiPregled.TabIndex = 64;
+            this.btnSnimiPregled.Text = "Snimi pregled";
+            this.btnSnimiPregled.UseVisualStyleBackColor = true;
+            this.btnSnimiPregled.Click += new System.EventHandler(this.btnSnimiPregled_Click);
             // 
             // txtNapomenaPregleda
             // 
@@ -156,11 +157,11 @@ namespace DentOffice.WinUI.Pregled
             this.cmbUsluga.Size = new System.Drawing.Size(233, 24);
             this.cmbUsluga.TabIndex = 74;
             // 
-            // comboBox2
+            // cmbPacijent
             // 
             this.cmbPacijent.FormattingEnabled = true;
             this.cmbPacijent.Location = new System.Drawing.Point(59, 50);
-            this.cmbPacijent.Name = "comboBox2";
+            this.cmbPacijent.Name = "cmbPacijent";
             this.cmbPacijent.Size = new System.Drawing.Size(498, 24);
             this.cmbPacijent.TabIndex = 75;
             // 
@@ -181,7 +182,7 @@ namespace DentOffice.WinUI.Pregled
             this.Controls.Add(this.cmbUsluga);
             this.Controls.Add(this.cmbLijek);
             this.Controls.Add(this.cmbDijagnoza);
-            this.Controls.Add(this.txtSnimiPregled);
+            this.Controls.Add(this.btnSnimiPregled);
             this.Controls.Add(this.txtNapomenaPregleda);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.txtTrajanje);
@@ -200,7 +201,7 @@ namespace DentOffice.WinUI.Pregled
         }
 
         #endregion
-        private System.Windows.Forms.Button txtSnimiPregled;
+        private System.Windows.Forms.Button btnSnimiPregled;
         private System.Windows.Forms.TextBox txtNapomenaPregleda;
         private System.Windows.Forms.Label label9;
         private System.Windows.Forms.TextBox txtTrajanje;
