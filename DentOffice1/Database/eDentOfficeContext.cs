@@ -265,7 +265,7 @@ namespace DentOffice.WebAPI.Database
 
                 entity.Property(e => e.TerminId).HasColumnName("TerminID");
 
-                entity.Property(e => e.Datum).HasColumnType("date");
+                entity.Property(e => e.Datum);
 
                 entity.Property(e => e.PacijentId).HasColumnName("PacijentID");
 
