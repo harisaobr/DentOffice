@@ -1,0 +1,24 @@
+﻿<?xml version='1.0' encoding='utf-8'?>
+<SettingsFile xmlns="http://schemas.microsoft.com/VisualStudio/2004/01/settings" CurrentProfile="(Default)" GeneratedClassNamespace="DentOffice.WinUI.Properties" GeneratedClassName="Settings">
+  <Profiles />
+  <Settings>
+    <Setting Name="APIUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://localhost:59296/api</Value>
+    </Setting>
+    <Setting Name="LijekUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://localhost:59296/api/lijek</Value>
+    </Setting>
+    <Setting Name="DijagnozaUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://localhost:59296/api/dijagnoza</Value>
+    </Setting>
+    <Setting Name="TerminUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://localhost:59296/api/termin</Value>
+    </Setting>
+    <Setting Name="KorisnikUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://localhost:59296/api/korisnik</Value>
+    </Setting>
+    <Setting Name="PregledUrl" Type="System.String" Scope="Application">
+      <Value Profile="(Default)">http://localhost:59296/api/pregled</Value>
+    </Setting>
+  </Settings>
+</SettingsFile>
