@@ -1,4 +1,5 @@
 ﻿using DentOffice.Model.Requests;
+using DentOffice.WinUI.Helper;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,6 +19,7 @@ namespace DentOffice.WinUI.Pregled
         private readonly APIService _serviceKorisnici = new APIService("Korisnik");
         private readonly APIService _servicePregled = new APIService("Pregled");
         private readonly APIService _serviceUsluga = new APIService("Usluga");
+        private readonly APIService _serviceTermin = new APIService("Termin");
 
 
         private int? _id = null;
@@ -29,11 +31,10 @@ namespace DentOffice.WinUI.Pregled
 
         private async void frmDetaljiPregleda_Load(object sender, EventArgs e)
         {
-
-            await LoadDijagnoze();
-            await LoadLijekovi();
             await LoadPacijent();
             await LoadUsluge();
+            await LoadDijagnoze();
+            await LoadLijekovi();
 
         }
         private async Task LoadLijekovi()
@@ -49,9 +50,9 @@ namespace DentOffice.WinUI.Pregled
         {
             var result = await _serviceDijagnoza.GetAll<List<Model.Dijagnoza>>(null);
 
+            cmbDijagnoza.DataSource = result;
             cmbDijagnoza.DisplayMember = "Naziv";
             cmbDijagnoza.ValueMember = "DijagnozaId";
-            cmbDijagnoza.DataSource = result;
         }
 
         private async Task LoadPacijent()
@@ -65,11 +66,31 @@ namespace DentOffice.WinUI.Pregled
         private async Task LoadUsluge()
         {
             var result = await _serviceUsluga.GetAll<List<Model.Usluga>>(null);
-            cmbUsluga.DataSource = result;
             cmbUsluga.DisplayMember = "Naziv";
-            cmbUsluga.ValueMember = "UslugaId";
+            cmbUsluga.ValueMember = "UslugaID";
+            cmbUsluga.DataSource = result;
         }
 
+        private async Task LoadTermine()
+        {
+            cmbTermin.Text = "";
+
+            if (cmbPacijent.SelectedValue == null || cmbUsluga.SelectedValue == null)
+                return;
+
+            var request = new TerminSearchRequest
+            {
+                PacijentId = int.Parse(cmbPacijent.SelectedValue.ToString()),
+                UslugaId = int.Parse(cmbUsluga.SelectedValue.ToString())
+            };
+
+            var result = await _serviceTermin.GetAll<List<Model.Termin>>(request);
+            result = result.OrderByDescending(x => x.DatumVrijeme).ToList();
+
+            cmbTermin.DataSource = result;
+            cmbTermin.DisplayMember = "Opis";
+            cmbTermin.ValueMember = "TerminID";
+        }
 
         private PregledUpsertRequest Request = new PregledUpsertRequest();
 
@@ -79,11 +100,12 @@ namespace DentOffice.WinUI.Pregled
             {
                 int.TryParse(cmbDijagnoza.SelectedValue.ToString(), out int convertDijagnoza);
                 int.TryParse(cmbLijek.SelectedValue.ToString(), out int convertLijek);
+                int.TryParse(cmbTermin.SelectedValue.ToString(), out int convertTermin);
                 int.TryParse(txtTrajanje.Text, out int convertTrajanje);
 
-                Request.KorisnikId = APIService.KorisnikId;
                 Request.DijagnozaId = convertDijagnoza;
                 Request.LijekId = convertLijek;
+                Request.TerminId = convertTermin;
                 Request.TrajanjePregleda = convertTrajanje;
                 Request.Napomena = txtNapomenaPregleda.Text;
 
@@ -107,6 +129,45 @@ namespace DentOffice.WinUI.Pregled
             }
         }
 
+        private async void cmbPacijent_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            await LoadTermine();
+        }
+
+        private async void cmbUsluga_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            await LoadTermine();
+        }
+
+        private void cmbPacijent_Validating(object sender, CancelEventArgs e)
+        {
+            err.ValidirajKontrolu(sender, e, Properties.Resources.Validation_RequiredField);
+        }
+
+        private void cmbUsluga_Validating(object sender, CancelEventArgs e)
+        {
+            err.ValidirajKontrolu(sender, e, Properties.Resources.Validation_RequiredField);
+        }
+
+        private void cmbTermin_Validating(object sender, CancelEventArgs e)
+        {
+            err.ValidirajKontrolu(sender, e, Properties.Resources.Validation_RequiredField);
+        }
+
+        private void cmbDijagnoza_Validating(object sender, CancelEventArgs e)
+        {
+            err.ValidirajKontrolu(sender, e, Properties.Resources.Validation_RequiredField);
+        }
+
+        private void cmbLijek_Validating(object sender, CancelEventArgs e)
+        {
+            err.ValidirajKontrolu(sender, e, Properties.Resources.Validation_RequiredField);
+        }
+
+        private void txtTrajanje_Validating(object sender, CancelEventArgs e)
+        {
+            err.ValidirajKontrolu(sender, e, Properties.Resources.Validation_RequiredField);
+        }
     }
 
 }

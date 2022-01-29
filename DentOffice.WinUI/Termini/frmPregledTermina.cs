@@ -21,14 +21,6 @@ namespace DentOffice.WinUI.Termini
 
         private async void frmPregledTermina_Load(object sender, EventArgs e)
         {
-            //var sviTermini = await _serviceTermin.GetAll<List<Model.Termin>>(null);
-
-            //dgvTermini.AutoGenerateColumns = false;
-            //dgvTermini.DataSource = sviTermini;
-            //if (dgvTermini.RowCount > 0)
-            //{
-            //    dgvTermini.Columns[4].DefaultCellStyle.Format = "dd.MM.yyyy HH:mm";
-            //}
             await UcitajTermine();
         }
 

@@ -205,8 +205,6 @@ namespace DentOffice.WebAPI.Database
 
                 entity.Property(e => e.PregledId).HasColumnName("PregledID");
 
-                entity.Property(e => e.Datum).HasColumnType("date");
-
                 entity.Property(e => e.DijagnozaId).HasColumnName("DijagnozaID");
 
                 entity.Property(e => e.KorisnikId).HasColumnName("KorisnikID");
@@ -265,7 +263,7 @@ namespace DentOffice.WebAPI.Database
 
                 entity.Property(e => e.TerminId).HasColumnName("TerminID");
 
-                entity.Property(e => e.Datum);
+                entity.Property(e => e.DatumVrijeme);
 
                 entity.Property(e => e.PacijentId).HasColumnName("PacijentID");
 

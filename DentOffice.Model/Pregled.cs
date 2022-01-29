@@ -7,7 +7,6 @@ namespace DentOffice.Model
     public class Pregled
     {
         public int PregledID { get; set; }
-        public DateTime Datum { get; set; }
         public int TrajanjePregleda { get; set; }
         public string Napomena { get; set; }
 

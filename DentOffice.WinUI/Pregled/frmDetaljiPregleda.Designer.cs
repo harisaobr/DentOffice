@@ -29,6 +29,7 @@ namespace DentOffice.WinUI.Pregled
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.btnSnimiPregled = new System.Windows.Forms.Button();
             this.txtNapomenaPregleda = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
@@ -43,7 +44,9 @@ namespace DentOffice.WinUI.Pregled
             this.cmbLijek = new System.Windows.Forms.ComboBox();
             this.cmbUsluga = new System.Windows.Forms.ComboBox();
             this.cmbPacijent = new System.Windows.Forms.ComboBox();
-            this.dtpDatum = new System.Windows.Forms.DateTimePicker();
+            this.cmbTermin = new System.Windows.Forms.ComboBox();
+            this.err = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.err)).BeginInit();
             this.SuspendLayout();
             // 
             // btnSnimiPregled
@@ -78,6 +81,7 @@ namespace DentOffice.WinUI.Pregled
             this.txtTrajanje.Name = "txtTrajanje";
             this.txtTrajanje.Size = new System.Drawing.Size(233, 22);
             this.txtTrajanje.TabIndex = 61;
+            this.txtTrajanje.Validating += new System.ComponentModel.CancelEventHandler(this.txtTrajanje_Validating);
             // 
             // label8
             // 
@@ -102,9 +106,9 @@ namespace DentOffice.WinUI.Pregled
             this.label6.AutoSize = true;
             this.label6.Location = new System.Drawing.Point(314, 89);
             this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(105, 17);
+            this.label6.Size = new System.Drawing.Size(52, 17);
             this.label6.TabIndex = 56;
-            this.label6.Text = "Datum i vrijeme";
+            this.label6.Text = "Termin";
             // 
             // label3
             // 
@@ -140,6 +144,7 @@ namespace DentOffice.WinUI.Pregled
             this.cmbDijagnoza.Name = "cmbDijagnoza";
             this.cmbDijagnoza.Size = new System.Drawing.Size(233, 24);
             this.cmbDijagnoza.TabIndex = 72;
+            this.cmbDijagnoza.Validating += new System.ComponentModel.CancelEventHandler(this.cmbDijagnoza_Validating);
             // 
             // cmbLijek
             // 
@@ -148,6 +153,7 @@ namespace DentOffice.WinUI.Pregled
             this.cmbLijek.Name = "cmbLijek";
             this.cmbLijek.Size = new System.Drawing.Size(240, 24);
             this.cmbLijek.TabIndex = 73;
+            this.cmbLijek.Validating += new System.ComponentModel.CancelEventHandler(this.cmbLijek_Validating);
             // 
             // cmbUsluga
             // 
@@ -156,6 +162,8 @@ namespace DentOffice.WinUI.Pregled
             this.cmbUsluga.Name = "cmbUsluga";
             this.cmbUsluga.Size = new System.Drawing.Size(233, 24);
             this.cmbUsluga.TabIndex = 74;
+            this.cmbUsluga.SelectedIndexChanged += new System.EventHandler(this.cmbUsluga_SelectedIndexChanged);
+            this.cmbUsluga.Validating += new System.ComponentModel.CancelEventHandler(this.cmbUsluga_Validating);
             // 
             // cmbPacijent
             // 
@@ -164,20 +172,29 @@ namespace DentOffice.WinUI.Pregled
             this.cmbPacijent.Name = "cmbPacijent";
             this.cmbPacijent.Size = new System.Drawing.Size(498, 24);
             this.cmbPacijent.TabIndex = 75;
+            this.cmbPacijent.SelectedIndexChanged += new System.EventHandler(this.cmbPacijent_SelectedIndexChanged);
+            this.cmbPacijent.Validating += new System.ComponentModel.CancelEventHandler(this.cmbPacijent_Validating);
             // 
-            // dtpDatum
+            // cmbTermin
             // 
-            this.dtpDatum.Location = new System.Drawing.Point(317, 110);
-            this.dtpDatum.Name = "dtpDatum";
-            this.dtpDatum.Size = new System.Drawing.Size(240, 22);
-            this.dtpDatum.TabIndex = 76;
+            this.cmbTermin.FormattingEnabled = true;
+            this.cmbTermin.Location = new System.Drawing.Point(317, 107);
+            this.cmbTermin.Name = "cmbTermin";
+            this.cmbTermin.Size = new System.Drawing.Size(240, 24);
+            this.cmbTermin.TabIndex = 76;
+            this.cmbTermin.Validating += new System.ComponentModel.CancelEventHandler(this.cmbTermin_Validating);
+            // 
+            // err
+            // 
+            this.err.ContainerControl = this;
             // 
             // frmDetaljiPregleda
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoValidate = System.Windows.Forms.AutoValidate.EnableAllowFocusChange;
             this.ClientSize = new System.Drawing.Size(635, 450);
-            this.Controls.Add(this.dtpDatum);
+            this.Controls.Add(this.cmbTermin);
             this.Controls.Add(this.cmbPacijent);
             this.Controls.Add(this.cmbUsluga);
             this.Controls.Add(this.cmbLijek);
@@ -195,6 +212,7 @@ namespace DentOffice.WinUI.Pregled
             this.Name = "frmDetaljiPregleda";
             this.Text = "frmDetaljiPregleda";
             this.Load += new System.EventHandler(this.frmDetaljiPregleda_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.err)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -215,6 +233,7 @@ namespace DentOffice.WinUI.Pregled
         private System.Windows.Forms.ComboBox cmbLijek;
         private System.Windows.Forms.ComboBox cmbUsluga;
         private System.Windows.Forms.ComboBox cmbPacijent;
-        private System.Windows.Forms.DateTimePicker dtpDatum;
+        private System.Windows.Forms.ComboBox cmbTermin;
+        private System.Windows.Forms.ErrorProvider err;
     }
 }

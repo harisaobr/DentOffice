@@ -17,5 +17,6 @@ namespace DentOffice.WebAPI.Services
         Model.Korisnik Profil();
         Task<Korisnik> Login(string username, string password);
         void SetLogiraniKorisnik(Korisnik korisnik);
+        Korisnik GetLogiraniKorisnik();
     }
 }

@@ -11,9 +11,11 @@ namespace DentOffice.WebAPI.Services
 {
     public class PregledService : BaseCRUDService<Model.Pregled, PregledSearchRequest, Database.Pregled, PregledUpsertRequest, PregledUpsertRequest>
     {
+        private readonly IKorisnikService serviceKorisnik;
 
-        public PregledService(Database.eDentOfficeContext context, IMapper mapper) : base(context, mapper)
+        public PregledService(Database.eDentOfficeContext context, IMapper mapper, IKorisnikService serviceKorisnik) : base(context, mapper)
         {
+            this.serviceKorisnik = serviceKorisnik;
         }
 
 
@@ -81,23 +83,25 @@ namespace DentOffice.WebAPI.Services
         {
 
             var entity = _mapper.Map<Database.Pregled>(request);
-
+            entity.KorisnikId = serviceKorisnik.GetLogiraniKorisnik().KorisnikID;
             _context.Add(entity);
 
             _context.SaveChanges();
 
-            var pacijent = _context.Termins.FirstOrDefault(i => i.TerminId == entity.TerminId).PacijentId;
-
-            var medicinskiKarton = new Database.MedicinskiKarton
+            var termin = _context.Termins.Find(request.TerminId);
+            var pacijent = _context.Pacijents.FirstOrDefault(i => i.PacijentId == termin.PacijentId);
+            if(pacijent != null)
             {
-                Datum = DateTime.Now,
-                Napomena = entity.Napomena,
-                PacijentId = pacijent,
-                PregledId = entity.PregledId
-            };
-            _context.MedicinskiKartons.Add(medicinskiKarton);
-            _context.SaveChanges();
-
+                var medicinskiKarton = new Database.MedicinskiKarton
+                {
+                    Datum = DateTime.Now,
+                    Napomena = entity.Napomena,
+                    PacijentId = pacijent.PacijentId,
+                    PregledId = entity.PregledId
+                };
+                _context.MedicinskiKartons.Add(medicinskiKarton);
+                _context.SaveChanges();
+            }
 
             return _mapper.Map<Model.Pregled>(entity);
         }

@@ -414,6 +414,11 @@ namespace DentOffice.WebAPI.Services
         {
             LogiraniKorisnik = korisnik;
         }
+
+        public Model.Korisnik GetLogiraniKorisnik()
+        {
+            return LogiraniKorisnik;
+        }
     }
 
 }

@@ -4,14 +4,16 @@ using DentOffice.WebAPI.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DentOffice.WebAPI.Migrations
 {
     [DbContext(typeof(eDentOfficeContext))]
-    partial class eDentOfficeContextModelSnapshot : ModelSnapshot
+    [Migration("20220129205624_termin_rename_datum_to_datumvrijeme")]
+    partial class termin_rename_datum_to_datumvrijeme
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -283,6 +285,9 @@ namespace DentOffice.WebAPI.Migrations
                         .HasColumnType("int")
                         .HasColumnName("PregledID")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<DateTime?>("Datum")
+                        .HasColumnType("date");
 
                     b.Property<int?>("DijagnozaId")
                         .HasColumnType("int")

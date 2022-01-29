@@ -18,5 +18,6 @@ namespace DentOffice.Model
         public Usluga Usluga { get; set; }
         public string UslugaNaziv { get; set; }
 
+        public string Opis => $"{DatumVrijeme} ({(Odobreno ? "Odobren" : "Neodobren")})";
     }
 }

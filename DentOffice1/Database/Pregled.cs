@@ -18,7 +18,6 @@ namespace DentOffice.WebAPI.Database
         public int? LijekId { get; set; }
         public int? TerminId { get; set; }
         public int? DijagnozaId { get; set; }
-        public DateTime? Datum { get; set; }
         public int? TrajanjePregleda { get; set; }
         public string Napomena { get; set; }
 
