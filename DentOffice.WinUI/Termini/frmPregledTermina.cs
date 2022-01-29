@@ -17,6 +17,7 @@ namespace DentOffice.WinUI.Termini
         public frmPregledTermina()
         {
             InitializeComponent();
+            dgvTermini.AutoGenerateColumns = false;
         }
 
         private async void frmPregledTermina_Load(object sender, EventArgs e)

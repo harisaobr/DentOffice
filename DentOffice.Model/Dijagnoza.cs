@@ -9,5 +9,9 @@ namespace DentOffice.Model
         public int DijagnozaID { get; set; }
         public string Naziv { get; set; }
         public string Napomena { get; set; }
+        public override string ToString()
+        {
+            return Naziv;
+        }
     }
 }

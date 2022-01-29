@@ -43,14 +43,9 @@ namespace DentOffice.WebAPI.Services
                 .Include(i => i.Uloga)
                 .AsQueryable();
 
-            if (!string.IsNullOrWhiteSpace(search?.Ime))
+            if (!string.IsNullOrWhiteSpace(search?.ImePrezime))
             {
-                query = query.Where(x => x.Ime == search.Ime);
-            }
-
-            if (!string.IsNullOrWhiteSpace(search?.Prezime))
-            {
-                query = query.Where(x => x.Prezime == search.Prezime);
+                query = query.Where(x => (x.Ime + " " + x.Prezime).ToLower().Contains(search.ImePrezime.ToLower()));
             }
 
             if (!string.IsNullOrWhiteSpace(search?.Email))
@@ -136,7 +131,7 @@ namespace DentOffice.WebAPI.Services
 
             return _mapper.Map<Model.Korisnik>(entity);
         }
-        public Model.Korisnik Update(int id, KorisnikInsertRequest request)
+        public Model.Korisnik Update(int id, KorisnikUpdateRequest request)
         {
             var provjera = _context.Korisniks.FirstOrDefault(i => i.Email == request.Email && i.KorisnikId != id);
             if (provjera != null)
@@ -151,8 +146,6 @@ namespace DentOffice.WebAPI.Services
                 exSlika = entity.Slika;
 
             }
-
-
 
             _mapper.Map(request, entity);
             entity.Slika = exSlika;
@@ -171,53 +164,6 @@ namespace DentOffice.WebAPI.Services
             return _mapper.Map<Model.Korisnik>(entity);
         }
 
-        public IList<Model.Pacijent> GetAllPacijenti(KorisnikSearchRequest search = default)
-        {
-            var query = _context.Pacijents
-                .Include(i => i.Korisnik)
-                .Include(i => i.Korisnik.Grad)
-                .Include(i => i.Korisnik.Grad.Drzava)
-                .Include(i => i.Korisnik.Uloga)
-                .AsQueryable();
-
-            if (!string.IsNullOrWhiteSpace(search?.Ime))
-            {
-                query = query.Where(x => x.Korisnik.Ime == search.Ime);
-            }
-
-            if (!string.IsNullOrWhiteSpace(search?.Prezime))
-            {
-                query = query.Where(x => x.Korisnik.Prezime == search.Prezime);
-            }
-
-            if (!string.IsNullOrWhiteSpace(search?.Email))
-            {
-                query = query.Where(x => x.Korisnik.Email == search.Email);
-            }
-
-            if (!string.IsNullOrWhiteSpace(search?.JMBG))
-            {
-                query = query.Where(x => x.Korisnik.Jmbg == search.JMBG);
-            }
-
-            if (!string.IsNullOrWhiteSpace(search?.Grad))
-            {
-                query = query.Where(x => x.Korisnik.Grad.Naziv == search.Grad);
-            }
-
-            if (!string.IsNullOrWhiteSpace(search?.Drzava))
-            {
-                query = query.Where(x => x.Korisnik.Grad.Drzava.Naziv == search.Drzava);
-            }
-
-            var entities = query.ToList();
-
-            var result = _mapper.Map<IList<Model.Pacijent>>(entities);
-
-
-            return result;
-        }
-
         public IList<Model.KorisnikPacijent> GetAllKorisnikPacijenti(KorisnikSearchRequest search = default)
         {
             var pacijenti = _context.Pacijents
@@ -228,14 +174,9 @@ namespace DentOffice.WebAPI.Services
                 .AsQueryable();
 
 
-            if (!string.IsNullOrWhiteSpace(search?.Ime))
+            if (!string.IsNullOrWhiteSpace(search?.ImePrezime))
             {
-                pacijenti = pacijenti.Where(x => x.Korisnik.Ime == search.Ime);
-            }
-
-            if (!string.IsNullOrWhiteSpace(search?.Prezime))
-            {
-                pacijenti = pacijenti.Where(x => x.Korisnik.Prezime == search.Prezime);
+                pacijenti = pacijenti.Where(x => (x.Korisnik.Ime + " " + x.Korisnik.Prezime).ToLower().Contains(search.ImePrezime.ToLower()));
             }
 
             if (!string.IsNullOrWhiteSpace(search?.Email))
@@ -269,6 +210,49 @@ namespace DentOffice.WebAPI.Services
 
             return result;
         }
+
+
+
+        public Model.Pacijent Insert(KorisniciPacijentInsertRequest request)
+        {
+            var uloga = _context.Ulogas.First(i => i.Naziv == "Pacijent");
+
+            var entity = _mapper.Map<Database.Korisnik>(request);
+
+            if (request.Password != request.PasswordConfirm)
+            {
+                throw new UserException("Password i potvrda se ne slažu!");
+            }
+
+            var korisnici = _context.Korisniks.ToList();
+            foreach (var korisnik in korisnici)
+            {
+                if (korisnik.KorisnickoIme == request.KorisnickoIme)
+                    throw new UserException("Korisnicko ime koje ste unijeli je zauzeto!");
+                if (korisnik.Email == request.Email)
+                    throw new UserException("Email koji ste unijeli je zauzet!");
+            }
+
+            entity.Uloga = uloga;
+            entity.LozinkaSalt = PasswordHelper.GenerateSalt();
+            entity.LozinkaHash = PasswordHelper.GenerateHash(entity.LozinkaSalt, request.Password);
+
+            _context.Korisniks.Add(entity);
+
+            var noviPacijent = new Database.Pacijent
+            {
+                Aparatic = request.Aparatic,
+                Korisnik = entity,
+                Proteza = request.Proteza,
+                Terapija = request.Terapija
+            };
+            _context.Pacijents.Add(noviPacijent);
+            _context.SaveChanges();
+
+            return _mapper.Map<Model.Pacijent>(noviPacijent);
+        }
+
+
         public Model.Pacijent Update(int id, KorisniciPacijentUpdateRequest request)
         {
             var provjera = _context.Korisniks.FirstOrDefault(i => i.Email == request.Email && i.KorisnikId != id);
@@ -317,47 +301,6 @@ namespace DentOffice.WebAPI.Services
             return result;
         }
 
-        public Model.KorisnikPacijent UpdateKorisniciPacijent(int id, KorisniciPacijentUpdateRequest request)
-        {
-            var provjera = _context.Korisniks.FirstOrDefault(i => i.Email == request.Email && i.KorisnikId != id);
-            if (provjera != null)
-            {
-                throw new UserException("Email se vec koristi!");
-            }
-            var korisnik = _context.Korisniks.Find(id);
-            var pacijent = _context.Pacijents.FirstOrDefault(i => i.KorisnikId == korisnik.KorisnikId);
-
-            var exSlika = request.Slika;
-            if (request.Slika == null)
-            {
-                exSlika = korisnik.Slika;
-
-            }
-
-            _mapper.Map(request, korisnik);
-            _mapper.Map(request, pacijent);
-            korisnik.Slika = exSlika;
-            if (request.Password != request.PasswordConfirm)
-            {
-                throw new UserException("Password i potvrda se ne slažu!");
-            }
-
-            if (!string.IsNullOrWhiteSpace(request.Password))
-            {
-                if (request.Password != request.PasswordConfirm)
-                {
-                    throw new UserException("Password i potvrda se ne slažu!");
-                }
-                korisnik.LozinkaSalt = PasswordHelper.GenerateSalt();
-                korisnik.LozinkaHash = PasswordHelper.GenerateHash(korisnik.LozinkaSalt, request.Password);
-            }
-
-
-            _context.SaveChanges();
-
-            return _mapper.Map<Model.KorisnikPacijent>(korisnik);
-        }
-     
 
         public Model.Korisnik GetNajboljiStomatolog()
         {
@@ -419,6 +362,7 @@ namespace DentOffice.WebAPI.Services
         {
             return LogiraniKorisnik;
         }
+
     }
 
 }

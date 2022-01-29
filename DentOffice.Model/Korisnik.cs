@@ -25,6 +25,11 @@ namespace DentOffice.Model
         public int ObavljenoPregleda { get; set; }
         public Uloga Uloga { get; set; }
         public int UlogaID { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Ime} {Prezime}";
+        }
     }
 
     public enum Spol

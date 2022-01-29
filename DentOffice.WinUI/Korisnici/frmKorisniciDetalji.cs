@@ -25,6 +25,10 @@ namespace DentOffice.WinUI.Korisnik
         {
             InitializeComponent();
             _id = korinikId;
+            if (_id.HasValue)
+                Text = "Uređivanje korisnika";
+            else
+                Text = "Dodavanje korisnika";
         }
 
         private async Task LoadGradove()

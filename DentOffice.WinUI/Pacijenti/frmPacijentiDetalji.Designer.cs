@@ -58,6 +58,8 @@ namespace DentOffice.WinUI.Pacijenti
             this.pic_SlikaPacijent = new System.Windows.Forms.PictureBox();
             this.label11 = new System.Windows.Forms.Label();
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
+            this.label12 = new System.Windows.Forms.Label();
+            this.cmbSpol = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.pic_SlikaPacijent)).BeginInit();
             this.SuspendLayout();
             // 
@@ -273,6 +275,7 @@ namespace DentOffice.WinUI.Pacijenti
             this.txtPasswordConf.Name = "txtPasswordConf";
             this.txtPasswordConf.Size = new System.Drawing.Size(276, 22);
             this.txtPasswordConf.TabIndex = 50;
+            this.txtPasswordConf.UseSystemPasswordChar = true;
             // 
             // label10
             // 
@@ -289,6 +292,7 @@ namespace DentOffice.WinUI.Pacijenti
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(260, 22);
             this.txtPassword.TabIndex = 48;
+            this.txtPassword.UseSystemPasswordChar = true;
             // 
             // pic_SlikaPacijent
             // 
@@ -314,11 +318,31 @@ namespace DentOffice.WinUI.Pacijenti
             // 
             this.openFileDialog.FileName = "openFileDialog";
             // 
-            // frmPAcijentiDetalji
+            // label12
+            // 
+            this.label12.AutoSize = true;
+            this.label12.Location = new System.Drawing.Point(211, 495);
+            this.label12.Name = "label12";
+            this.label12.Size = new System.Drawing.Size(36, 17);
+            this.label12.TabIndex = 55;
+            this.label12.Text = "Spol";
+            // 
+            // cmbSpol
+            // 
+            this.cmbSpol.FormattingEnabled = true;
+            this.cmbSpol.Location = new System.Drawing.Point(211, 516);
+            this.cmbSpol.Margin = new System.Windows.Forms.Padding(4);
+            this.cmbSpol.Name = "cmbSpol";
+            this.cmbSpol.Size = new System.Drawing.Size(160, 24);
+            this.cmbSpol.TabIndex = 54;
+            // 
+            // frmPacijentiDetalji
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1016, 684);
+            this.Controls.Add(this.label12);
+            this.Controls.Add(this.cmbSpol);
             this.Controls.Add(this.label11);
             this.Controls.Add(this.pic_SlikaPacijent);
             this.Controls.Add(this.label9);
@@ -348,8 +372,7 @@ namespace DentOffice.WinUI.Pacijenti
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtIme);
             this.Margin = new System.Windows.Forms.Padding(4);
-            this.Name = "frmPAcijentiDetalji";
-            this.Text = "frmPAcijentiDetalji";
+            this.Name = "frmPacijentiDetalji";
             this.Load += new System.EventHandler(this.frmPAcijentiDetalji_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pic_SlikaPacijent)).EndInit();
             this.ResumeLayout(false);
@@ -388,5 +411,7 @@ namespace DentOffice.WinUI.Pacijenti
         private System.Windows.Forms.PictureBox pic_SlikaPacijent;
         private System.Windows.Forms.Label label11;
         private System.Windows.Forms.OpenFileDialog openFileDialog;
+        private System.Windows.Forms.Label label12;
+        private System.Windows.Forms.ComboBox cmbSpol;
     }
 }

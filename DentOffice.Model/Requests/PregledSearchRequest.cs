@@ -12,5 +12,6 @@ namespace DentOffice.Model.Requests
 
         public string Napomena { get; set; }
         public string IsUplacenPregledRequest { get; set; }
+        public int PacijentId { get; set; }
     }
 }

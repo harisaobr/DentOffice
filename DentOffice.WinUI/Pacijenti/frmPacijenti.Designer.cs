@@ -29,11 +29,8 @@ namespace DentOffice.WinUI.Pacijenti
         /// </summary>
         private void InitializeComponent()
         {
-            this.btnPrikazi = new System.Windows.Forms.Button();
             this.txtPretragaIme = new System.Windows.Forms.TextBox();
             this.Ime = new System.Windows.Forms.Label();
-            this.Prezime = new System.Windows.Forms.Label();
-            this.txtPretragaPrezime = new System.Windows.Forms.TextBox();
             this.btnDodajNovog = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvPacijenti = new System.Windows.Forms.DataGridView();
@@ -54,67 +51,43 @@ namespace DentOffice.WinUI.Pacijenti
             ((System.ComponentModel.ISupportInitialize)(this.dgvPacijenti)).BeginInit();
             this.SuspendLayout();
             // 
-            // btnPrikazi
-            // 
-            this.btnPrikazi.Location = new System.Drawing.Point(1013, 46);
-            this.btnPrikazi.Name = "btnPrikazi";
-            this.btnPrikazi.Size = new System.Drawing.Size(197, 23);
-            this.btnPrikazi.TabIndex = 1;
-            this.btnPrikazi.Text = "Prikaži";
-            this.btnPrikazi.UseVisualStyleBackColor = true;
-            this.btnPrikazi.Click += new System.EventHandler(this.btnPrikazi_Click);
-            // 
             // txtPretragaIme
             // 
             this.txtPretragaIme.Location = new System.Drawing.Point(27, 51);
             this.txtPretragaIme.Name = "txtPretragaIme";
             this.txtPretragaIme.Size = new System.Drawing.Size(389, 22);
             this.txtPretragaIme.TabIndex = 2;
+            this.txtPretragaIme.TextChanged += new System.EventHandler(this.txtPretragaIme_TextChanged);
             // 
             // Ime
             // 
             this.Ime.AutoSize = true;
             this.Ime.Location = new System.Drawing.Point(24, 31);
             this.Ime.Name = "Ime";
-            this.Ime.Size = new System.Drawing.Size(30, 17);
+            this.Ime.Size = new System.Drawing.Size(101, 17);
             this.Ime.TabIndex = 3;
-            this.Ime.Text = "Ime";
-            // 
-            // Prezime
-            // 
-            this.Prezime.AutoSize = true;
-            this.Prezime.Location = new System.Drawing.Point(24, 93);
-            this.Prezime.Name = "Prezime";
-            this.Prezime.Size = new System.Drawing.Size(59, 17);
-            this.Prezime.TabIndex = 5;
-            this.Prezime.Text = "Prezime";
-            // 
-            // txtPretragaPrezime
-            // 
-            this.txtPretragaPrezime.Location = new System.Drawing.Point(27, 113);
-            this.txtPretragaPrezime.Name = "txtPretragaPrezime";
-            this.txtPretragaPrezime.Size = new System.Drawing.Size(389, 22);
-            this.txtPretragaPrezime.TabIndex = 4;
+            this.Ime.Text = "Ime ili prezime:";
             // 
             // btnDodajNovog
             // 
             this.btnDodajNovog.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnDodajNovog.Location = new System.Drawing.Point(1013, 102);
+            this.btnDodajNovog.Location = new System.Drawing.Point(1406, 48);
             this.btnDodajNovog.Margin = new System.Windows.Forms.Padding(4);
             this.btnDodajNovog.Name = "btnDodajNovog";
             this.btnDodajNovog.Size = new System.Drawing.Size(197, 28);
             this.btnDodajNovog.TabIndex = 33;
             this.btnDodajNovog.Text = "Dodaj novog pacijenta";
             this.btnDodajNovog.UseVisualStyleBackColor = true;
+            this.btnDodajNovog.Click += new System.EventHandler(this.btnDodajNovog_Click);
             // 
             // groupBox1
             // 
             this.groupBox1.Controls.Add(this.dgvPacijenti);
-            this.groupBox1.Location = new System.Drawing.Point(23, 186);
+            this.groupBox1.Location = new System.Drawing.Point(27, 103);
             this.groupBox1.Margin = new System.Windows.Forms.Padding(4);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Padding = new System.Windows.Forms.Padding(4);
-            this.groupBox1.Size = new System.Drawing.Size(1189, 466);
+            this.groupBox1.Size = new System.Drawing.Size(1576, 466);
             this.groupBox1.TabIndex = 34;
             this.groupBox1.TabStop = false;
             this.groupBox1.Text = "Pacijenti";
@@ -145,7 +118,7 @@ namespace DentOffice.WinUI.Pacijenti
             this.dgvPacijenti.ReadOnly = true;
             this.dgvPacijenti.RowHeadersWidth = 51;
             this.dgvPacijenti.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
-            this.dgvPacijenti.Size = new System.Drawing.Size(1181, 443);
+            this.dgvPacijenti.Size = new System.Drawing.Size(1568, 443);
             this.dgvPacijenti.TabIndex = 0;
             this.dgvPacijenti.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPacijenti_CellDoubleClick);
             // 
@@ -166,7 +139,7 @@ namespace DentOffice.WinUI.Pacijenti
             this.dataGridViewTextBoxColumn1.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn1.Name = "dataGridViewTextBoxColumn1";
             this.dataGridViewTextBoxColumn1.ReadOnly = true;
-            this.dataGridViewTextBoxColumn1.Width = 125;
+            this.dataGridViewTextBoxColumn1.Width = 80;
             // 
             // dataGridViewTextBoxColumn2
             // 
@@ -175,7 +148,7 @@ namespace DentOffice.WinUI.Pacijenti
             this.dataGridViewTextBoxColumn2.MinimumWidth = 6;
             this.dataGridViewTextBoxColumn2.Name = "dataGridViewTextBoxColumn2";
             this.dataGridViewTextBoxColumn2.ReadOnly = true;
-            this.dataGridViewTextBoxColumn2.Width = 125;
+            this.dataGridViewTextBoxColumn2.Width = 80;
             // 
             // Email
             // 
@@ -193,7 +166,7 @@ namespace DentOffice.WinUI.Pacijenti
             this.Mobitel.MinimumWidth = 6;
             this.Mobitel.Name = "Mobitel";
             this.Mobitel.ReadOnly = true;
-            this.Mobitel.Width = 125;
+            this.Mobitel.Width = 80;
             // 
             // JMBG
             // 
@@ -202,16 +175,16 @@ namespace DentOffice.WinUI.Pacijenti
             this.JMBG.MinimumWidth = 6;
             this.JMBG.Name = "JMBG";
             this.JMBG.ReadOnly = true;
-            this.JMBG.Width = 125;
+            this.JMBG.Width = 90;
             // 
             // DatumRodjenja
             // 
             this.DatumRodjenja.DataPropertyName = "DatumRodjenja";
-            this.DatumRodjenja.HeaderText = "DatumRodjenja";
+            this.DatumRodjenja.HeaderText = "Datum rođjenja";
             this.DatumRodjenja.MinimumWidth = 6;
             this.DatumRodjenja.Name = "DatumRodjenja";
             this.DatumRodjenja.ReadOnly = true;
-            this.DatumRodjenja.Width = 125;
+            this.DatumRodjenja.Width = 120;
             // 
             // Adresa
             // 
@@ -229,7 +202,7 @@ namespace DentOffice.WinUI.Pacijenti
             this.Spol.MinimumWidth = 6;
             this.Spol.Name = "Spol";
             this.Spol.ReadOnly = true;
-            this.Spol.Width = 125;
+            this.Spol.Width = 45;
             // 
             // Status
             // 
@@ -238,7 +211,7 @@ namespace DentOffice.WinUI.Pacijenti
             this.Status.MinimumWidth = 6;
             this.Status.Name = "Status";
             this.Status.ReadOnly = true;
-            this.Status.Width = 80;
+            this.Status.Width = 55;
             // 
             // Proteza
             // 
@@ -247,7 +220,7 @@ namespace DentOffice.WinUI.Pacijenti
             this.Proteza.MinimumWidth = 6;
             this.Proteza.Name = "Proteza";
             this.Proteza.ReadOnly = true;
-            this.Proteza.Width = 125;
+            this.Proteza.Width = 60;
             // 
             // Aparatic
             // 
@@ -256,7 +229,7 @@ namespace DentOffice.WinUI.Pacijenti
             this.Aparatic.MinimumWidth = 6;
             this.Aparatic.Name = "Aparatic";
             this.Aparatic.ReadOnly = true;
-            this.Aparatic.Width = 125;
+            this.Aparatic.Width = 60;
             // 
             // Terapija
             // 
@@ -265,22 +238,19 @@ namespace DentOffice.WinUI.Pacijenti
             this.Terapija.MinimumWidth = 6;
             this.Terapija.Name = "Terapija";
             this.Terapija.ReadOnly = true;
-            this.Terapija.Width = 125;
+            this.Terapija.Width = 60;
             // 
             // frmPacijenti
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1264, 743);
+            this.ClientSize = new System.Drawing.Size(1616, 709);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnDodajNovog);
-            this.Controls.Add(this.Prezime);
-            this.Controls.Add(this.txtPretragaPrezime);
             this.Controls.Add(this.Ime);
             this.Controls.Add(this.txtPretragaIme);
-            this.Controls.Add(this.btnPrikazi);
             this.Name = "frmPacijenti";
-            this.Text = "frmPacijenti";
+            this.Text = "Lista pacijenata";
             this.Load += new System.EventHandler(this.frmPacijenti_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvPacijenti)).EndInit();
@@ -290,11 +260,8 @@ namespace DentOffice.WinUI.Pacijenti
         }
 
         #endregion
-        private System.Windows.Forms.Button btnPrikazi;
         private System.Windows.Forms.TextBox txtPretragaIme;
         private System.Windows.Forms.Label Ime;
-        private System.Windows.Forms.Label Prezime;
-        private System.Windows.Forms.TextBox txtPretragaPrezime;
         private System.Windows.Forms.Button btnDodajNovog;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView dgvPacijenti;

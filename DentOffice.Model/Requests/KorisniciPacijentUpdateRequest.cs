@@ -47,5 +47,6 @@ namespace DentOffice.Model.Requests
         public bool Terapija { get; set; }
 
         public bool Aparatic { get; set; }
+        public Spol Spol { get; set; }
     }
 }

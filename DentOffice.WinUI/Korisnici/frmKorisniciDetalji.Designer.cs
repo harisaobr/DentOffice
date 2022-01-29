@@ -206,6 +206,7 @@ namespace DentOffice.WinUI.Korisnik
             this.txtPasswordConf.Name = "txtPasswordConf";
             this.txtPasswordConf.Size = new System.Drawing.Size(276, 22);
             this.txtPasswordConf.TabIndex = 20;
+            this.txtPasswordConf.UseSystemPasswordChar = true;
             // 
             // label9
             // 
@@ -222,6 +223,7 @@ namespace DentOffice.WinUI.Korisnik
             this.txtPassword.Name = "txtPassword";
             this.txtPassword.Size = new System.Drawing.Size(276, 22);
             this.txtPassword.TabIndex = 18;
+            this.txtPassword.UseSystemPasswordChar = true;
             // 
             // btnSnimi
             // 

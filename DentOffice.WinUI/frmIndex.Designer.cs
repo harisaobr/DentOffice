@@ -37,9 +37,9 @@ namespace DentOffice.WinUI
             this.pacijentiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pretragaPacijenataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.noviPacijentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             this.pregledToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pretragaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.noviPregledToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.terminiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pregledTerminaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dodajTerminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
@@ -47,7 +47,6 @@ namespace DentOffice.WinUI
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
-            this.noviPregledToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -58,7 +57,6 @@ namespace DentOffice.WinUI
             this.menuStrip.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.korisniciToolStripMenuItem,
             this.pacijentiToolStripMenuItem,
-            this.toolStripMenuItem1,
             this.pregledToolStripMenuItem,
             this.terminiToolStripMenuItem,
             this.racunToolStripMenuItem});
@@ -115,11 +113,6 @@ namespace DentOffice.WinUI
             this.noviPacijentToolStripMenuItem.Text = "Novi pacijent";
             this.noviPacijentToolStripMenuItem.Click += new System.EventHandler(this.noviPacijentToolStripMenuItem_Click);
             // 
-            // toolStripMenuItem1
-            // 
-            this.toolStripMenuItem1.Name = "toolStripMenuItem1";
-            this.toolStripMenuItem1.Size = new System.Drawing.Size(14, 24);
-            // 
             // pregledToolStripMenuItem
             // 
             this.pregledToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
@@ -135,6 +128,13 @@ namespace DentOffice.WinUI
             this.pretragaToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
             this.pretragaToolStripMenuItem1.Text = "Pretraga";
             this.pretragaToolStripMenuItem1.Click += new System.EventHandler(this.pretragaPregledaToolStripMenuItem_Click);
+            // 
+            // noviPregledToolStripMenuItem
+            // 
+            this.noviPregledToolStripMenuItem.Name = "noviPregledToolStripMenuItem";
+            this.noviPregledToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.noviPregledToolStripMenuItem.Text = "Novi pregled";
+            this.noviPregledToolStripMenuItem.Click += new System.EventHandler(this.noviPregledToolStripMenuItem_Click);
             // 
             // terminiToolStripMenuItem
             // 
@@ -183,13 +183,6 @@ namespace DentOffice.WinUI
             this.toolStripStatusLabel.Size = new System.Drawing.Size(49, 20);
             this.toolStripStatusLabel.Text = "Status";
             // 
-            // noviPregledToolStripMenuItem
-            // 
-            this.noviPregledToolStripMenuItem.Name = "noviPregledToolStripMenuItem";
-            this.noviPregledToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.noviPregledToolStripMenuItem.Text = "Novi pregled";
-            this.noviPregledToolStripMenuItem.Click += new System.EventHandler(this.noviPregledToolStripMenuItem_Click);
-            // 
             // frmIndex
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -224,7 +217,6 @@ namespace DentOffice.WinUI
         private System.Windows.Forms.ToolStripMenuItem pacijentiToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pretragaPacijenataToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem noviPacijentToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem pregledToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem terminiToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pregledTerminaToolStripMenuItem;

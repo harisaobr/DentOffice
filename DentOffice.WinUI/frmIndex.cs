@@ -132,7 +132,12 @@ namespace DentOffice.WinUI
      
         private void pretragaPregledaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            
+            Form frm = new frmPregledi
+            {
+                MdiParent = this,
+                WindowState = FormWindowState.Maximized
+            };
+            frm.Show();
         }
 
         private void pregledTerminaToolStripMenuItem_Click(object sender, EventArgs e)

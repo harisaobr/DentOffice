@@ -34,6 +34,11 @@ namespace DentOffice.WebAPI.Services
                 query = query.Where(x => x.Korisnik.KorisnikId == search.KorisnikId);
             }
           
+            if (search?.PacijentId != 0)
+            {
+                query = query.Where(x => x.TerminId != null && x.Termin.PacijentId == search.PacijentId);
+            }
+          
             if (!string.IsNullOrWhiteSpace(search?.Napomena))
             {
                 query = query.Where(x => x.Napomena.ToLower().Contains(search.Napomena.ToLower()));
@@ -69,7 +74,7 @@ namespace DentOffice.WebAPI.Services
             {
 
                 finalPregledlist.DijagnozaTekst = finalPregledlist.Dijagnoza.Naziv;
-                finalPregledlist.DoktorIme = finalPregledlist.Korisnici.Ime + " " + finalPregledlist.Korisnici.Prezime;
+                finalPregledlist.DoktorIme = finalPregledlist.Korisnik.Ime + " " + finalPregledlist.Korisnik.Prezime;
                 finalPregledlist.LijekTekst = finalPregledlist.Lijek.Naziv;
                 finalPregledlist.TerminRazlog = finalPregledlist.Termin.Razlog;
                 finalPregledlist.TerminImePacijenta =

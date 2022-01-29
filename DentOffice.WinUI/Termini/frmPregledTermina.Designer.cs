@@ -31,8 +31,6 @@ namespace DentOffice.WinUI.Termini
         {
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvTermini = new System.Windows.Forms.DataGridView();
-            this.btnUcitajTermine = new System.Windows.Forms.Button();
-            this.txtRazlog = new System.Windows.Forms.TextBox();
             this.TerminId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Pacijent = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.UslugaNaziv = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -41,6 +39,8 @@ namespace DentOffice.WinUI.Termini
             this.Hitan = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.IsOdobren = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.IsNaCekanju = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.btnUcitajTermine = new System.Windows.Forms.Button();
+            this.txtRazlog = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTermini)).BeginInit();
             this.SuspendLayout();
@@ -80,23 +80,6 @@ namespace DentOffice.WinUI.Termini
             this.dgvTermini.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvTermini.Size = new System.Drawing.Size(842, 557);
             this.dgvTermini.TabIndex = 0;
-            // 
-            // btnUcitajTermine
-            // 
-            this.btnUcitajTermine.Location = new System.Drawing.Point(678, 32);
-            this.btnUcitajTermine.Name = "btnUcitajTermine";
-            this.btnUcitajTermine.Size = new System.Drawing.Size(159, 23);
-            this.btnUcitajTermine.TabIndex = 26;
-            this.btnUcitajTermine.Text = "Ucitaj termine";
-            this.btnUcitajTermine.UseVisualStyleBackColor = true;
-            this.btnUcitajTermine.Click += new System.EventHandler(this.btnUcitajTermine_Click);
-            // 
-            // txtRazlog
-            // 
-            this.txtRazlog.Location = new System.Drawing.Point(27, 32);
-            this.txtRazlog.Name = "txtRazlog";
-            this.txtRazlog.Size = new System.Drawing.Size(383, 22);
-            this.txtRazlog.TabIndex = 27;
             // 
             // TerminId
             // 
@@ -171,6 +154,23 @@ namespace DentOffice.WinUI.Termini
             this.IsNaCekanju.ReadOnly = true;
             this.IsNaCekanju.Width = 70;
             // 
+            // btnUcitajTermine
+            // 
+            this.btnUcitajTermine.Location = new System.Drawing.Point(678, 32);
+            this.btnUcitajTermine.Name = "btnUcitajTermine";
+            this.btnUcitajTermine.Size = new System.Drawing.Size(159, 23);
+            this.btnUcitajTermine.TabIndex = 26;
+            this.btnUcitajTermine.Text = "Ucitaj termine";
+            this.btnUcitajTermine.UseVisualStyleBackColor = true;
+            this.btnUcitajTermine.Click += new System.EventHandler(this.btnUcitajTermine_Click);
+            // 
+            // txtRazlog
+            // 
+            this.txtRazlog.Location = new System.Drawing.Point(27, 32);
+            this.txtRazlog.Name = "txtRazlog";
+            this.txtRazlog.Size = new System.Drawing.Size(383, 22);
+            this.txtRazlog.TabIndex = 27;
+            // 
             // frmPregledTermina
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -180,7 +180,7 @@ namespace DentOffice.WinUI.Termini
             this.Controls.Add(this.btnUcitajTermine);
             this.Controls.Add(this.groupBox1);
             this.Name = "frmPregledTermina";
-            this.Text = "PregledTermina";
+            this.Text = "Lista termina";
             this.Load += new System.EventHandler(this.frmPregledTermina_Load);
             this.groupBox1.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.dgvTermini)).EndInit();

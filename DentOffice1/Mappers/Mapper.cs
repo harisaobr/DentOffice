@@ -14,6 +14,7 @@ namespace DentOffice.WebAPI.Mappers
         {
             CreateMap<Database.Korisnik, Model.Korisnik>();
             CreateMap<Database.Korisnik, KorisnikInsertRequest>().ReverseMap();
+            CreateMap<Database.Korisnik, KorisnikUpdateRequest>().ReverseMap();
 
 
             CreateMap<Database.Pacijent, Model.Pacijent>();
@@ -23,6 +24,9 @@ namespace DentOffice.WebAPI.Mappers
 
             CreateMap<Database.Korisnik, Model.Requests.KorisniciPacijentUpdateRequest>().ReverseMap();
             CreateMap<Database.Pacijent, Model.Requests.KorisniciPacijentUpdateRequest>().ReverseMap();
+            
+            CreateMap<Database.Korisnik, Model.Requests.KorisniciPacijentInsertRequest>().ReverseMap();
+            CreateMap<Database.Pacijent, Model.Requests.KorisniciPacijentInsertRequest>().ReverseMap();
 
 
             CreateMap<Database.Dijagnoza, Model.Dijagnoza>();

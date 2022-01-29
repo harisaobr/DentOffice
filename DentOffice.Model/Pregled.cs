@@ -11,7 +11,7 @@ namespace DentOffice.Model
         public string Napomena { get; set; }
 
         public int KorisnikId { get; set; }
-        public Korisnik Korisnici { get; set; }
+        public Korisnik Korisnik { get; set; }
         public string DoktorIme { get; set; }
 
         public int TerminId { get; set; }
@@ -29,5 +29,7 @@ namespace DentOffice.Model
         public string DijagnozaTekst { get; set; }
 
         public string PregledIme { get; set; }
+
+        public DateTime? DatumTermina => Termin != null ? (DateTime?)Termin.DatumVrijeme : null;
     }
 }

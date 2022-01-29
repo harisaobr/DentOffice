@@ -42,7 +42,7 @@ namespace DentOffice.WebAPI.Controllers
 
         [HttpPut("{id}")]
         [Authorize]
-        public Model.Korisnik Update(int id, [FromBody] KorisnikInsertRequest request)
+        public Model.Korisnik Update(int id, [FromBody] KorisnikUpdateRequest request)
         {
             return _service.Update(id, request);
         }
@@ -53,7 +53,12 @@ namespace DentOffice.WebAPI.Controllers
         {
             return _service.Update(id, request);
         }
-
+        [HttpPost("KorisnikPacijenti")]
+        [Authorize]
+        public Model.Pacijent Insert([FromBody] KorisniciPacijentInsertRequest request)
+        {
+            return _service.Insert(request);
+        }
 
         [HttpGet("KorisnikPacijenti")]
         [Authorize]

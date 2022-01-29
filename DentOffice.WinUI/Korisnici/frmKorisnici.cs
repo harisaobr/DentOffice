@@ -31,7 +31,7 @@ namespace DentOffice.WinUI.Korisnik
         {
             var search = new KorisnikSearchRequest()
             {
-                Ime = txtPretraga.Text
+                ImePrezime = txtPretraga.Text
             };
             var result = await _apiService.GetAll<List<Model.Korisnik>>(search);
 

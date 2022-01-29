@@ -27,6 +27,10 @@ namespace DentOffice.WinUI.Pregled
         {
             InitializeComponent();
             _id = pregledId;
+            if (_id.HasValue)
+                Text = "Uređivanje pregleda";
+            else
+                Text = "Dodavanje pregleda";
         }
 
         private async void frmDetaljiPregleda_Load(object sender, EventArgs e)

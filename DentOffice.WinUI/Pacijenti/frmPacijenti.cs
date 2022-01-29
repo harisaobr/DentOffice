@@ -28,9 +28,7 @@ namespace DentOffice.WinUI.Pacijenti
         {
             var search = new KorisnikSearchRequest()
             {
-                Ime = txtPretragaIme.Text,
-                Prezime = txtPretragaPrezime.Text
-
+                ImePrezime = txtPretragaIme.Text,
             };
             var result = await _korisniciService.GetAll<List<Model.KorisnikPacijent>>(search, "KorisnikPacijenti");
             dgvPacijenti.AutoGenerateColumns = false;
@@ -63,6 +61,11 @@ namespace DentOffice.WinUI.Pacijenti
 
                 await UcitajPacijente();
             }
+        }
+
+        private async void txtPretragaIme_TextChanged(object sender, EventArgs e)
+        {
+            await UcitajPacijente();
         }
     }
 }

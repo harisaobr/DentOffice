@@ -5,7 +5,7 @@ using System.Text;
 
 namespace DentOffice.Model.Requests
 {
-    public class KorisnikInsertRequest
+    public class KorisnikUpdateRequest
     {
         [Required]
         public string Ime { get; set; }
@@ -25,11 +25,8 @@ namespace DentOffice.Model.Requests
         public string DatumRodjenja { get; set; }
 
         public int? GradID{ get; set; }
-        [Required]
-        [MinLength(4)]
+
         public string Password { get; set; }
-        [Required]
-        [MinLength(4)]
         public string PasswordConfirmation { get; set; }
     }
 }

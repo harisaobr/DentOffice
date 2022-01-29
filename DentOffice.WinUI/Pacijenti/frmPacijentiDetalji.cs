@@ -1,4 +1,5 @@
-﻿using DentOffice.Model.Requests;
+﻿using DentOffice.Model;
+using DentOffice.Model.Requests;
 using DentOffice.WinUI.Helper;
 using System;
 using System.Collections.Generic;
@@ -22,6 +23,10 @@ namespace DentOffice.WinUI.Pacijenti
         {
             InitializeComponent();
             _id = korisnikId;
+            if (_id.HasValue)
+                Text = "Uređivanje pacijenta";
+            else
+                Text = "Dodavanje pacijenta";
         }
 
         private async Task LoadGradove()
@@ -34,6 +39,7 @@ namespace DentOffice.WinUI.Pacijenti
 
         private async void frmPAcijentiDetalji_Load(object sender, EventArgs e)
         {
+            UcitajSpolove();
             await LoadGradove();
 
             if (_id.HasValue)
@@ -60,13 +66,18 @@ namespace DentOffice.WinUI.Pacijenti
                     pic_SlikaPacijent.Image = ImageHelper.ByteArrayToImage(pacijent.Slika);
                 }
 
+                foreach (Spol item in cmbSpol.Items)
+                {
+                    if (item == pacijent.Spol)
+                    {
+                        cmbSpol.SelectedItem = item;
+                        break;
+                    }
+                }
+
             }
-           
+
         }
-
-
-        private KorisniciPacijentUpdateRequest UpdateRequest = new KorisniciPacijentUpdateRequest();
-        private KorisniciRegistracijaRequest insertRequest = new KorisniciRegistracijaRequest();
 
         public byte[] Slika { get; private set; }
 
@@ -75,24 +86,25 @@ namespace DentOffice.WinUI.Pacijenti
             if (!this.ValidateChildren())
                 return;
 
-            var request = new Model.Requests.KorisniciPacijentUpdateRequest()
+            var request = new Model.Requests.KorisniciPacijentInsertRequest()
             {
                 Ime = txtIme.Text,
                 Prezime = txtPrezime.Text,
+                KorisnickoIme = txtKorisnickoIme.Text,
                 Email = txtEmail.Text,
                 JMBG = txtJMBG.Text,
                 DatumRodjenja = dtpDatum.Value,
                 BrojTelefona = txtBrojTelefona.Text,
                 Adresa = txtAdresa.Text,
-                Password = txtPassword.Text,
-                PasswordConfirm = txtPasswordConf.Text,
                 Aparatic = cbAparatic.Checked,
                 Proteza = cbProteza.Checked,
-                Terapija = cbTerapija.Checked
+                Terapija = cbTerapija.Checked,
+                Spol = (Spol)cmbSpol.SelectedItem
             };
             if (!string.IsNullOrEmpty(txtPassword.Text))
             {
                 request.Password = txtPassword.Text;
+                request.PasswordConfirm = txtPasswordConf.Text;
             }
 
             if (cmbGrad.SelectedValue != null)
@@ -102,14 +114,24 @@ namespace DentOffice.WinUI.Pacijenti
             {
                 request.Slika = Slika;
             }
-            var korisnik = await _serviceKorisnik.Update<Model.Pacijent>(_id, request, "KorisnikPacijenti");
+
+            Model.Pacijent korisnik;
+            if (_id.HasValue)
+                korisnik = await _serviceKorisnik.Update<Model.Pacijent>(_id, request, "KorisnikPacijenti");
+            else
+                korisnik = await _serviceKorisnik.Insert<Model.Pacijent>(request, "KorisnikPacijenti");
+
             if (korisnik != null)
             {
-                MessageBox.Show("Profil uspjesno azuriran.", "Azuriraj profil", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                if (_id.HasValue)
+                    MessageBox.Show("Profil uspješno azuriran.", "Azuriraj profil", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                else
+                    MessageBox.Show("Profil uspješno kreiran.", "Kreiraj profil", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
                 DialogResult = DialogResult.OK;
             }
         }
-     
+
         private void pic_SlikaPacijent_Click(object sender, EventArgs e)
         {
             if (openFileDialog.ShowDialog() == DialogResult.OK)
@@ -118,6 +140,11 @@ namespace DentOffice.WinUI.Pacijenti
 
                 pic_SlikaPacijent.Image = ImageHelper.ByteArrayToImage(Slika);
             }
+        }
+
+        private void UcitajSpolove()
+        {
+            cmbSpol.DataSource = Enum.GetValues(typeof(Spol)).Cast<Spol>().ToList();
         }
     }
 }
