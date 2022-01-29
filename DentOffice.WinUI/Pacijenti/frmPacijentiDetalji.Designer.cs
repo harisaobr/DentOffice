@@ -1,7 +1,7 @@
 ﻿
 namespace DentOffice.WinUI.Pacijenti
 {
-    partial class frmPAcijentiDetalji
+    partial class frmPacijentiDetalji
     {
         /// <summary>
         /// Required designer variable.

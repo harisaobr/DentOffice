@@ -44,7 +44,7 @@ namespace DentOffice.WinUI.Pacijenti
 
         private void btnDodajNovog_Click(object sender, EventArgs e)
         {
-            frmPAcijentiDetalji frm = new frmPAcijentiDetalji();
+            frmPacijentiDetalji frm = new frmPacijentiDetalji();
             frm.Show();
         }
 
@@ -58,7 +58,7 @@ namespace DentOffice.WinUI.Pacijenti
             var row = dgvPacijenti.SelectedRows[0].DataBoundItem as Model.KorisnikPacijent;
             if(row != null)
             {
-                var frm = new frmPAcijentiDetalji(row.KorisnikID);
+                var frm = new frmPacijentiDetalji(row.KorisnikID);
                 frm.ShowDialog();
 
                 await UcitajPacijente();

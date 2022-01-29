@@ -13,12 +13,12 @@ using System.Windows.Forms;
 
 namespace DentOffice.WinUI.Pacijenti
 {
-    public partial class frmPAcijentiDetalji : Form
+    public partial class frmPacijentiDetalji : Form
     {
         private readonly APIService _serviceKorisnik = new APIService("Korisnik");
         private readonly APIService _serviceGradovi = new APIService("Grad");
         private int? _id = null;
-        public frmPAcijentiDetalji(int? korisnikId = null)
+        public frmPacijentiDetalji(int? korisnikId = null)
         {
             InitializeComponent();
             _id = korisnikId;
