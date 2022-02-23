@@ -4,14 +4,16 @@ using DentOffice.WebAPI.Database;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace DentOffice.WebAPI.Migrations
 {
     [DbContext(typeof(eDentOfficeContext))]
-    partial class eDentOfficeContextModelSnapshot : ModelSnapshot
+    [Migration("20220223183625_fixup_payment_cc")]
+    partial class fixup_payment_cc
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -36,9 +38,17 @@ namespace DentOffice.WebAPI.Migrations
                         .HasColumnType("int")
                         .HasColumnName("KorisnikID");
 
+                    b.Property<int>("PaymentId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("PaymentId1")
+                        .HasColumnType("int");
+
                     b.HasKey("CreditCardId");
 
                     b.HasIndex("KorisnikId");
+
+                    b.HasIndex("PaymentId1");
 
                     b.ToTable("CreditCard");
                 });
@@ -443,7 +453,13 @@ namespace DentOffice.WebAPI.Migrations
                         .HasConstraintName("FK__CreditCar__Koris__38996AB5")
                         .IsRequired();
 
+                    b.HasOne("DentOffice.WebAPI.Database.Payment", "Payment")
+                        .WithMany()
+                        .HasForeignKey("PaymentId1");
+
                     b.Navigation("Korisnik");
+
+                    b.Navigation("Payment");
                 });
 
             modelBuilder.Entity("DentOffice.WebAPI.Database.Grad", b =>
