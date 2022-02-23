@@ -47,6 +47,7 @@ namespace DentOffice.WinUI
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.racuniToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -125,14 +126,14 @@ namespace DentOffice.WinUI
             // pretragaToolStripMenuItem1
             // 
             this.pretragaToolStripMenuItem1.Name = "pretragaToolStripMenuItem1";
-            this.pretragaToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
+            this.pretragaToolStripMenuItem1.Size = new System.Drawing.Size(179, 26);
             this.pretragaToolStripMenuItem1.Text = "Pretraga";
             this.pretragaToolStripMenuItem1.Click += new System.EventHandler(this.pretragaPregledaToolStripMenuItem_Click);
             // 
             // noviPregledToolStripMenuItem
             // 
             this.noviPregledToolStripMenuItem.Name = "noviPregledToolStripMenuItem";
-            this.noviPregledToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.noviPregledToolStripMenuItem.Size = new System.Drawing.Size(179, 26);
             this.noviPregledToolStripMenuItem.Text = "Novi pregled";
             this.noviPregledToolStripMenuItem.Click += new System.EventHandler(this.noviPregledToolStripMenuItem_Click);
             // 
@@ -161,6 +162,8 @@ namespace DentOffice.WinUI
             // 
             // racunToolStripMenuItem
             // 
+            this.racunToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.racuniToolStripMenuItem});
             this.racunToolStripMenuItem.Name = "racunToolStripMenuItem";
             this.racunToolStripMenuItem.Size = new System.Drawing.Size(63, 24);
             this.racunToolStripMenuItem.Text = "Racun";
@@ -182,6 +185,13 @@ namespace DentOffice.WinUI
             this.toolStripStatusLabel.Name = "toolStripStatusLabel";
             this.toolStripStatusLabel.Size = new System.Drawing.Size(49, 20);
             this.toolStripStatusLabel.Text = "Status";
+            // 
+            // racuniToolStripMenuItem
+            // 
+            this.racuniToolStripMenuItem.Name = "racuniToolStripMenuItem";
+            this.racuniToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.racuniToolStripMenuItem.Text = "Racuni";
+            this.racuniToolStripMenuItem.Click += new System.EventHandler(this.racuniToolStripMenuItem_Click);
             // 
             // frmIndex
             // 
@@ -224,6 +234,7 @@ namespace DentOffice.WinUI
         private System.Windows.Forms.ToolStripMenuItem pretragaToolStripMenuItem1;
         private System.Windows.Forms.ToolStripMenuItem dodajTerminToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem noviPregledToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem racuniToolStripMenuItem;
     }
 }
 

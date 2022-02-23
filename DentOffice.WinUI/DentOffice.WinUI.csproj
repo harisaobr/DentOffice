@@ -227,6 +227,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Racun\frmRacun.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Racun\frmRacun.Designer.cs">
+      <DependentUpon>frmRacun.cs</DependentUpon>
+    </Compile>
     <Compile Include="Settings.cs" />
     <Compile Include="Termini\frmPregledTermina.cs">
       <SubType>Form</SubType>
@@ -274,6 +280,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="Racun\frmRacun.resx">
+      <DependentUpon>frmRacun.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Termini\frmPregledTermina.resx">
       <DependentUpon>frmPregledTermina.cs</DependentUpon>
     </EmbeddedResource>

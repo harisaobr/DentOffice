@@ -1,6 +1,7 @@
 ﻿using DentOffice.WinUI.Korisnik;
 using DentOffice.WinUI.Pacijenti;
 using DentOffice.WinUI.Pregled;
+using DentOffice.WinUI.Racun;
 using DentOffice.WinUI.Termini;
 using System;
 using System.Collections.Generic;
@@ -158,6 +159,12 @@ namespace DentOffice.WinUI
         private void noviPregledToolStripMenuItem_Click(object sender, EventArgs e)
         {
             frmDetaljiPregleda frm = new frmDetaljiPregleda();
+            frm.ShowDialog();
+        }
+
+        private void racuniToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            frmRacun frm = new frmRacun();
             frm.ShowDialog();
         }
     }
