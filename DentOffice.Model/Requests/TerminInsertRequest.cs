@@ -20,6 +20,7 @@ namespace DentOffice.Model.Requests
         public string Razlog { get; set; }
 
         [Required]
-        public bool Hitan { get; set; }
+        public bool Hitno { get; set; }
+        public bool? Odobreno { get; set; }
     }
 }

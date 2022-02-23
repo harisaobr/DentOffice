@@ -15,21 +15,32 @@ namespace DentOffice.WinUI.Termini
     {
         private readonly APIService _servicePregledi = new APIService("Pregled");
         private readonly APIService _serviceKorisnici = new APIService("Korisnik");
+        private int pacijentID;
+
         public frmPregledi()
         {
             InitializeComponent();
             dgvPregledi.AutoGenerateColumns = false;
         }
 
+        public frmPregledi(int pacijentID): this()
+        {
+            this.pacijentID = pacijentID;
+        }
+
         private async void frmPregledTermina_Load(object sender, EventArgs e)
         {
             await UcitajPacijente();
+            if(pacijentID != 0)
+            {
+                cmbPacijent.SelectedValue = pacijentID;
+            }
         }
 
         private async Task UcitajPacijente()
         {
             var result = await _serviceKorisnici.GetAll<List<Model.KorisnikPacijent>>(null, "KorisnikPacijenti");
-            cmbPacijent.DisplayMember = "Ime";
+            cmbPacijent.DisplayMember = "ImePrezime";
             cmbPacijent.ValueMember = "PacijentID";
             cmbPacijent.DataSource = result;
         }

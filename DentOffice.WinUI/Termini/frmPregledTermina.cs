@@ -44,5 +44,42 @@ namespace DentOffice.WinUI.Termini
         {
             await UcitajTermine();
         }
+
+        private async void btnOdobri_Click(object sender, EventArgs e)
+        {
+            var row = dgvTermini.SelectedRows[0].DataBoundItem as Model.Termin;
+            row.Odobreno = true;
+
+            await UpdateOdobreno(row);
+        }
+
+        private async void btnOdbij_Click(object sender, EventArgs e)
+        {
+            var row = dgvTermini.SelectedRows[0].DataBoundItem as Model.Termin;
+            row.Odobreno = false;
+
+            await UpdateOdobreno(row);
+        }
+
+        private async Task UpdateOdobreno(Model.Termin row)
+        {
+            var request = new Model.Requests.TerminInsertRequest()
+            {
+                DatumVrijeme = row.DatumVrijeme,
+                Razlog = row.Razlog,
+                Hitno = row.Hitno ?? false,
+                PacijentId = row.PacijentId,
+                UslugaId = row.UslugaId,
+                Odobreno = row.Odobreno
+            };
+
+            Model.Termin entity = await _serviceTermin.Update<Model.Termin>(row.TerminID, request);
+
+            if (entity != null)
+            {
+                dgvTermini.InvalidateRow(dgvTermini.SelectedRows[0].Index);
+                dgvTermini.Focus();
+            }
+        }
     }
 }

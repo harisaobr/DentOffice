@@ -8,8 +8,9 @@ namespace DentOffice.Model
     {
         public int TerminID { get; set; }
         public string Razlog { get; set; }
-        public bool Hitno { get; set; }
-        public bool Odobreno { get; set; }
+        public bool? Hitno { get; set; }
+        public bool? Odobreno { get; set; }
+        public bool NaCekanju => Odobreno is null;
         public DateTime DatumVrijeme { get; set; }
 
         public int PacijentId { get; set; }
@@ -18,6 +19,6 @@ namespace DentOffice.Model
         public Usluga Usluga { get; set; }
         public string UslugaNaziv { get; set; }
 
-        public string Opis => $"{DatumVrijeme} ({(Odobreno ? "Odobren" : "Neodobren")})";
+        public string Opis => $"{DatumVrijeme} ({((Odobreno.HasValue && Odobreno.Value) ? "Odobren" : "Neodobren")})";
     }
 }

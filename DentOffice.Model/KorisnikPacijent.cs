@@ -30,5 +30,7 @@ namespace DentOffice.Model
         public bool Proteza { get; set; }
         public bool Aparatic { get; set; }
         public bool Terapija { get; set; }
+
+        public string ImePrezime => $"{Ime} {Prezime}";
     }
 }

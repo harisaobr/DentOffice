@@ -51,7 +51,7 @@ namespace DentOffice.WinUI.Termini
             {
                 DatumVrijeme = dtpDatum.Value,
                 Razlog = txtRazlog.Text,
-                Hitan = cbHitno.Checked
+                Hitno = cbHitno.Checked
             };
 
             if (cmbPacijent.SelectedValue != null)

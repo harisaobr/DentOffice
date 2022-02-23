@@ -282,9 +282,9 @@ namespace DentOffice.WinUI.Pacijenti
             this.label10.AutoSize = true;
             this.label10.Location = new System.Drawing.Point(28, 618);
             this.label10.Name = "label10";
-            this.label10.Size = new System.Drawing.Size(60, 17);
+            this.label10.Size = new System.Drawing.Size(57, 17);
             this.label10.TabIndex = 49;
-            this.label10.Text = "Lozinika";
+            this.label10.Text = "Lozinka";
             // 
             // txtPassword
             // 

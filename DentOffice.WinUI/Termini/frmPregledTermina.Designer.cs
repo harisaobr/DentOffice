@@ -37,10 +37,12 @@ namespace DentOffice.WinUI.Termini
             this.Razlog = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.DatumVrijeme = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Hitan = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.IsOdobren = new System.Windows.Forms.DataGridViewCheckBoxColumn();
-            this.IsNaCekanju = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.Odobren = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.NaCekanju = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.txtRazlog = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
+            this.btnOdobri = new System.Windows.Forms.Button();
+            this.btnOdbij = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvTermini)).BeginInit();
             this.SuspendLayout();
@@ -69,11 +71,12 @@ namespace DentOffice.WinUI.Termini
             this.Razlog,
             this.DatumVrijeme,
             this.Hitan,
-            this.IsOdobren,
-            this.IsNaCekanju});
+            this.Odobren,
+            this.NaCekanju});
             this.dgvTermini.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvTermini.Location = new System.Drawing.Point(4, 19);
             this.dgvTermini.Margin = new System.Windows.Forms.Padding(4);
+            this.dgvTermini.MultiSelect = false;
             this.dgvTermini.Name = "dgvTermini";
             this.dgvTermini.ReadOnly = true;
             this.dgvTermini.RowHeadersWidth = 51;
@@ -129,30 +132,30 @@ namespace DentOffice.WinUI.Termini
             // 
             // Hitan
             // 
-            this.Hitan.DataPropertyName = "Hitan";
+            this.Hitan.DataPropertyName = "Hitno";
             this.Hitan.HeaderText = "Hitan";
             this.Hitan.MinimumWidth = 6;
             this.Hitan.Name = "Hitan";
             this.Hitan.ReadOnly = true;
             this.Hitan.Width = 70;
             // 
-            // IsOdobren
+            // Odobren
             // 
-            this.IsOdobren.DataPropertyName = "IsOdobren";
-            this.IsOdobren.HeaderText = "Odobren";
-            this.IsOdobren.MinimumWidth = 6;
-            this.IsOdobren.Name = "IsOdobren";
-            this.IsOdobren.ReadOnly = true;
-            this.IsOdobren.Width = 70;
+            this.Odobren.DataPropertyName = "Odobreno";
+            this.Odobren.HeaderText = "Odobren";
+            this.Odobren.MinimumWidth = 6;
+            this.Odobren.Name = "Odobren";
+            this.Odobren.ReadOnly = true;
+            this.Odobren.Width = 70;
             // 
-            // IsNaCekanju
+            // NaCekanju
             // 
-            this.IsNaCekanju.DataPropertyName = "IsNaCekanju";
-            this.IsNaCekanju.HeaderText = "Na čekanju";
-            this.IsNaCekanju.MinimumWidth = 6;
-            this.IsNaCekanju.Name = "IsNaCekanju";
-            this.IsNaCekanju.ReadOnly = true;
-            this.IsNaCekanju.Width = 70;
+            this.NaCekanju.DataPropertyName = "NaCekanju";
+            this.NaCekanju.HeaderText = "Na čekanju";
+            this.NaCekanju.MinimumWidth = 6;
+            this.NaCekanju.Name = "NaCekanju";
+            this.NaCekanju.ReadOnly = true;
+            this.NaCekanju.Width = 70;
             // 
             // txtRazlog
             // 
@@ -171,11 +174,36 @@ namespace DentOffice.WinUI.Termini
             this.label1.TabIndex = 28;
             this.label1.Text = "Razlog:";
             // 
+            // btnOdobri
+            // 
+            this.btnOdobri.BackColor = System.Drawing.Color.LimeGreen;
+            this.btnOdobri.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.btnOdobri.Location = new System.Drawing.Point(893, 26);
+            this.btnOdobri.Name = "btnOdobri";
+            this.btnOdobri.Size = new System.Drawing.Size(116, 35);
+            this.btnOdobri.TabIndex = 29;
+            this.btnOdobri.Text = "Odobri";
+            this.btnOdobri.UseVisualStyleBackColor = false;
+            this.btnOdobri.Click += new System.EventHandler(this.btnOdobri_Click);
+            // 
+            // btnOdbij
+            // 
+            this.btnOdbij.BackColor = System.Drawing.Color.Red;
+            this.btnOdbij.Location = new System.Drawing.Point(1043, 26);
+            this.btnOdbij.Name = "btnOdbij";
+            this.btnOdbij.Size = new System.Drawing.Size(116, 35);
+            this.btnOdbij.TabIndex = 30;
+            this.btnOdbij.Text = "Odbij";
+            this.btnOdbij.UseVisualStyleBackColor = false;
+            this.btnOdbij.Click += new System.EventHandler(this.btnOdbij_Click);
+            // 
             // frmPregledTermina
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1202, 734);
+            this.Controls.Add(this.btnOdbij);
+            this.Controls.Add(this.btnOdobri);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtRazlog);
             this.Controls.Add(this.groupBox1);
@@ -193,14 +221,16 @@ namespace DentOffice.WinUI.Termini
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView dgvTermini;
         private System.Windows.Forms.TextBox txtRazlog;
+        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DataGridViewTextBoxColumn TerminId;
         private System.Windows.Forms.DataGridViewTextBoxColumn Pacijent;
         private System.Windows.Forms.DataGridViewTextBoxColumn UslugaNaziv;
         private System.Windows.Forms.DataGridViewTextBoxColumn Razlog;
         private System.Windows.Forms.DataGridViewTextBoxColumn DatumVrijeme;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Hitan;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn IsOdobren;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn IsNaCekanju;
-        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn Odobren;
+        private System.Windows.Forms.DataGridViewCheckBoxColumn NaCekanju;
+        private System.Windows.Forms.Button btnOdobri;
+        private System.Windows.Forms.Button btnOdbij;
     }
 }

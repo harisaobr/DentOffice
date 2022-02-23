@@ -1,4 +1,5 @@
 ﻿using DentOffice.Model.Requests;
+using DentOffice.WinUI.Termini;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -66,6 +67,16 @@ namespace DentOffice.WinUI.Pacijenti
         private async void txtPretragaIme_TextChanged(object sender, EventArgs e)
         {
             await UcitajPacijente();
+        }
+
+        private void btnPacijentProfil_Clicked(object sender, EventArgs e)
+        {
+            var row = dgvPacijenti.SelectedRows[0].DataBoundItem as Model.KorisnikPacijent;
+            if (row != null)
+            {
+                var frm = new frmPregledi(row.PacijentID);
+                frm.ShowDialog();
+            }
         }
     }
 }

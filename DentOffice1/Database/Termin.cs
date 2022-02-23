@@ -17,7 +17,7 @@ namespace DentOffice.WebAPI.Database
         public int UslugaId { get; set; }
         public string Razlog { get; set; }
         public bool? Hitno { get; set; }
-        public bool Odobreno { get; set; }
+        public bool? Odobreno { get; set; }
         public DateTime DatumVrijeme { get; set; }
 
         public virtual Pacijent Pacijent { get; set; }

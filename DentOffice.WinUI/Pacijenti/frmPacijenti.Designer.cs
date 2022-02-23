@@ -34,6 +34,7 @@ namespace DentOffice.WinUI.Pacijenti
             this.btnDodajNovog = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvPacijenti = new System.Windows.Forms.DataGridView();
+            this.btnPacijentProfil = new System.Windows.Forms.Button();
             this.KorisnikId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -43,7 +44,6 @@ namespace DentOffice.WinUI.Pacijenti
             this.DatumRodjenja = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Adresa = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Spol = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.Status = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Proteza = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Aparatic = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Terapija = new System.Windows.Forms.DataGridViewCheckBoxColumn();
@@ -107,7 +107,6 @@ namespace DentOffice.WinUI.Pacijenti
             this.DatumRodjenja,
             this.Adresa,
             this.Spol,
-            this.Status,
             this.Proteza,
             this.Aparatic,
             this.Terapija});
@@ -121,6 +120,18 @@ namespace DentOffice.WinUI.Pacijenti
             this.dgvPacijenti.Size = new System.Drawing.Size(1568, 443);
             this.dgvPacijenti.TabIndex = 0;
             this.dgvPacijenti.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPacijenti_CellDoubleClick);
+            // 
+            // btnPacijentProfil
+            // 
+            this.btnPacijentProfil.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPacijentProfil.Location = new System.Drawing.Point(1171, 48);
+            this.btnPacijentProfil.Margin = new System.Windows.Forms.Padding(4);
+            this.btnPacijentProfil.Name = "btnPacijentProfil";
+            this.btnPacijentProfil.Size = new System.Drawing.Size(197, 28);
+            this.btnPacijentProfil.TabIndex = 35;
+            this.btnPacijentProfil.Text = "Medicinski karton";
+            this.btnPacijentProfil.UseVisualStyleBackColor = true;
+            this.btnPacijentProfil.Click += new System.EventHandler(this.btnPacijentProfil_Clicked);
             // 
             // KorisnikId
             // 
@@ -204,15 +215,6 @@ namespace DentOffice.WinUI.Pacijenti
             this.Spol.ReadOnly = true;
             this.Spol.Width = 45;
             // 
-            // Status
-            // 
-            this.Status.DataPropertyName = "Status";
-            this.Status.HeaderText = "Status";
-            this.Status.MinimumWidth = 6;
-            this.Status.Name = "Status";
-            this.Status.ReadOnly = true;
-            this.Status.Width = 55;
-            // 
             // Proteza
             // 
             this.Proteza.DataPropertyName = "Proteza";
@@ -245,6 +247,7 @@ namespace DentOffice.WinUI.Pacijenti
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1616, 709);
+            this.Controls.Add(this.btnPacijentProfil);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnDodajNovog);
             this.Controls.Add(this.Ime);
@@ -265,6 +268,7 @@ namespace DentOffice.WinUI.Pacijenti
         private System.Windows.Forms.Button btnDodajNovog;
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.DataGridView dgvPacijenti;
+        private System.Windows.Forms.Button btnPacijentProfil;
         private System.Windows.Forms.DataGridViewTextBoxColumn KorisnikId;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn2;
@@ -274,7 +278,6 @@ namespace DentOffice.WinUI.Pacijenti
         private System.Windows.Forms.DataGridViewTextBoxColumn DatumRodjenja;
         private System.Windows.Forms.DataGridViewTextBoxColumn Adresa;
         private System.Windows.Forms.DataGridViewTextBoxColumn Spol;
-        private System.Windows.Forms.DataGridViewCheckBoxColumn Status;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Proteza;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Aparatic;
         private System.Windows.Forms.DataGridViewCheckBoxColumn Terapija;

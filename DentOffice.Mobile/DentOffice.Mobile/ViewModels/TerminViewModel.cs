@@ -78,7 +78,7 @@ namespace DentOffice.Mobile.ViewModels
             {
                 UslugaId = SelectedUsluga.UslugaID,
                 DatumVrijeme = datumIVrijemetemp,
-                Hitan = HitanTermin,
+                Hitno = HitanTermin,
                 Razlog = RazlogTermina
             });
 
