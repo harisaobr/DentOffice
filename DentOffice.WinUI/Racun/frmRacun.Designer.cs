@@ -31,15 +31,16 @@ namespace DentOffice.WinUI.Racun
         {
             this.cmbPacijent = new System.Windows.Forms.ComboBox();
             this.lblKorisnik = new System.Windows.Forms.Label();
-            this.cmbMetodaPlacanja = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.dtpDatumUplate = new System.Windows.Forms.DateTimePicker();
             this.label7 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.Iznos = new System.Windows.Forms.Label();
-            this.txtIme = new System.Windows.Forms.TextBox();
+            this.txtIznos = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
-            this.lblDatumIzdavanjaRacuna = new System.Windows.Forms.Label();
+            this.cbPlaceno = new System.Windows.Forms.CheckBox();
+            this.cmbPregled = new System.Windows.Forms.ComboBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.btnPotvrdi = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // cmbPacijent
@@ -47,8 +48,9 @@ namespace DentOffice.WinUI.Racun
             this.cmbPacijent.FormattingEnabled = true;
             this.cmbPacijent.Location = new System.Drawing.Point(28, 56);
             this.cmbPacijent.Name = "cmbPacijent";
-            this.cmbPacijent.Size = new System.Drawing.Size(498, 24);
+            this.cmbPacijent.Size = new System.Drawing.Size(397, 24);
             this.cmbPacijent.TabIndex = 77;
+            this.cmbPacijent.SelectedIndexChanged += new System.EventHandler(this.cmbPacijent_SelectedIndexChanged);
             // 
             // lblKorisnik
             // 
@@ -59,35 +61,18 @@ namespace DentOffice.WinUI.Racun
             this.lblKorisnik.TabIndex = 76;
             this.lblKorisnik.Text = "Korisnik";
             // 
-            // cmbMetodaPlacanja
-            // 
-            this.cmbMetodaPlacanja.FormattingEnabled = true;
-            this.cmbMetodaPlacanja.Location = new System.Drawing.Point(28, 121);
-            this.cmbMetodaPlacanja.Name = "cmbMetodaPlacanja";
-            this.cmbMetodaPlacanja.Size = new System.Drawing.Size(498, 24);
-            this.cmbMetodaPlacanja.TabIndex = 79;
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(27, 94);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(112, 17);
-            this.label1.TabIndex = 78;
-            this.label1.Text = "Metoda plaćanja";
-            // 
             // dtpDatumUplate
             // 
-            this.dtpDatumUplate.Location = new System.Drawing.Point(28, 184);
+            this.dtpDatumUplate.Location = new System.Drawing.Point(24, 196);
             this.dtpDatumUplate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtpDatumUplate.Name = "dtpDatumUplate";
-            this.dtpDatumUplate.Size = new System.Drawing.Size(498, 22);
+            this.dtpDatumUplate.Size = new System.Drawing.Size(397, 22);
             this.dtpDatumUplate.TabIndex = 81;
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(29, 165);
+            this.label7.Location = new System.Drawing.Point(25, 177);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(92, 17);
             this.label7.TabIndex = 80;
@@ -96,7 +81,7 @@ namespace DentOffice.WinUI.Racun
             // label3
             // 
             this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(111, 250);
+            this.label3.Location = new System.Drawing.Point(107, 259);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(28, 17);
             this.label3.TabIndex = 84;
@@ -105,56 +90,87 @@ namespace DentOffice.WinUI.Racun
             // Iznos
             // 
             this.Iznos.AutoSize = true;
-            this.Iznos.Location = new System.Drawing.Point(31, 226);
+            this.Iznos.Location = new System.Drawing.Point(27, 238);
             this.Iznos.Name = "Iznos";
             this.Iznos.Size = new System.Drawing.Size(41, 17);
             this.Iznos.TabIndex = 83;
             this.Iznos.Text = "Iznos";
             // 
-            // txtIme
+            // txtIznos
             // 
-            this.txtIme.Location = new System.Drawing.Point(30, 247);
-            this.txtIme.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
-            this.txtIme.Name = "txtIme";
-            this.txtIme.Size = new System.Drawing.Size(75, 22);
-            this.txtIme.TabIndex = 82;
+            this.txtIznos.Location = new System.Drawing.Point(26, 259);
+            this.txtIznos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
+            this.txtIznos.Name = "txtIznos";
+            this.txtIznos.Size = new System.Drawing.Size(75, 22);
+            this.txtIznos.TabIndex = 82;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(27, 296);
+            this.label2.Location = new System.Drawing.Point(27, 305);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(161, 17);
+            this.label2.Size = new System.Drawing.Size(48, 17);
             this.label2.TabIndex = 85;
-            this.label2.Text = "Datum izdavanja računa";
+            this.label2.Text = "Status";
             // 
-            // lblDatumIzdavanjaRacuna
+            // cbPlaceno
             // 
-            this.lblDatumIzdavanjaRacuna.AutoSize = true;
-            this.lblDatumIzdavanjaRacuna.Location = new System.Drawing.Point(47, 322);
-            this.lblDatumIzdavanjaRacuna.Name = "lblDatumIzdavanjaRacuna";
-            this.lblDatumIzdavanjaRacuna.Size = new System.Drawing.Size(46, 17);
-            this.lblDatumIzdavanjaRacuna.TabIndex = 86;
-            this.lblDatumIzdavanjaRacuna.Text = "label4";
+            this.cbPlaceno.AutoSize = true;
+            this.cbPlaceno.Location = new System.Drawing.Point(32, 337);
+            this.cbPlaceno.Name = "cbPlaceno";
+            this.cbPlaceno.Size = new System.Drawing.Size(81, 21);
+            this.cbPlaceno.TabIndex = 86;
+            this.cbPlaceno.Text = "Placeno";
+            this.cbPlaceno.UseVisualStyleBackColor = true;
+            // 
+            // cmbPregled
+            // 
+            this.cmbPregled.FormattingEnabled = true;
+            this.cmbPregled.Location = new System.Drawing.Point(26, 126);
+            this.cmbPregled.Name = "cmbPregled";
+            this.cmbPregled.Size = new System.Drawing.Size(397, 24);
+            this.cmbPregled.TabIndex = 88;
+            this.cmbPregled.SelectedIndexChanged += new System.EventHandler(this.cmbPregled_SelectedIndexChanged);
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(25, 99);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(57, 17);
+            this.label4.TabIndex = 87;
+            this.label4.Text = "Pregled";
+            // 
+            // btnPotvrdi
+            // 
+            this.btnPotvrdi.Location = new System.Drawing.Point(287, 325);
+            this.btnPotvrdi.Name = "btnPotvrdi";
+            this.btnPotvrdi.Size = new System.Drawing.Size(124, 33);
+            this.btnPotvrdi.TabIndex = 89;
+            this.btnPotvrdi.Text = "Potvrdi";
+            this.btnPotvrdi.UseVisualStyleBackColor = true;
+            this.btnPotvrdi.Click += new System.EventHandler(this.btnPotvrdi_Click);
             // 
             // frmRacun
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(800, 450);
-            this.Controls.Add(this.lblDatumIzdavanjaRacuna);
+            this.ClientSize = new System.Drawing.Size(457, 390);
+            this.Controls.Add(this.btnPotvrdi);
+            this.Controls.Add(this.cmbPregled);
+            this.Controls.Add(this.label4);
+            this.Controls.Add(this.cbPlaceno);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.Iznos);
-            this.Controls.Add(this.txtIme);
+            this.Controls.Add(this.txtIznos);
             this.Controls.Add(this.dtpDatumUplate);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.cmbMetodaPlacanja);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.cmbPacijent);
             this.Controls.Add(this.lblKorisnik);
             this.Name = "frmRacun";
             this.Text = "frmRacun";
+            this.Load += new System.EventHandler(this.frmRacun_Load);
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -164,14 +180,15 @@ namespace DentOffice.WinUI.Racun
 
         private System.Windows.Forms.ComboBox cmbPacijent;
         private System.Windows.Forms.Label lblKorisnik;
-        private System.Windows.Forms.ComboBox cmbMetodaPlacanja;
-        private System.Windows.Forms.Label label1;
         private System.Windows.Forms.DateTimePicker dtpDatumUplate;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label Iznos;
-        private System.Windows.Forms.TextBox txtIme;
+        private System.Windows.Forms.TextBox txtIznos;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label lblDatumIzdavanjaRacuna;
+        private System.Windows.Forms.CheckBox cbPlaceno;
+        private System.Windows.Forms.ComboBox cmbPregled;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Button btnPotvrdi;
     }
 }

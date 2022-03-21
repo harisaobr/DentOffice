@@ -11,5 +11,9 @@ namespace DentOffice.Model.Requests
         public int KorisnikId { get; set; }
         [Required]
         public int PregledId { get; set; }
+
+        public double UkupnaCijena { get; set; }
+        public DateTime DatumIzdavanjaRacuna { get; set; }
+        public bool IsPlaceno { get; set; }
     }
 }

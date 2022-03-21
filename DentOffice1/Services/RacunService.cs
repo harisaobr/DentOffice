@@ -67,17 +67,6 @@ namespace DentOffice.WebAPI.Services
             var entities = query.ToList();
             var result = _mapper.Map<List<Model.Racun>>(entities);
 
-            //foreach (var finalRacunlist in result)
-            //{
-            //    finalRacunlist.RacunDoktorIme = finalRacunlist.Korisnici.Ime + " " + finalRacunlist.Korisnici.Prezime;
-            //    finalRacunlist.PregledPacijentIme = finalRacunlist.Pregled.Termin.Pacijent.Korisnici.Ime + " " +
-            //                                        finalRacunlist.Pregled.Termin.Pacijent.Korisnici.Prezime;
-            //    finalRacunlist.PregledUslugaNaziv = finalRacunlist.Pregled.Termin.Usluga.Naziv;
-            //    finalRacunlist.PregledMaterijalNaziv = finalRacunlist.Pregled.Skladiste.Naziv;
-            //    finalRacunlist.PregledMaterijalKolicina = finalRacunlist.Pregled.KolicinaOdabranogMaterijala.ToString("F");
-            //}
-
-
 
             return result;
         }
