@@ -9,7 +9,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace DentOffice.WinUI.Termini
+namespace DentOffice.WinUI.Pregled
 {
     public partial class frmPregledi : Form
     {
@@ -62,6 +62,16 @@ namespace DentOffice.WinUI.Termini
 
         private async void cmbPacijent_SelectedIndexChanged(object sender, EventArgs e)
         {
+            await UcitajPreglede();
+        }
+
+        private async void dgvPregledi_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var id = (dgvPregledi.SelectedRows[0].DataBoundItem as Model.Pregled).PregledID;
+
+            Form frm = new frmDetaljiPregleda(id);
+            frm.ShowDialog();
+
             await UcitajPreglede();
         }
     }

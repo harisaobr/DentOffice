@@ -100,7 +100,7 @@ namespace DentOffice.WinUI
 
         private void pretragaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmKorisnici frm = new frmKorisnici();
+            Form frm = new frmKorisnici();
             frm.MdiParent = this;
             frm.WindowState = FormWindowState.Maximized;
             frm.Show();
@@ -109,41 +109,37 @@ namespace DentOffice.WinUI
 
         private void noviKorisnikToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmKorisniciDetalji frm= new frmKorisniciDetalji();
+            Form frm = new frmKorisniciDetalji();
             frm.ShowDialog();
         }
 
 
         private void noviPacijentToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmPacijentiDetalji frm = new frmPacijentiDetalji();
+            Form frm = new frmPacijentiDetalji();
             frm.ShowDialog();
         }
 
         private void pretragaPacijenataToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmPacijenti frm = new frmPacijenti
-            {
-                MdiParent = this,
-                WindowState = FormWindowState.Maximized
-            };
+            Form frm = new frmPacijenti();
+            frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
             frm.Show();
         }
 
      
         private void pretragaPregledaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            Form frm = new frmPregledi
-            {
-                MdiParent = this,
-                WindowState = FormWindowState.Maximized
-            };
+            Form frm = new frmPregledi();
+            frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
             frm.Show();
         }
 
         private void pregledTerminaToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmPregledTermina frm = new frmPregledTermina();
+            Form frm = new frmPregledTermina();
             frm.MdiParent = this;
             frm.WindowState = FormWindowState.Maximized;
             frm.Show();
@@ -151,21 +147,29 @@ namespace DentOffice.WinUI
 
         private void dodajTerminToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmTermini frm = new frmTermini();
+            Form frm = new frmTermini();
 
             frm.ShowDialog();
         }
 
         private void noviPregledToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmDetaljiPregleda frm = new frmDetaljiPregleda();
+            Form frm = new frmDetaljiPregleda();
             frm.ShowDialog();
         }
 
         private void racuniToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            frmRacun frm = new frmRacun();
+            Form frm = new frmRacunDetalji();
             frm.ShowDialog();
+        }
+
+        private void pregledRačunaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form frm = new frmRacuni();
+            frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
+            frm.Show();
         }
     }
 }

@@ -40,6 +40,30 @@ namespace DentOffice.WinUI.Pregled
             await LoadDijagnoze();
             await LoadLijekovi();
 
+            if(_id.HasValue)
+            {
+                var pregled = await _servicePregled.GetById<Model.Pregled>(_id.Value);
+
+                cmbPacijent.SelectedIndexChanged -= cmbPacijent_SelectedIndexChanged;
+                cmbUsluga.SelectedIndexChanged -= cmbUsluga_SelectedIndexChanged;
+
+                cmbDijagnoza.SelectedValue = pregled.DijagnozaId;
+                cmbLijek.SelectedValue = pregled.LijekId;
+                cmbPacijent.SelectedValue = pregled.Termin.PacijentId;
+                cmbUsluga.SelectedValue = pregled.Termin.UslugaId;
+
+                txtNapomenaPregleda.Text = pregled.Napomena;
+                txtTrajanje.Text = pregled.TrajanjePregleda.ToString();
+
+                await LoadTermine();
+
+                cmbTermin.SelectedValue = pregled.TerminId;
+
+                cmbPacijent.SelectedIndexChanged += cmbPacijent_SelectedIndexChanged;
+                cmbUsluga.SelectedIndexChanged += cmbUsluga_SelectedIndexChanged;
+
+            }
+
         }
         private async Task LoadLijekovi()
         {
@@ -64,6 +88,8 @@ namespace DentOffice.WinUI.Pregled
             var result = await _serviceKorisnici.GetAll<List<Model.KorisnikPacijent>>(null, "KorisnikPacijenti");
             cmbPacijent.DisplayMember = "Ime";
             cmbPacijent.ValueMember = "PacijentID";
+
+            result.Insert(0, new Model.KorisnikPacijent { Ime = "Odaberite pacijenta" });
             cmbPacijent.DataSource = result;
         }
 

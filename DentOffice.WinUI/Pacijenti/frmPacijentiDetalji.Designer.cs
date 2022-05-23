@@ -29,6 +29,7 @@ namespace DentOffice.WinUI.Pacijenti
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.dtpDatum = new System.Windows.Forms.DateTimePicker();
             this.label7 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
@@ -60,7 +61,9 @@ namespace DentOffice.WinUI.Pacijenti
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.label12 = new System.Windows.Forms.Label();
             this.cmbSpol = new System.Windows.Forms.ComboBox();
+            this.errorProvider = new System.Windows.Forms.ErrorProvider(this.components);
             ((System.ComponentModel.ISupportInitialize)(this.pic_SlikaPacijent)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             this.SuspendLayout();
             // 
             // dtpDatum
@@ -96,6 +99,7 @@ namespace DentOffice.WinUI.Pacijenti
             this.txtBrojTelefona.Name = "txtBrojTelefona";
             this.txtBrojTelefona.Size = new System.Drawing.Size(555, 22);
             this.txtBrojTelefona.TabIndex = 36;
+            this.txtBrojTelefona.Validating += new System.ComponentModel.CancelEventHandler(this.txtBrojTelefona_Validating);
             // 
             // label6
             // 
@@ -113,6 +117,7 @@ namespace DentOffice.WinUI.Pacijenti
             this.txtAdresa.Name = "txtAdresa";
             this.txtAdresa.Size = new System.Drawing.Size(555, 22);
             this.txtAdresa.TabIndex = 34;
+            this.txtAdresa.Validating += new System.ComponentModel.CancelEventHandler(this.txtAdresa_Validating);
             // 
             // JMBG
             // 
@@ -130,6 +135,7 @@ namespace DentOffice.WinUI.Pacijenti
             this.txtJMBG.Name = "txtJMBG";
             this.txtJMBG.Size = new System.Drawing.Size(555, 22);
             this.txtJMBG.TabIndex = 32;
+            this.txtJMBG.Validating += new System.ComponentModel.CancelEventHandler(this.txtJMBG_Validating);
             // 
             // label4
             // 
@@ -147,6 +153,7 @@ namespace DentOffice.WinUI.Pacijenti
             this.txtEmail.Name = "txtEmail";
             this.txtEmail.Size = new System.Drawing.Size(555, 22);
             this.txtEmail.TabIndex = 30;
+            this.txtEmail.Validating += new System.ComponentModel.CancelEventHandler(this.txtEmail_Validating);
             // 
             // label2
             // 
@@ -164,6 +171,7 @@ namespace DentOffice.WinUI.Pacijenti
             this.txtKorisnickoIme.Name = "txtKorisnickoIme";
             this.txtKorisnickoIme.Size = new System.Drawing.Size(555, 22);
             this.txtKorisnickoIme.TabIndex = 28;
+            this.txtKorisnickoIme.Validating += new System.ComponentModel.CancelEventHandler(this.txtKorisnickoIme_Validating);
             // 
             // label3
             // 
@@ -181,6 +189,7 @@ namespace DentOffice.WinUI.Pacijenti
             this.txtPrezime.Name = "txtPrezime";
             this.txtPrezime.Size = new System.Drawing.Size(555, 22);
             this.txtPrezime.TabIndex = 26;
+            this.txtPrezime.Validating += new System.ComponentModel.CancelEventHandler(this.txtPrezime_Validating);
             // 
             // label1
             // 
@@ -198,6 +207,7 @@ namespace DentOffice.WinUI.Pacijenti
             this.txtIme.Name = "txtIme";
             this.txtIme.Size = new System.Drawing.Size(555, 22);
             this.txtIme.TabIndex = 24;
+            this.txtIme.Validating += new System.ComponentModel.CancelEventHandler(this.txtIme_Validating);
             // 
             // cmbGrad
             // 
@@ -207,6 +217,7 @@ namespace DentOffice.WinUI.Pacijenti
             this.cmbGrad.Name = "cmbGrad";
             this.cmbGrad.Size = new System.Drawing.Size(160, 24);
             this.cmbGrad.TabIndex = 41;
+            this.cmbGrad.Validating += new System.ComponentModel.CancelEventHandler(this.cmbGrad_Validating);
             // 
             // label8
             // 
@@ -276,6 +287,7 @@ namespace DentOffice.WinUI.Pacijenti
             this.txtPasswordConf.Size = new System.Drawing.Size(276, 22);
             this.txtPasswordConf.TabIndex = 50;
             this.txtPasswordConf.UseSystemPasswordChar = true;
+            this.txtPasswordConf.Validating += new System.ComponentModel.CancelEventHandler(this.txtPasswordConf_Validating);
             // 
             // label10
             // 
@@ -293,6 +305,7 @@ namespace DentOffice.WinUI.Pacijenti
             this.txtPassword.Size = new System.Drawing.Size(260, 22);
             this.txtPassword.TabIndex = 48;
             this.txtPassword.UseSystemPasswordChar = true;
+            this.txtPassword.Validating += new System.ComponentModel.CancelEventHandler(this.txtPassword_Validating);
             // 
             // pic_SlikaPacijent
             // 
@@ -335,6 +348,11 @@ namespace DentOffice.WinUI.Pacijenti
             this.cmbSpol.Name = "cmbSpol";
             this.cmbSpol.Size = new System.Drawing.Size(160, 24);
             this.cmbSpol.TabIndex = 54;
+            this.cmbSpol.Validating += new System.ComponentModel.CancelEventHandler(this.cmbSpol_Validating);
+            // 
+            // errorProvider
+            // 
+            this.errorProvider.ContainerControl = this;
             // 
             // frmPacijentiDetalji
             // 
@@ -375,6 +393,7 @@ namespace DentOffice.WinUI.Pacijenti
             this.Name = "frmPacijentiDetalji";
             this.Load += new System.EventHandler(this.frmPAcijentiDetalji_Load);
             ((System.ComponentModel.ISupportInitialize)(this.pic_SlikaPacijent)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -413,5 +432,6 @@ namespace DentOffice.WinUI.Pacijenti
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.Label label12;
         private System.Windows.Forms.ComboBox cmbSpol;
+        private System.Windows.Forms.ErrorProvider errorProvider;
     }
 }

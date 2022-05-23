@@ -183,6 +183,7 @@ namespace DentOffice.WinUI.Korisnik
             this.txtBrojTelefona.Name = "txtBrojTelefona";
             this.txtBrojTelefona.Size = new System.Drawing.Size(555, 22);
             this.txtBrojTelefona.TabIndex = 14;
+            this.txtBrojTelefona.Validating += new System.ComponentModel.CancelEventHandler(this.txtBrojTelefona_Validating);
             // 
             // label7
             // 
@@ -209,6 +210,7 @@ namespace DentOffice.WinUI.Korisnik
             this.txtPasswordConf.Size = new System.Drawing.Size(276, 22);
             this.txtPasswordConf.TabIndex = 20;
             this.txtPasswordConf.UseSystemPasswordChar = true;
+            this.txtPasswordConf.Validating += new System.ComponentModel.CancelEventHandler(this.txtPasswordConf_Validating);
             // 
             // label9
             // 
@@ -226,6 +228,7 @@ namespace DentOffice.WinUI.Korisnik
             this.txtPassword.Size = new System.Drawing.Size(276, 22);
             this.txtPassword.TabIndex = 18;
             this.txtPassword.UseSystemPasswordChar = true;
+            this.txtPassword.Validating += new System.ComponentModel.CancelEventHandler(this.txtPassword_Validating);
             // 
             // btnSnimi
             // 
@@ -255,6 +258,7 @@ namespace DentOffice.WinUI.Korisnik
             this.cmbGrad.Name = "cmbGrad";
             this.cmbGrad.Size = new System.Drawing.Size(200, 24);
             this.cmbGrad.TabIndex = 24;
+            this.cmbGrad.Validating += new System.ComponentModel.CancelEventHandler(this.cmbGrad_Validating);
             // 
             // label11
             // 
@@ -313,6 +317,7 @@ namespace DentOffice.WinUI.Korisnik
             this.cmbSpol.Name = "cmbSpol";
             this.cmbSpol.Size = new System.Drawing.Size(200, 24);
             this.cmbSpol.TabIndex = 30;
+            this.cmbSpol.Validating += new System.ComponentModel.CancelEventHandler(this.cmbSpol_Validating);
             // 
             // frmKorisniciDetalji
             // 
@@ -348,7 +353,6 @@ namespace DentOffice.WinUI.Korisnik
             this.Controls.Add(this.label1);
             this.Controls.Add(this.txtIme);
             this.Name = "frmKorisniciDetalji";
-            this.Text = "frmKorisniciDetalji";
             this.Load += new System.EventHandler(this.frmKorisniciDetalji_Load);
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_Slika)).EndInit();

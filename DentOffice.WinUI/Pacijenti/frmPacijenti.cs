@@ -1,4 +1,5 @@
 ﻿using DentOffice.Model.Requests;
+using DentOffice.WinUI.Pregled;
 using DentOffice.WinUI.Termini;
 using System;
 using System.Collections.Generic;
@@ -43,7 +44,7 @@ namespace DentOffice.WinUI.Pacijenti
 
         private void btnDodajNovog_Click(object sender, EventArgs e)
         {
-            frmPacijentiDetalji frm = new frmPacijentiDetalji();
+            Form frm = new frmPacijentiDetalji();
             frm.Show();
         }
 

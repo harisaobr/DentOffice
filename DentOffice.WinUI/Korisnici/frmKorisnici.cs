@@ -26,7 +26,8 @@ namespace DentOffice.WinUI.Korisnik
         {
             var search = new KorisnikSearchRequest()
             {
-                ImePrezime = txtPretraga.Text
+                ImePrezime = txtPretraga.Text,
+                ShowStomatologe = true
             };
             var result = await _apiService.GetAll<List<Model.Korisnik>>(search);
 
@@ -51,6 +52,12 @@ namespace DentOffice.WinUI.Korisnik
         private async void txtPretraga_TextChanged(object sender, EventArgs e)
         {
             await UcitajKorisnike();
+        }
+
+        private void btnDodajNovog_Click(object sender, EventArgs e)
+        {
+            Form frm = new frmKorisniciDetalji();
+            frm.Show();
         }
     }
 }

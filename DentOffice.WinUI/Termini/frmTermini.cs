@@ -1,4 +1,5 @@
 ﻿using DentOffice.Model.Requests;
+using DentOffice.WinUI.Helper;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
@@ -18,9 +19,11 @@ namespace DentOffice.WinUI.Termini
         private readonly APIService _korisniciService = new APIService("Korisnik");
         private int? _id = null;
 
-        public frmTermini()
+        public frmTermini(int? TerminId = null)
         {
             InitializeComponent();
+            _id = TerminId;
+
             if (_id.HasValue)
                 Text = "Uređivanje termina";
             else
@@ -37,9 +40,11 @@ namespace DentOffice.WinUI.Termini
         private async Task LoadPacijente()
         {
             var result = await _korisniciService.GetAll<List<Model.KorisnikPacijent>>(null, "KorisnikPacijenti");
-            cmbPacijent.DataSource = result;
             cmbPacijent.DisplayMember = "Ime";
             cmbPacijent.ValueMember = "PacijentID";
+
+            result.Insert(0, new Model.KorisnikPacijent { Ime = "Odaberite pacijenta" });
+            cmbPacijent.DataSource = result;
         }
 
         private async void btnSpremi_Click(object sender, EventArgs e)
@@ -82,6 +87,32 @@ namespace DentOffice.WinUI.Termini
         {
             await LoadPacijente();
             await LoadUsluge();
+
+            if (_id.HasValue)
+            {
+                var termin = await _serviceTermin.GetById<Model.Termin>(_id.Value);
+
+                cmbPacijent.SelectedValue = termin.PacijentId;
+                cmbUsluga.SelectedValue = termin.UslugaId;
+                txtRazlog.Text = termin.Razlog;
+                cbHitno.Checked = termin.Hitno ?? false;
+                dtpDatum.Value = termin.DatumVrijeme;
+            }
+        }
+
+        private void cmbPacijent_Validating(object sender, CancelEventArgs e)
+        {
+            err.ValidirajKontrolu(sender, e, Properties.Resources.Validation_RequiredField);
+        }
+
+        private void cmbUsluga_Validating(object sender, CancelEventArgs e)
+        {
+            err.ValidirajKontrolu(sender, e, Properties.Resources.Validation_RequiredField);
+        }
+
+        private void txtRazlog_Validating(object sender, CancelEventArgs e)
+        {
+            err.ValidirajKontrolu(sender, e, Properties.Resources.Validation_RequiredField);
         }
     }
 }

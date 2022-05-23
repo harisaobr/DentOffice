@@ -81,5 +81,15 @@ namespace DentOffice.WinUI.Termini
                 dgvTermini.Focus();
             }
         }
+
+        private async void dgvTermini_CellContentDoubleClick(object sender, DataGridViewCellEventArgs e)
+        {
+            var id = (dgvTermini.SelectedRows[0].DataBoundItem as Model.Termin).TerminID;
+
+            Form frm = new frmTermini(id);
+            frm.ShowDialog();
+
+            await UcitajTermine();
+        }
     }
 }

@@ -1,5 +1,5 @@
 ﻿
-namespace DentOffice.WinUI.Termini
+namespace DentOffice.WinUI.Pregled
 {
     partial class frmPregledi
     {
@@ -88,12 +88,15 @@ namespace DentOffice.WinUI.Termini
             this.dgvPregledi.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvPregledi.Location = new System.Drawing.Point(4, 19);
             this.dgvPregledi.Margin = new System.Windows.Forms.Padding(4);
+            this.dgvPregledi.MultiSelect = false;
             this.dgvPregledi.Name = "dgvPregledi";
             this.dgvPregledi.ReadOnly = true;
             this.dgvPregledi.RowHeadersWidth = 51;
+            this.dgvPregledi.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvPregledi.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPregledi.Size = new System.Drawing.Size(1087, 557);
             this.dgvPregledi.TabIndex = 0;
+            this.dgvPregledi.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPregledi_CellContentDoubleClick);
             // 
             // Stomatolog
             // 

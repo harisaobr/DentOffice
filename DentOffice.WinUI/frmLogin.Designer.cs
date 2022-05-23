@@ -35,12 +35,13 @@ namespace DentOffice.WinUI
             this.lblPrezime = new System.Windows.Forms.Label();
             this.btnSpremi = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(97, 78);
+            this.label1.Location = new System.Drawing.Point(97, 124);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(99, 17);
             this.label1.TabIndex = 0;
@@ -48,14 +49,14 @@ namespace DentOffice.WinUI
             // 
             // txtKorisnickoIme
             // 
-            this.txtKorisnickoIme.Location = new System.Drawing.Point(207, 81);
+            this.txtKorisnickoIme.Location = new System.Drawing.Point(207, 127);
             this.txtKorisnickoIme.Name = "txtKorisnickoIme";
             this.txtKorisnickoIme.Size = new System.Drawing.Size(174, 22);
             this.txtKorisnickoIme.TabIndex = 1;
             // 
             // txtLozinka
             // 
-            this.txtLozinka.Location = new System.Drawing.Point(207, 138);
+            this.txtLozinka.Location = new System.Drawing.Point(207, 184);
             this.txtLozinka.Name = "txtLozinka";
             this.txtLozinka.Size = new System.Drawing.Size(174, 22);
             this.txtLozinka.TabIndex = 3;
@@ -64,7 +65,7 @@ namespace DentOffice.WinUI
             // lblPrezime
             // 
             this.lblPrezime.AutoSize = true;
-            this.lblPrezime.Location = new System.Drawing.Point(97, 135);
+            this.lblPrezime.Location = new System.Drawing.Point(97, 181);
             this.lblPrezime.Name = "lblPrezime";
             this.lblPrezime.Size = new System.Drawing.Size(57, 17);
             this.lblPrezime.TabIndex = 2;
@@ -84,11 +85,21 @@ namespace DentOffice.WinUI
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12.8F);
-            this.label2.Location = new System.Drawing.Point(224, 23);
+            this.label2.Location = new System.Drawing.Point(238, 88);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(101, 26);
             this.label2.TabIndex = 5;
             this.label2.Text = "Prijavi se";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 17F);
+            this.label3.Location = new System.Drawing.Point(216, 28);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(153, 33);
+            this.label3.TabIndex = 6;
+            this.label3.Text = "DentOffice";
             // 
             // frmLogin
             // 
@@ -96,6 +107,7 @@ namespace DentOffice.WinUI
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(567, 324);
+            this.Controls.Add(this.label3);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btnSpremi);
             this.Controls.Add(this.txtLozinka);
@@ -120,5 +132,6 @@ namespace DentOffice.WinUI
         private System.Windows.Forms.Label lblPrezime;
         private System.Windows.Forms.Button btnSpremi;
         private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label label3;
     }
 }

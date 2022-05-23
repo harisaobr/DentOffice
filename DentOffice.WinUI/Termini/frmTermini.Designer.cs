@@ -29,6 +29,7 @@ namespace DentOffice.WinUI.Termini
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.txtRazlog = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
@@ -39,6 +40,8 @@ namespace DentOffice.WinUI.Termini
             this.btnSpremi = new System.Windows.Forms.Button();
             this.cmbPacijent = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
+            this.err = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.err)).BeginInit();
             this.SuspendLayout();
             // 
             // txtRazlog
@@ -47,6 +50,7 @@ namespace DentOffice.WinUI.Termini
             this.txtRazlog.Name = "txtRazlog";
             this.txtRazlog.Size = new System.Drawing.Size(547, 22);
             this.txtRazlog.TabIndex = 2;
+            this.txtRazlog.Validating += new System.ComponentModel.CancelEventHandler(this.txtRazlog_Validating);
             // 
             // label1
             // 
@@ -82,6 +86,7 @@ namespace DentOffice.WinUI.Termini
             this.cmbUsluga.Name = "cmbUsluga";
             this.cmbUsluga.Size = new System.Drawing.Size(547, 24);
             this.cmbUsluga.TabIndex = 8;
+            this.cmbUsluga.Validating += new System.ComponentModel.CancelEventHandler(this.cmbUsluga_Validating);
             // 
             // cbHitno
             // 
@@ -119,6 +124,7 @@ namespace DentOffice.WinUI.Termini
             this.cmbPacijent.Name = "cmbPacijent";
             this.cmbPacijent.Size = new System.Drawing.Size(546, 24);
             this.cmbPacijent.TabIndex = 12;
+            this.cmbPacijent.Validating += new System.ComponentModel.CancelEventHandler(this.cmbPacijent_Validating);
             // 
             // label4
             // 
@@ -128,6 +134,10 @@ namespace DentOffice.WinUI.Termini
             this.label4.Size = new System.Drawing.Size(105, 17);
             this.label4.TabIndex = 13;
             this.label4.Text = "Datum i vrijeme";
+            // 
+            // err
+            // 
+            this.err.ContainerControl = this;
             // 
             // frmTermini
             // 
@@ -147,6 +157,7 @@ namespace DentOffice.WinUI.Termini
             this.MaximizeBox = false;
             this.Name = "frmTermini";
             this.Load += new System.EventHandler(this.frmTermini_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.err)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -163,5 +174,6 @@ namespace DentOffice.WinUI.Termini
         private System.Windows.Forms.Button btnSpremi;
         private System.Windows.Forms.ComboBox cmbPacijent;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.ErrorProvider err;
     }
 }

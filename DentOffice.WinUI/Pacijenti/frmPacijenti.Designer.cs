@@ -34,7 +34,6 @@ namespace DentOffice.WinUI.Pacijenti
             this.btnDodajNovog = new System.Windows.Forms.Button();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.dgvPacijenti = new System.Windows.Forms.DataGridView();
-            this.btnPacijentProfil = new System.Windows.Forms.Button();
             this.KorisnikId = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dataGridViewTextBoxColumn2 = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -47,6 +46,7 @@ namespace DentOffice.WinUI.Pacijenti
             this.Proteza = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Aparatic = new System.Windows.Forms.DataGridViewCheckBoxColumn();
             this.Terapija = new System.Windows.Forms.DataGridViewCheckBoxColumn();
+            this.btnPacijentProfil = new System.Windows.Forms.Button();
             this.groupBox1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPacijenti)).BeginInit();
             this.SuspendLayout();
@@ -113,25 +113,15 @@ namespace DentOffice.WinUI.Pacijenti
             this.dgvPacijenti.Dock = System.Windows.Forms.DockStyle.Fill;
             this.dgvPacijenti.Location = new System.Drawing.Point(4, 19);
             this.dgvPacijenti.Margin = new System.Windows.Forms.Padding(4);
+            this.dgvPacijenti.MultiSelect = false;
             this.dgvPacijenti.Name = "dgvPacijenti";
             this.dgvPacijenti.ReadOnly = true;
             this.dgvPacijenti.RowHeadersWidth = 51;
+            this.dgvPacijenti.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvPacijenti.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvPacijenti.Size = new System.Drawing.Size(1568, 443);
             this.dgvPacijenti.TabIndex = 0;
             this.dgvPacijenti.CellDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPacijenti_CellDoubleClick);
-            // 
-            // btnPacijentProfil
-            // 
-            this.btnPacijentProfil.Cursor = System.Windows.Forms.Cursors.Hand;
-            this.btnPacijentProfil.Location = new System.Drawing.Point(1171, 48);
-            this.btnPacijentProfil.Margin = new System.Windows.Forms.Padding(4);
-            this.btnPacijentProfil.Name = "btnPacijentProfil";
-            this.btnPacijentProfil.Size = new System.Drawing.Size(197, 28);
-            this.btnPacijentProfil.TabIndex = 35;
-            this.btnPacijentProfil.Text = "Medicinski karton";
-            this.btnPacijentProfil.UseVisualStyleBackColor = true;
-            this.btnPacijentProfil.Click += new System.EventHandler(this.btnPacijentProfil_Clicked);
             // 
             // KorisnikId
             // 
@@ -241,6 +231,18 @@ namespace DentOffice.WinUI.Pacijenti
             this.Terapija.Name = "Terapija";
             this.Terapija.ReadOnly = true;
             this.Terapija.Width = 60;
+            // 
+            // btnPacijentProfil
+            // 
+            this.btnPacijentProfil.Cursor = System.Windows.Forms.Cursors.Hand;
+            this.btnPacijentProfil.Location = new System.Drawing.Point(1171, 48);
+            this.btnPacijentProfil.Margin = new System.Windows.Forms.Padding(4);
+            this.btnPacijentProfil.Name = "btnPacijentProfil";
+            this.btnPacijentProfil.Size = new System.Drawing.Size(197, 28);
+            this.btnPacijentProfil.TabIndex = 35;
+            this.btnPacijentProfil.Text = "Medicinski karton";
+            this.btnPacijentProfil.UseVisualStyleBackColor = true;
+            this.btnPacijentProfil.Click += new System.EventHandler(this.btnPacijentProfil_Clicked);
             // 
             // frmPacijenti
             // 

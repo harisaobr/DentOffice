@@ -80,9 +80,11 @@ namespace DentOffice.WinUI.Termini
             this.dgvTermini.Name = "dgvTermini";
             this.dgvTermini.ReadOnly = true;
             this.dgvTermini.RowHeadersWidth = 51;
+            this.dgvTermini.RowTemplate.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             this.dgvTermini.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.dgvTermini.Size = new System.Drawing.Size(1156, 557);
             this.dgvTermini.TabIndex = 0;
+            this.dgvTermini.CellContentDoubleClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvTermini_CellContentDoubleClick);
             // 
             // TerminId
             // 
