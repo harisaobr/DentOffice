@@ -1,7 +1,7 @@
 ﻿
 namespace DentOffice.WinUI.Racun
 {
-    partial class frmRacun
+    partial class frmRacunDetalji
     {
         /// <summary>
         /// Required designer variable.
@@ -29,6 +29,7 @@ namespace DentOffice.WinUI.Racun
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.cmbPacijent = new System.Windows.Forms.ComboBox();
             this.lblKorisnik = new System.Windows.Forms.Label();
             this.dtpDatumUplate = new System.Windows.Forms.DateTimePicker();
@@ -41,16 +42,19 @@ namespace DentOffice.WinUI.Racun
             this.cmbPregled = new System.Windows.Forms.ComboBox();
             this.label4 = new System.Windows.Forms.Label();
             this.btnPotvrdi = new System.Windows.Forms.Button();
+            this.err = new System.Windows.Forms.ErrorProvider(this.components);
+            ((System.ComponentModel.ISupportInitialize)(this.err)).BeginInit();
             this.SuspendLayout();
             // 
             // cmbPacijent
             // 
             this.cmbPacijent.FormattingEnabled = true;
-            this.cmbPacijent.Location = new System.Drawing.Point(28, 56);
+            this.cmbPacijent.Location = new System.Drawing.Point(24, 49);
             this.cmbPacijent.Name = "cmbPacijent";
             this.cmbPacijent.Size = new System.Drawing.Size(397, 24);
             this.cmbPacijent.TabIndex = 77;
             this.cmbPacijent.SelectedIndexChanged += new System.EventHandler(this.cmbPacijent_SelectedIndexChanged);
+            this.cmbPacijent.Validating += new System.ComponentModel.CancelEventHandler(this.cmbPacijent_Validating);
             // 
             // lblKorisnik
             // 
@@ -59,7 +63,7 @@ namespace DentOffice.WinUI.Racun
             this.lblKorisnik.Name = "lblKorisnik";
             this.lblKorisnik.Size = new System.Drawing.Size(58, 17);
             this.lblKorisnik.TabIndex = 76;
-            this.lblKorisnik.Text = "Korisnik";
+            this.lblKorisnik.Text = "Pacijent";
             // 
             // dtpDatumUplate
             // 
@@ -98,11 +102,12 @@ namespace DentOffice.WinUI.Racun
             // 
             // txtIznos
             // 
-            this.txtIznos.Location = new System.Drawing.Point(26, 259);
+            this.txtIznos.Location = new System.Drawing.Point(24, 259);
             this.txtIznos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtIznos.Name = "txtIznos";
             this.txtIznos.Size = new System.Drawing.Size(75, 22);
             this.txtIznos.TabIndex = 82;
+            this.txtIznos.Validating += new System.ComponentModel.CancelEventHandler(this.txtIznos_Validating);
             // 
             // label2
             // 
@@ -126,11 +131,12 @@ namespace DentOffice.WinUI.Racun
             // cmbPregled
             // 
             this.cmbPregled.FormattingEnabled = true;
-            this.cmbPregled.Location = new System.Drawing.Point(26, 126);
+            this.cmbPregled.Location = new System.Drawing.Point(24, 132);
             this.cmbPregled.Name = "cmbPregled";
             this.cmbPregled.Size = new System.Drawing.Size(397, 24);
             this.cmbPregled.TabIndex = 88;
             this.cmbPregled.SelectedIndexChanged += new System.EventHandler(this.cmbPregled_SelectedIndexChanged);
+            this.cmbPregled.Validating += new System.ComponentModel.CancelEventHandler(this.cmbPregled_Validating);
             // 
             // label4
             // 
@@ -151,7 +157,11 @@ namespace DentOffice.WinUI.Racun
             this.btnPotvrdi.UseVisualStyleBackColor = true;
             this.btnPotvrdi.Click += new System.EventHandler(this.btnPotvrdi_Click);
             // 
-            // frmRacun
+            // err
+            // 
+            this.err.ContainerControl = this;
+            // 
+            // frmRacunDetalji
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -168,9 +178,10 @@ namespace DentOffice.WinUI.Racun
             this.Controls.Add(this.label7);
             this.Controls.Add(this.cmbPacijent);
             this.Controls.Add(this.lblKorisnik);
-            this.Name = "frmRacun";
-            this.Text = "frmRacun";
+            this.Name = "frmRacunDetalji";
+            this.Text = "Račun";
             this.Load += new System.EventHandler(this.frmRacun_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.err)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -190,5 +201,6 @@ namespace DentOffice.WinUI.Racun
         private System.Windows.Forms.ComboBox cmbPregled;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Button btnPotvrdi;
+        private System.Windows.Forms.ErrorProvider err;
     }
 }

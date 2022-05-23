@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DentOffice.WinUI.Helper;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
@@ -10,18 +11,18 @@ using System.Windows.Forms;
 
 namespace DentOffice.WinUI.Racun
 {
-    public partial class frmRacun : Form
+    public partial class frmRacunDetalji : Form
     {
         private readonly APIService _serviceKorisnici = new APIService("Korisnik");
         private readonly APIService _servicePregled = new APIService("Pregled");
         private readonly APIService _serviceRacun = new APIService("Racun");
         private int? _id;
 
-        public frmRacun()
+        public frmRacunDetalji()
         {
             InitializeComponent();
         }
-        public frmRacun(int RacunId): this()
+        public frmRacunDetalji(int RacunId): this()
         {
             _id = RacunId;
         }
@@ -30,6 +31,8 @@ namespace DentOffice.WinUI.Racun
             var result = await _serviceKorisnici.GetAll<List<Model.KorisnikPacijent>>(null, "KorisnikPacijenti");
             cmbPacijent.DisplayMember = "ImePrezime";
             cmbPacijent.ValueMember = "KorisnikID";
+
+            result.Insert(0, new Model.KorisnikPacijent { Ime = "Odaberite", Prezime = "pacijenta" });
             cmbPacijent.DataSource = result;
         }
 
@@ -60,7 +63,34 @@ namespace DentOffice.WinUI.Racun
 
         private async void frmRacun_Load(object sender, EventArgs e)
         {
-            await LoadPacijent();
+
+            if (_id.HasValue)
+            {
+                cmbPacijent.SelectedIndexChanged -= cmbPacijent_SelectedIndexChanged;
+                cmbPregled.SelectedIndexChanged -= cmbPregled_SelectedIndexChanged;
+
+                await LoadPacijent();
+
+                var racun = await _serviceRacun.GetById<Model.Racun>(_id.Value);
+                if(racun.DatumIzdavanjaRacuna != null)
+                    dtpDatumUplate.Value = racun.DatumIzdavanjaRacuna.Value;
+                cbPlaceno.Checked = racun.IsPlaceno ?? false;
+
+                cmbPacijent.SelectedValue = racun.KorisnikId;
+                await LoadPregled();
+
+                cmbPregled.SelectedValue = racun.PregledId;
+                txtIznos.Text = racun.UkupnaCijenaFormatted;
+
+                cmbPregled.SelectedIndexChanged += cmbPregled_SelectedIndexChanged;
+                cmbPacijent.SelectedIndexChanged += cmbPacijent_SelectedIndexChanged;
+            }
+            else
+            {
+                await LoadPacijent();
+            }
+
+
         }
 
         private void cmbPregled_SelectedIndexChanged(object sender, EventArgs e)
@@ -107,5 +137,21 @@ namespace DentOffice.WinUI.Racun
             }
 
         }
+
+        private void cmbPacijent_Validating(object sender, CancelEventArgs e)
+        {
+            err.ValidirajKontrolu(sender, e, Properties.Resources.Validation_RequiredField);
+        }
+
+        private void cmbPregled_Validating(object sender, CancelEventArgs e)
+        {
+            err.ValidirajKontrolu(sender, e, Properties.Resources.Validation_RequiredField);
+        }
+
+        private void txtIznos_Validating(object sender, CancelEventArgs e)
+        {
+            err.ValidirajKontrolu(sender, e, Properties.Resources.Validation_RequiredField);
+        }
+
     }
 }
