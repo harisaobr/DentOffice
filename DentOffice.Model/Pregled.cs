@@ -32,5 +32,10 @@ namespace DentOffice.Model
 
         public string UslugaDatum => (Termin != null && Termin.Usluga != null) ? Termin.Usluga.Naziv + " (" + Termin.DatumVrijeme.ToShortDateString() + ")" : "Nema označenog pregleda";  
         public DateTime? DatumTermina => Termin != null ? (DateTime?)Termin.DatumVrijeme : null;
+
+        public override string ToString()
+        {
+            return UslugaDatum;
+        }
     }
 }

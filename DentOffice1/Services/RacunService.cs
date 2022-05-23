@@ -39,25 +39,17 @@ namespace DentOffice.WebAPI.Services
             {
                 query = query.Where(x => x.Pregled.PregledId == search.PregledId);
             }
-            //if (search?.Dan != 0)
-            //{
-            //    query = query.Where(x => x.DatumIzdavanjaRacuna.Day == search.Dan);
-            //}
-            //if (search?.Mjesec != 0)
-            //{
-            //    query = query.Where(x => x.DatumIzdavanjaRacuna.Month == search.Mjesec);
-            //}
-            //if (search?.Godina != 0)
-            //{
-            //    query = query.Where(x => x.DatumIzdavanjaRacuna.Year == search.Godina);
-            //}
-            if (!string.IsNullOrWhiteSpace(search?.Ime))
+            if (search?.DatumOd != null)
             {
-                query = query.Where(x => x.Pregled.Termin.Pacijent.Korisnik.Ime == search.Ime);
+                query = query.Where(x => x.DatumIzdavanjaRacuna != null && x.DatumIzdavanjaRacuna.Value.Date >= search.DatumOd.Value.Date);
             }
-            if (!string.IsNullOrWhiteSpace(search?.Prezime))
+            if (search?.DatumDo != null)
             {
-                query = query.Where(x => x.Pregled.Termin.Pacijent.Korisnik.Prezime == search.Prezime);
+                query = query.Where(x => x.DatumIzdavanjaRacuna != null && x.DatumIzdavanjaRacuna.Value.Date <= search.DatumDo.Value.Date);
+            }
+            if (!string.IsNullOrWhiteSpace(search?.ImePrezime))
+            {
+                query = query.Where(x => (x.Pregled.Termin.Pacijent.Korisnik.Ime + " " + x.Pregled.Termin.Pacijent.Korisnik.Prezime).ToLower().Contains(search.ImePrezime.ToLower()));
             }
             if (search?.NijeUplatioRequest == true)
             {

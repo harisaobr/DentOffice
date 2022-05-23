@@ -68,9 +68,22 @@ namespace DentOffice.WebAPI.Services
                 query = query.Where(x => x.Grad.Drzava.Naziv == search.Drzava);
             }
 
+            if (search.ShowStomatologe)
+            {
+                query = query.Where(x => x.Pacijents.Count == 0);
+            }
+
             var entities = query.ToList();
 
             var result = _mapper.Map<IList<Model.Korisnik>>(entities);
+
+            foreach (var korisnik in result)
+            {
+                korisnik.ObavljenoPregleda = _context.Pregleds.Count(x =>
+                x.KorisnikId == korisnik.KorisnikID || // Stomatolog
+                x.Termin.Pacijent.KorisnikId == korisnik.KorisnikID // Pacijent
+                );
+            }
 
 
             return result;
