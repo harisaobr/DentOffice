@@ -58,7 +58,7 @@ namespace DentOffice.Mobile.ViewModels
         {
             if (UslugaList.Count == 0)
             {
-                var uslugeLista = await _uslugeService.GetAll<IList<Model.Usluga>>(null);
+                var uslugeLista = await _uslugeService.Get<IList<Model.Usluga>>(null);
                 UslugaList.Clear();
 
                 foreach (var usluga in uslugeLista)

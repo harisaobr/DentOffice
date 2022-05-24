@@ -75,7 +75,6 @@ namespace DentOffice.WebAPI.Controllers
             return _service.GetByIdKorisnikPacijent(id);
         }
 
-
         [HttpGet("Profil")]
         [Authorize]
         public Model.Korisnik Profil()

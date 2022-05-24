@@ -2,6 +2,7 @@
 using DentOffice.Mobile.Views;
 using System;
 using System.Collections.Generic;
+using Xamarin.Essentials;
 using Xamarin.Forms;
 
 namespace DentOffice.Mobile
@@ -11,13 +12,18 @@ namespace DentOffice.Mobile
         public AppShell()
         {
             InitializeComponent();
-            Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
-            Routing.RegisterRoute(nameof(NewItemPage), typeof(NewItemPage));
+            //Routing.RegisterRoute(nameof(ItemDetailPage), typeof(ItemDetailPage));
         }
 
         private async void OnMenuItemClicked(object sender, EventArgs e)
         {
-            await Shell.Current.GoToAsync("//LoginPage");
+            APIService.PrijavljeniKorisnik = null;
+            APIService.Username = null;
+            APIService.Password = null;
+
+            SecureStorage.Remove("username");
+            SecureStorage.Remove("password");
+            Xamarin.Forms.Application.Current.MainPage = new LoginPage();
         }
     }
 }

@@ -345,6 +345,7 @@ namespace DentOffice.WebAPI.Services
 
             query = query.Include(x => x.Uloga);
             query = query.Include(x => x.Grad.Drzava);
+            query = query.Include(x => x.Pacijents);
 
             return _mapper.Map<Model.Korisnik>(query.FirstOrDefault(x => x.KorisnikId == LogiraniKorisnik.KorisnikID));
         }

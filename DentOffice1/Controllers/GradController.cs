@@ -1,6 +1,7 @@
 ﻿using DentOffice.Model;
 using DentOffice.Model.Requests;
 using DentOffice.WebAPI.Services;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -15,6 +16,12 @@ namespace DentOffice.WebAPI.Controllers
     {
         public GradController(ICRUDService<Grad, GradSearchRequest, GradUpsertRequest, GradUpsertRequest> service) : base(service)
         {
+        }
+
+        [AllowAnonymous]
+        public override IList<Grad> GetAll([FromQuery] GradSearchRequest request = null)
+        {
+            return base.GetAll(request);
         }
     }
 }

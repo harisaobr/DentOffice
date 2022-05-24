@@ -24,6 +24,8 @@ namespace DentOffice.Mobile.Views
         protected async override void OnAppearing()
         {
             base.OnAppearing();
+            await VM.LoadGradove();
+            VM.LoadSpolove();
         }
 
         private void LoginLabel_Tapped(object sender, EventArgs e)

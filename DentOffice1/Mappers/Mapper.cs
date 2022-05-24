@@ -18,6 +18,7 @@ namespace DentOffice.WebAPI.Mappers
 
 
             CreateMap<Database.Pacijent, Model.Pacijent>();
+            CreateMap<Database.Pacijent, Model.Pacijent_Data>();
 
             CreateMap<Database.Pacijent, Model.KorisnikPacijent>();
             CreateMap<Database.Korisnik, Model.KorisnikPacijent>();

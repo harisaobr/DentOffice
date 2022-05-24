@@ -1,8 +1,5 @@
-﻿using DentOffice.Mobile.Services;
-using DentOffice.Mobile.Views;
-using System;
+﻿using DentOffice.Mobile.Views;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
 
 namespace DentOffice.Mobile
 {
@@ -13,8 +10,7 @@ namespace DentOffice.Mobile
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
-            MainPage = new AppShell();
+            MainPage = new LoginPage();
         }
 
         protected override void OnStart()
