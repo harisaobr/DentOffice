@@ -29,6 +29,12 @@ class _HomeState extends State<Home> {
               },
             ),
             ListTile(
+              title: Text('Cjenovnik'),
+              onTap: () {
+                Navigator.of(context).pushNamed('/cjenovnik');
+              },
+            ),
+            ListTile(
               title: Text('Odjava'),
               onTap: () {
                 APIService.username = null;
@@ -38,6 +44,18 @@ class _HomeState extends State<Home> {
               },
             )
           ],
+        ),
+      ),
+      body: Center(
+        child: new RichText(
+          text: new TextSpan(
+            children: <TextSpan>[
+              new TextSpan(
+                text: ' Radno vrijeme \n Od ponedjeljka do petka: 8:00 - 16:00 \n Subotom: 8:00 - 12:00 \n Nedjeljom i državnim praznicima ne radimo ',
+                style: new TextStyle(color: Colors.black),
+              ),
+            ],
+          ),
         ),
       ),
     );

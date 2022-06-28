@@ -4,6 +4,8 @@ import 'package:dentofficemobile/pages/Loading.dart';
 import 'package:dentofficemobile/pages/Home.dart';
 import 'package:dentofficemobile/pages/Termini.dart';
 
+import 'pages/Cjenovnik.dart';
+
 void main() {
   runApp(const MyApp());
 }
@@ -21,6 +23,7 @@ class MyApp extends StatelessWidget {
         '/loading':(context)=>Loading(),
         '/home':(context)=>Home(),
         '/termini':(context)=>Termini(),
+        '/cjenovnik':(context)=>Usluge(),
       },
     );
   }
