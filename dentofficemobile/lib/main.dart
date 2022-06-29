@@ -1,3 +1,5 @@
+import 'package:dentofficemobile/pages/OnlinePlacanje.dart';
+import 'package:dentofficemobile/pages/RezervacijaTermina.dart';
 import 'package:flutter/material.dart';
 import 'package:dentofficemobile/pages/Login.dart';
 import 'package:dentofficemobile/pages/Loading.dart';
@@ -24,6 +26,8 @@ class MyApp extends StatelessWidget {
         '/home':(context)=>Home(),
         '/termini':(context)=>Termini(),
         '/cjenovnik':(context)=>Usluge(),
+        '/rezervacija':(context)=>RezervacijaTermina(),
+        '/placanje':(context)=>OnlinePlacanje(),
       },
     );
   }

@@ -7,17 +7,21 @@ part of 'termin.dart';
 // **************************************************************************
 
 Termin _$TerminFromJson(Map<String, dynamic> json) => Termin(
-      terminID: json['terminID'] as int,
+      terminID: json['terminID'] as int?,
       razlog: json['razlog'] as String,
-      hitno: json['hitno'] as bool?,
+      hitno: json['hitno'] as bool? ?? false,
       odobreno: json['odobreno'] as bool?,
       naCekanju: json['naCekanju'] as bool,
       datumVrijeme: DateTime.parse(json['datumVrijeme'] as String),
       pacijentId: json['pacijentId'] as int,
-      pacijent: Pacijent.fromJson(json['pacijent'] as Map<String, dynamic>),
+      pacijent: json['pacijent'] == null
+          ? null
+          : Pacijent.fromJson(json['pacijent'] as Map<String, dynamic>),
       uslugaId: json['uslugaId'] as int,
-      usluga: Usluga.fromJson(json['usluga'] as Map<String, dynamic>),
-      uslugaNaziv: json['uslugaNaziv'] as String,
+      usluga: json['usluga'] == null
+          ? null
+          : Usluga.fromJson(json['usluga'] as Map<String, dynamic>),
+      uslugaNaziv: json['uslugaNaziv'] as String?,
     );
 
 Map<String, dynamic> _$TerminToJson(Termin instance) => <String, dynamic>{

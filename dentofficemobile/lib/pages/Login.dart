@@ -93,7 +93,7 @@ class _LoginState extends State<Login> {
                           actions: [
                             TextButton(
                               child: const Text("OK"),
-                              onPressed: () => Navigator.pop(context)
+                              onPressed: () => Navigator.of(context, rootNavigator: true).pop('dialog')
                             ),
                           ],
 

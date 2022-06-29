@@ -29,9 +29,21 @@ class _HomeState extends State<Home> {
               },
             ),
             ListTile(
+              title: Text('Rezervacija termina'),
+              onTap: () {
+                Navigator.of(context).pushNamed('/rezervacija');
+              },
+            ),
+            ListTile(
               title: Text('Cjenovnik'),
               onTap: () {
                 Navigator.of(context).pushNamed('/cjenovnik');
+              },
+            ),
+            ListTile(
+              title: Text('Placanje'),
+              onTap: () {
+                Navigator.of(context).pushNamed('/placanje');
               },
             ),
             ListTile(

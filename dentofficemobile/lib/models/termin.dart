@@ -9,21 +9,21 @@ part 'termin.g.dart';
 
 @JsonSerializable()
 class Termin {
-   int terminID;
+   int? terminID;
    String razlog;
-   bool? hitno;
+   bool hitno;
    bool? odobreno;
    bool naCekanju;
    DateTime datumVrijeme;
    int pacijentId;
-   Pacijent pacijent;
+   Pacijent? pacijent;
    int uslugaId;
-   Usluga usluga;
-   String uslugaNaziv;
+   Usluga? usluga;
+   String? uslugaNaziv;
 
    String get opis => "${DateFormat("dd-MM-yyyy").format(datumVrijeme)} (${(odobreno != null && odobreno!) ? "Odobren" : "Neodobren"})";
 
-   Termin({required this.terminID,required this.razlog,required this.hitno,required this.odobreno,required this.naCekanju,required this.datumVrijeme,required this.pacijentId,required this.pacijent,required this.uslugaId,required this.usluga,required this.uslugaNaziv,});
+   Termin({this.terminID,required this.razlog,this.hitno=false,this.odobreno,required this.naCekanju,required this.datumVrijeme,required this.pacijentId, this.pacijent,required this.uslugaId,this.usluga,this.uslugaNaziv,});
 
    factory Termin.fromJson(Map<String, dynamic> json) => _$TerminFromJson(json);
 
