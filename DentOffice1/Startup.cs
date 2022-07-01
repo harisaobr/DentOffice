@@ -78,10 +78,17 @@ namespace DentOffice1
             services.AddScoped<ICRUDService<DentOffice.Model.Usluga, UslugaSearchRequest, UslugaUpsertRequest, UslugaUpsertRequest>, UslugaService>();
             services.AddScoped<ICRUDService<DentOffice.Model.Racun, RacunSearchRequest, RacunInsertRequest, RacunInsertRequest>, RacunService>();
 
-            services.AddDbContext<eDentOfficeContext>(options => {
+            services.AddDbContext<eDentOfficeContext>(options =>
+            {
                 options.UseSqlServer(
                     Configuration.GetConnectionString("UserDatabase"));
             }, ServiceLifetime.Transient);
+
+            //services.AddDbContext<eDentOfficeContext>(options => {
+            //    options.UseSqlServer(
+            //        Configuration.GetConnectionString("DefaultConnection"));
+            //}, ServiceLifetime.Transient);
+
 
             services.AddAuthentication("BasicAuthentication")
                .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);

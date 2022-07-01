@@ -1,0 +1,31 @@
+version: "3"
+services:
+    dentoffice-sql:
+        image: "mcr.microsoft.com/mssql/server:2019-latest"
+        restart: unless-stopped
+        environment:
+            SA_PASSWORD: "QWElkj132!"
+            ACCEPT_EULA: "Y"
+            MSSQL_PID: "Developer"
+        ports:
+            - 1401:1433
+        networks:
+            - dentofficenet
+
+    dentoffice-api:
+        restart: unless-stopped
+        build: .
+        environment:
+            - ConnectionStrings:DefaultConnection=Server=dentoffice-sql,1433;Database=210344;User=sa;Password=QWElkj132!;
+        ports:
+            - 5001:80
+        networks:
+            - dentofficenet
+        depends_on:
+            - dentoffice-sql
+        links:
+            - dentoffice-sql 
+
+networks:
+  dentofficenet:
+    driver: bridge
