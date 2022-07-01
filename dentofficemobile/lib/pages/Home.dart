@@ -41,12 +41,6 @@ class _HomeState extends State<Home> {
               },
             ),
             ListTile(
-              title: Text('Placanje'),
-              onTap: () {
-                Navigator.of(context).pushNamed('/placanje');
-              },
-            ),
-            ListTile(
               title: Text('Odjava'),
               onTap: () {
                 APIService.username = null;

@@ -3,17 +3,15 @@ import 'dart:core';
 
 import 'package:decimal/decimal.dart';
 import 'package:dentofficemobile/main.dart';
+import 'package:dentofficemobile/models/payment.dart';
 import 'package:dentofficemobile/models/termin.dart';
 import 'package:dentofficemobile/models/usluga.dart';
-import 'package:dentofficemobile/pages/OnlinePlacanje.dart';
+import 'package:dentofficemobile/pages/Termini.dart';
 import 'package:dentofficemobile/services/APIService.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_stripe/flutter_stripe.dart' as flutter_stripe;
 import 'package:intl/intl.dart';
-
-
-void main() {
-  runApp(const RezervacijaTermina());
-}
+import 'package:http/http.dart' as http;
 
 class RezervacijaTermina extends StatelessWidget {
   const RezervacijaTermina({Key? key}) : super(key: key);
@@ -53,17 +51,21 @@ class _TextScreenState extends State<TextScreen> {
 
   Usluga? selectedUsluga;
 
+  var paymentIntentData;
+
   Future<DateTime> _selectDate(BuildContext context) async {
     var now = DateTime.now();
     var todayMidnight = DateTime(now.year, now.month, now.day);
-    if(selectedDate.isBefore(now))
+    if(selectedDate.isBefore(now)) {
       selectedDate = now;
+    }
 
     showDate = showTime = false;
     final selected = await showDatePicker(
       context: context,
       initialDate: selectedDate,
       firstDate: todayMidnight,
+      selectableDayPredicate: (x)=>x.weekday >= 1 && x.weekday <= 6,
       lastDate: DateTime.now().add(const Duration(days: 60)),
     );
     if (selected != null && selected != selectedDate) {
@@ -76,7 +78,6 @@ class _TextScreenState extends State<TextScreen> {
 
   Future _selectDateTime(BuildContext context) async {
     final date = await _selectDate(context);
-    if (date == null) return;
     setState(() {
       selectedDate = DateTime(
         date.year,
@@ -86,9 +87,9 @@ class _TextScreenState extends State<TextScreen> {
 
     });
 
-    final startTime = TimeOfDay(hour: 8, minute: 0);
-    final endTime = TimeOfDay(hour: 15, minute: 30);
-    final step = Duration(minutes: 30);
+    final startTime = const TimeOfDay(hour: 8, minute: 0);
+    final endTime = const TimeOfDay(hour: 15, minute: 30);
+    final step = const Duration(minutes: 30);
 
     var zauzetiTermini = await GetTermini();
     setState(() {
@@ -102,8 +103,13 @@ class _TextScreenState extends State<TextScreen> {
 
     do {
       DateTime cmp = DateTime(date.year, date.month, date.day, hour, minute);
-
-      yield VrijemeTermina(!zauzetiTermini.any((element) => element.datumVrijeme.difference(cmp).inSeconds.abs() < 60), TimeOfDay(hour: hour, minute: minute));
+      if(cmp.isAfter(DateTime.now().add(const Duration(hours: 1)))) {
+        yield VrijemeTermina(!zauzetiTermini.any((element) =>
+        element.datumVrijeme
+            .difference(cmp)
+            .inSeconds
+            .abs() < 60), TimeOfDay(hour: hour, minute: minute));
+      }
       minute += step.inMinutes;
       while (minute >= 60) {
         minute -= 60;
@@ -167,21 +173,27 @@ class _TextScreenState extends State<TextScreen> {
                 ? Center(child: Text("Datum i vrijeme termina: ${getDateTime()}"))
                 : const SizedBox(),
             showDate && !showTime
-            ?
-                ListView.builder(
-              itemCount: availableSlots.length,
+                ?
+            (availableSlots.isEmpty ?
+            Container(
+                margin: const EdgeInsets.all(20),
+                width: double.infinity,
+                child: const Center(child: Text('Nema dostupnih termina'))
+            ) :
+            ListView.builder(
+                itemCount: availableSlots.length,
 
-              scrollDirection: Axis.vertical,
+                scrollDirection: Axis.vertical,
 
-              shrinkWrap: true, // <- added
-              primary: false, // <- added
-              itemBuilder: (context,index)=>
+                shrinkWrap: true, // <- added
+                primary: false, // <- added
+                itemBuilder: (context,index)=>
 
-                  Card(
-                      margin: EdgeInsets.zero,
-                      child:
-                      TextButton(
-                        onPressed: () async {
+                    Card(
+                        margin: EdgeInsets.zero,
+                        child:
+                        TextButton(
+                          onPressed: () async {
                             if(availableSlots[index].dostupno){
                               setState(() {
                                 selectedTime = availableSlots[index].vrijeme;
@@ -213,47 +225,50 @@ class _TextScreenState extends State<TextScreen> {
                               );
                             }
 
-                        },
-                        child: Padding(
-                          padding: const EdgeInsets.all(2),
-                          child: Row(
-                            children: [
-                              Expanded(
-                                child: Text(
-                                  "${availableSlots[index].vrijeme.format(context)}\n${availableSlots[index].dostupno ? "Odaberite" : "Zauzet"} termin",
-                                  style: TextStyle(color: availableSlots[index].dostupno ? Colors.black : Colors.red, fontSize: 16, fontWeight: FontWeight.w400),
+                          },
+                          child: Padding(
+                            padding: const EdgeInsets.all(2),
+                            child: Row(
+                              children: [
+                                Expanded(
+                                  child: Text(
+                                    "${availableSlots[index].vrijeme.format(context)}\n${availableSlots[index].dostupno ? "Odaberite" : "Zauzet"} termin",
+                                    style: TextStyle(color: availableSlots[index].dostupno ? Colors.black : Colors.red, fontSize: 16, fontWeight: FontWeight.w400),
+                                  ),
                                 ),
-                              ),
-                            ],
+                              ],
+                            ),
                           ),
-                        ),
-                      )
-                  )
-                ): const SizedBox(),
+                        )
+                    )
+            )
+            ): const SizedBox(),
             showDate && showTime ?
-                Center(
-                  child:
-            DropdownButton<Usluga>(
-              hint: Text('Unesite uslugu'),
-              value: selectedUsluga,
-              items: uslugeList.map((Usluga value) {
-                return DropdownMenuItem<Usluga>(
-                  value: value,
-                  child: SizedBox(
-                    width: 200.0, // for example
-                    child: Text(value.naziv, textAlign: TextAlign.center),
-                  ),
-                );
-              }).toList(),
-              onChanged: (Usluga? value) {
-                setState(() {
-                  selectedUsluga = value;
-                });
-              },
-            )) : const SizedBox(),
+            Center(
+                child:
+                DropdownButton<Usluga>(
+                  hint: Text('Unesite uslugu'),
+                  value: selectedUsluga,
+                  items: uslugeList.map((Usluga value) {
+                    return DropdownMenuItem<Usluga>(
+                      value: value,
+                      child: SizedBox(
+                        width: 200.0, // for example
+                        child: Text(value.naziv, textAlign: TextAlign.center),
+                      ),
+                    );
+                  }).toList(),
+                  onChanged: (Usluga? value) {
+                    setState(() {
+                      selectedUsluga = value;
+                    });
+                  },
+                )) : const SizedBox(),
 
             showDate && showTime ?
-            TextField(
+            Container(
+                margin: EdgeInsets.all(15),
+                child:TextField(
               controller: razlogController,
               decoration: InputDecoration(
                   border: OutlineInputBorder(
@@ -261,7 +276,7 @@ class _TextScreenState extends State<TextScreen> {
                       borderSide: BorderSide(color: Colors.lightBlue)),
                   focusColor: Colors.blue,
                   hintText: 'Razlog termina'),
-            ) : const SizedBox(),
+            )) : const SizedBox(),
             showDate && showTime ?
             CheckboxListTile(
               title: Text("Da li je termin hitan?"),
@@ -275,8 +290,9 @@ class _TextScreenState extends State<TextScreen> {
             ) : const SizedBox(),
             showDate && showTime ?
             Container(
+              margin: EdgeInsets.all(15),
               height: 60,
-              width: 300,
+              width: double.infinity,
               decoration: BoxDecoration(
                   color: Colors.lightBlue,
                   borderRadius: BorderRadius.circular(20)),
@@ -310,7 +326,7 @@ class _TextScreenState extends State<TextScreen> {
                       return;
                     }
 
-                   var response = await APIService.post(
+                    var response = await APIService.post(
                         "Termin", json.encode(request.toJson()));
                     if(response != null){
                       var termin = Termin.fromJson(response);
@@ -320,17 +336,9 @@ class _TextScreenState extends State<TextScreen> {
                             height: 20, child: Center(child: Text("Uspješno"))),
                         backgroundColor: Color.fromARGB(255, 9, 100, 13),
                       ));
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => const OnlinePlacanje(
-                                //termin.terminID
-                              )
-                          )
-                      );
+
+                      makePayment(double.parse(selectedUsluga!.cijena.toString()));
                     }
-
-
                   },
                   child: saveButton()),
             ) : SizedBox(),
@@ -363,14 +371,105 @@ class _TextScreenState extends State<TextScreen> {
     return '';
   }
 
+  Future<void> makePayment(double iznos) async {
+    try {
+      paymentIntentData =
+      await createPaymentIntent((iznos * 100).round().toString(), 'bam');
+      await flutter_stripe.Stripe.instance
+          .initPaymentSheet(
+          paymentSheetParameters: flutter_stripe.SetupPaymentSheetParameters(
+              paymentIntentClientSecret:
+              paymentIntentData!['client_secret'],
+              applePay: true,
+              googlePay: true,
+              testEnv: true,
+              style: ThemeMode.dark,
+              merchantCountryCode: 'BIH',
+              merchantDisplayName: 'Dent Office'))
+          .then((value) {});
+
+      await insertUplata(iznos);
+
+      ///now finally display payment sheeet
+      displayPaymentSheet();
+    } catch (e, s) {
+      print('exception:$e$s');
+    }
+  }
+
+  createPaymentIntent(String amount, String currency) async {
+    try {
+      Map<String, dynamic> body = {
+        'amount': amount,
+        'currency': currency,
+        'payment_method_types[]': 'card'
+      };
+
+      var response = await http.post(
+          Uri.parse('https://api.stripe.com/v1/payment_intents'),
+          body: body,
+          headers: {
+            'Authorization': 'Bearer sk_test_51LGmN7GBwfqh1nHlbEdpiWgXfGiiLfHToRtCJFNyeLA8H7wMztOR2ZJYYuDHgVYKhlNi9l5SwGbMKd0N5x2Py91U00ke3FfmeD',
+            'Content-Type': 'application/x-www-form-urlencoded'
+          });
+      return jsonDecode(response.body);
+    } catch (err) {
+      print('err charging user: ${err.toString()}');
+    }
+  }
+
+  insertUplata(double amount) async {
+    var request = Payment(
+        korisnikId: APIService.prijavljeniKorisnik!.korisnikID,
+        iznos: amount,
+        datum: DateTime.now(),
+        metoda: "credit_card"
+    );
+
+    await APIService.post("Payment", json.encode(request.toJson()));
+  }
+
+  displayPaymentSheet() async {
+    try {
+      await flutter_stripe.Stripe.instance
+          .presentPaymentSheet(
+          parameters: flutter_stripe.PresentPaymentSheetParameters(
+            clientSecret: paymentIntentData!['client_secret'],
+            confirmPayment: true,
+          ))
+          .onError((error, stackTrace) {
+        print('Exception/DISPLAYPAYMENTSHEET==> $error $stackTrace');
+      });
+
+
+
+      ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+        content: SizedBox(
+            height: 20, child: Center(child: Text("Uplata uspješna."))),
+        backgroundColor: Color.fromARGB(255, 9, 100, 13),
+      ));
+      Navigator.push(
+          context,
+          MaterialPageRoute(
+              builder: (context) => Termini()
+          )
+      );
+    } on flutter_stripe.StripeException catch (e) {
+      showDialog(
+          context: context,
+          builder: (_) => const AlertDialog(
+            content: Text("Poništena transakcija."),
+          ));
+    } catch (e) {
+      print('$e');
+    }
+  }
 
 }
 Widget saveButton() {
   return Container(
     height: 50,
-    width: 120,
-    decoration: BoxDecoration(
-        borderRadius: BorderRadius.circular(17), color: Colors.blue),
+    width: double.infinity,
     child: Center(
       child: Text('Potvrdi',
           style: TextStyle(

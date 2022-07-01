@@ -8,16 +8,16 @@ part 'payment.g.dart';
 
 @JsonSerializable()
 class Payment {
-  int paymentId;
-  CreditCard creditCard;
+  int? paymentId;
+  CreditCard? creditCard;
   int? creditCardId;
   String metoda;
   DateTime datum;
   double iznos;
   int korisnikId;
-  Korisnik korisnik;
+  Korisnik? korisnik;
 
-  Payment({required this.paymentId,required this.creditCard,required this.creditCardId,required this.metoda,required this.datum,required this.iznos,required this.korisnikId,required this.korisnik,});
+  Payment({this.paymentId, this.creditCard, this.creditCardId,required this.metoda,required this.datum,required this.iznos,required this.korisnikId, this.korisnik,});
 
   factory Payment.fromJson(Map<String, dynamic> json) => _$PaymentFromJson(json);
 

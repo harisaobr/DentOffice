@@ -85,20 +85,12 @@ class _LoginState extends State<Login> {
                       return;
                     }
 
-                    showDialog(
-                        context: context,
-                        builder: (_) => AlertDialog(
-                          title: const Text('Greška'),
-                          content: Text(error),
-                          actions: [
-                            TextButton(
-                              child: const Text("OK"),
-                              onPressed: () => Navigator.of(context, rootNavigator: true).pop('dialog')
-                            ),
-                          ],
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: SizedBox(
+                          height: 20, child: Center(child: Text(error))),
+                      backgroundColor: Color.fromARGB(255, 100, 9, 13),
+                    ));
 
-                        )
-                    );
                     APIService.prijavljeniKorisnik = null;
                     APIService.username = null;
                     APIService.password = null;
