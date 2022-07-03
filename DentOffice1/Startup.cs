@@ -65,6 +65,7 @@ namespace DentOffice1
 
             services.AddScoped<IKorisnikService, KorisnikService>();
             services.AddScoped<ITerminService, TerminService>();
+            services.AddScoped<IIzvjestajService, IzvjestajService>();
             services.AddScoped<ICRUDService<DentOffice.Model.Dijagnoza, DijagnozaSearchRequest, DijagnozaInsertRequest, DijagnozaInsertRequest>, DijagnozaService>();
             services.AddScoped<IService<DentOffice.Model.Uloga, object>, BaseService<DentOffice.Model.Uloga, object, Uloga>>();
             services.AddScoped<IService<DentOffice.Model.Usluga, object>, BaseService<DentOffice.Model.Usluga, object, Usluga>>();
@@ -77,7 +78,6 @@ namespace DentOffice1
             services.AddScoped<ICRUDService<DentOffice.Model.Uloga, UlogaSearchRequest, UlogaUpsertRequest, UlogaUpsertRequest>, UlogaService>();
             services.AddScoped<ICRUDService<DentOffice.Model.Usluga, UslugaSearchRequest, UslugaUpsertRequest, UslugaUpsertRequest>, UslugaService>();
             services.AddScoped<ICRUDService<DentOffice.Model.Racun, RacunSearchRequest, RacunInsertRequest, RacunInsertRequest>, RacunService>();
-
             services.AddDbContext<eDentOfficeContext>(options =>
             {
                 options.UseSqlServer(
