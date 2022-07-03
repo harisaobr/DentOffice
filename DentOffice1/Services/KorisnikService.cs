@@ -70,6 +70,11 @@ namespace DentOffice.WebAPI.Services
 
             if (search.ShowStomatologe)
             {
+                query = query.Where(x => x.UlogaId == 2);
+            }
+
+            if (search.ShowUposlenike)
+            {
                 query = query.Where(x => x.Pacijents.Count == 0);
             }
 
