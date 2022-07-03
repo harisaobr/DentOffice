@@ -17,6 +17,7 @@ namespace DentOffice.WinUI
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+            SqlServerTypes.Utilities.LoadNativeAssemblies(AppDomain.CurrentDomain.BaseDirectory);
 
             Form frm = new frmLogin();
             if(frm.ShowDialog() == DialogResult.OK)

@@ -20,6 +20,7 @@ namespace DentOffice.WinUI.Korisnik
     {
         private readonly APIService _service = new APIService("Korisnik");
         private readonly APIService _serviceGradovi = new APIService("Grad");
+        private readonly APIService _serviceUloga = new APIService("Uloga");
 
         private int? _id = null;
         private byte[] Slika;
@@ -61,7 +62,8 @@ namespace DentOffice.WinUI.Korisnik
                     Adresa = txtAdresa.Text,
                     Password = txtPassword.Text,
                     PasswordConfirmation = txtPasswordConf.Text,
-                    Spol = (Spol)cmbSpol.SelectedItem
+                    Spol = (Spol)cmbSpol.SelectedItem,
+                    UlogaID = int.Parse(cmbUloga.SelectedValue.ToString())
                 };
                 if (cmbGrad.SelectedValue != null)
                     request.GradID = int.Parse(cmbGrad.SelectedValue.ToString());
@@ -96,12 +98,21 @@ namespace DentOffice.WinUI.Korisnik
         }
 
 
+        private async Task LoadUloge()
+        {
+            var result = await _serviceUloga.GetAll<List<Model.Uloga>>(null);
+            result = result.Where(x => x.Naziv != "Pacijent").ToList();
 
+            cmbUloga.DisplayMember = "Naziv";
+            cmbUloga.ValueMember = "UlogaID";
+            cmbUloga.DataSource = result;
+        }
 
         private async void frmKorisniciDetalji_Load(object sender, EventArgs e)
         {
             UcitajSpolove();
             await LoadGradove();
+            await LoadUloge();
             if (_id.HasValue)
             {
                 var korisnik = await _service.GetById<Model.Korisnik>(_id);
@@ -115,6 +126,8 @@ namespace DentOffice.WinUI.Korisnik
                     dtpDatum.Value = Convert.ToDateTime(korisnik.DatumRodjenja);
                 txtAdresa.Text = korisnik.Adresa;
                 cmbGrad.SelectedValue = korisnik.GradID;
+                cmbUloga.SelectedValue = korisnik.UlogaID;
+
 
                 if (korisnik.Slika != null && korisnik.Slika.Length > 0)
                 {
@@ -314,5 +327,6 @@ namespace DentOffice.WinUI.Korisnik
                 errorProvider.SetError(txtPasswordConf, null);
             }
         }
+
     }
 }

@@ -14,5 +14,6 @@ namespace DentOffice.Model.Requests
         public DateTime OD { get; set; }
         public DateTime DO { get; set; }
         public bool ShowStomatologe { get; set; }
+        public bool ShowUposlenike { get; set; }
     }
 }

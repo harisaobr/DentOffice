@@ -1,4 +1,5 @@
-﻿using DentOffice.WinUI.Korisnik;
+﻿using DentOffice.WinUI.Izvjestaj;
+using DentOffice.WinUI.Korisnik;
 using DentOffice.WinUI.Pacijenti;
 using DentOffice.WinUI.Pregled;
 using DentOffice.WinUI.Racun;
@@ -170,6 +171,33 @@ namespace DentOffice.WinUI
             frm.MdiParent = this;
             frm.WindowState = FormWindowState.Maximized;
             frm.Show();
+        }
+
+        private void izvjestajToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            Form frm = new frmIzvjestaj();
+            frm.MdiParent = this;
+            frm.WindowState = FormWindowState.Maximized;
+            frm.Show();
+        }
+
+        private void odjavaToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            this.Hide();
+            APIService.Username = null;
+            APIService.Password = null;
+            APIService.LogiraniKorisnik = null;
+            var frmLogin = new frmLogin();
+            if (frmLogin.ShowDialog() == DialogResult.OK)
+            {
+                foreach (var item in this.MdiChildren)
+                {
+                    item.Close();
+                }
+                this.Show();
+            }
+            else
+                Application.Exit();
         }
     }
 }

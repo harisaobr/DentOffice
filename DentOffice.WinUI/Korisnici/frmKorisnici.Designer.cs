@@ -54,7 +54,7 @@ namespace DentOffice.WinUI.Korisnik
             this.Stomatolozi.Size = new System.Drawing.Size(1311, 311);
             this.Stomatolozi.TabIndex = 0;
             this.Stomatolozi.TabStop = false;
-            this.Stomatolozi.Text = "Stomatolozi";
+            this.Stomatolozi.Text = "Uposlenici";
             // 
             // dgvKorisnici
             // 
@@ -182,7 +182,7 @@ namespace DentOffice.WinUI.Korisnik
             this.btnDodajNovog.Name = "btnDodajNovog";
             this.btnDodajNovog.Size = new System.Drawing.Size(197, 28);
             this.btnDodajNovog.TabIndex = 34;
-            this.btnDodajNovog.Text = "Dodaj novog stomatologa";
+            this.btnDodajNovog.Text = "Dodaj novog uposlenika";
             this.btnDodajNovog.UseVisualStyleBackColor = true;
             this.btnDodajNovog.Click += new System.EventHandler(this.btnDodajNovog_Click);
             // 
@@ -196,7 +196,7 @@ namespace DentOffice.WinUI.Korisnik
             this.Controls.Add(this.txtPretraga);
             this.Controls.Add(this.Stomatolozi);
             this.Name = "frmKorisnici";
-            this.Text = "Lista stomatologa";
+            this.Text = "Lista uposlenika";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this.frmKorisnici_Load);
             this.Stomatolozi.ResumeLayout(false);

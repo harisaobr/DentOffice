@@ -17,7 +17,7 @@ namespace DentOffice.Model.Requests
         public int TerminId { get; set; }
 
         [Required]
-        [Range(1, 480, ErrorMessage = "Trajanje pregleda ne moze biti manje od 1 minute i vece od 480 minuta")]
+        [Range(1, 30, ErrorMessage = "Trajanje pregleda ne moze biti manje od 1 minute i vece od 30 minuta")]
         public int TrajanjePregleda { get; set; }
     
         [StringLength(200)]

@@ -20,6 +20,10 @@ namespace DentOffice.WinUI.Korisnik
         {
             InitializeComponent();
             dgvKorisnici.AutoGenerateColumns = false;
+            if(APIService.LogiraniKorisnik.Uloga.Naziv != "Administrator")
+            {
+                btnDodajNovog.Enabled = false;
+            }
         }
 
         private async Task UcitajKorisnike()
@@ -27,7 +31,7 @@ namespace DentOffice.WinUI.Korisnik
             var search = new KorisnikSearchRequest()
             {
                 ImePrezime = txtPretraga.Text,
-                ShowStomatologe = true
+                ShowUposlenike = true
             };
             var result = await _apiService.GetAll<List<Model.Korisnik>>(search);
 

@@ -37,16 +37,18 @@ namespace DentOffice.WinUI
             this.pacijentiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pretragaPacijenataToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.noviPacijentToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pregledToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.pretragaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
-            this.noviPregledToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.terminiToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pregledTerminaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.dodajTerminToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pregledToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.pretragaToolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
+            this.noviPregledToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.racunToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.pregledRačunaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.racuniToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.izvjestajToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.odjavaToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -58,7 +60,9 @@ namespace DentOffice.WinUI
             this.pacijentiToolStripMenuItem,
             this.terminiToolStripMenuItem,
             this.pregledToolStripMenuItem,
-            this.racunToolStripMenuItem});
+            this.racunToolStripMenuItem,
+            this.izvjestajToolStripMenuItem,
+            this.odjavaToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
             this.menuStrip.Padding = new System.Windows.Forms.Padding(5, 2, 0, 2);
@@ -72,21 +76,21 @@ namespace DentOffice.WinUI
             this.pretragaToolStripMenuItem,
             this.noviKorisnikToolStripMenuItem});
             this.korisniciToolStripMenuItem.Name = "korisniciToolStripMenuItem";
-            this.korisniciToolStripMenuItem.Size = new System.Drawing.Size(104, 24);
-            this.korisniciToolStripMenuItem.Text = "Stomatolozi";
+            this.korisniciToolStripMenuItem.Size = new System.Drawing.Size(92, 24);
+            this.korisniciToolStripMenuItem.Text = "Uposlenici";
             // 
             // pretragaToolStripMenuItem
             // 
             this.pretragaToolStripMenuItem.Name = "pretragaToolStripMenuItem";
-            this.pretragaToolStripMenuItem.Size = new System.Drawing.Size(237, 26);
-            this.pretragaToolStripMenuItem.Text = "Pretraga stomatologa";
+            this.pretragaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.pretragaToolStripMenuItem.Text = "Pretraga uposlenika";
             this.pretragaToolStripMenuItem.Click += new System.EventHandler(this.pretragaToolStripMenuItem_Click);
             // 
             // noviKorisnikToolStripMenuItem
             // 
             this.noviKorisnikToolStripMenuItem.Name = "noviKorisnikToolStripMenuItem";
-            this.noviKorisnikToolStripMenuItem.Size = new System.Drawing.Size(237, 26);
-            this.noviKorisnikToolStripMenuItem.Text = "Novi stomatolog";
+            this.noviKorisnikToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.noviKorisnikToolStripMenuItem.Text = "Novi uposlenik";
             this.noviKorisnikToolStripMenuItem.Click += new System.EventHandler(this.noviKorisnikToolStripMenuItem_Click);
             // 
             // pacijentiToolStripMenuItem
@@ -101,39 +105,16 @@ namespace DentOffice.WinUI
             // pretragaPacijenataToolStripMenuItem
             // 
             this.pretragaPacijenataToolStripMenuItem.Name = "pretragaPacijenataToolStripMenuItem";
-            this.pretragaPacijenataToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.pretragaPacijenataToolStripMenuItem.Size = new System.Drawing.Size(221, 26);
             this.pretragaPacijenataToolStripMenuItem.Text = "Pretraga pacijenata";
             this.pretragaPacijenataToolStripMenuItem.Click += new System.EventHandler(this.pretragaPacijenataToolStripMenuItem_Click);
             // 
             // noviPacijentToolStripMenuItem
             // 
             this.noviPacijentToolStripMenuItem.Name = "noviPacijentToolStripMenuItem";
-            this.noviPacijentToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.noviPacijentToolStripMenuItem.Size = new System.Drawing.Size(221, 26);
             this.noviPacijentToolStripMenuItem.Text = "Novi pacijent";
             this.noviPacijentToolStripMenuItem.Click += new System.EventHandler(this.noviPacijentToolStripMenuItem_Click);
-            // 
-            // pregledToolStripMenuItem
-            // 
-            this.pregledToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.pretragaToolStripMenuItem1,
-            this.noviPregledToolStripMenuItem});
-            this.pregledToolStripMenuItem.Name = "pregledToolStripMenuItem";
-            this.pregledToolStripMenuItem.Size = new System.Drawing.Size(74, 24);
-            this.pregledToolStripMenuItem.Text = "Pregled";
-            // 
-            // pretragaToolStripMenuItem1
-            // 
-            this.pretragaToolStripMenuItem1.Name = "pretragaToolStripMenuItem1";
-            this.pretragaToolStripMenuItem1.Size = new System.Drawing.Size(224, 26);
-            this.pretragaToolStripMenuItem1.Text = "Pretraga pregleda";
-            this.pretragaToolStripMenuItem1.Click += new System.EventHandler(this.pretragaPregledaToolStripMenuItem_Click);
-            // 
-            // noviPregledToolStripMenuItem
-            // 
-            this.noviPregledToolStripMenuItem.Name = "noviPregledToolStripMenuItem";
-            this.noviPregledToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
-            this.noviPregledToolStripMenuItem.Text = "Novi pregled";
-            this.noviPregledToolStripMenuItem.Click += new System.EventHandler(this.noviPregledToolStripMenuItem_Click);
             // 
             // terminiToolStripMenuItem
             // 
@@ -147,16 +128,39 @@ namespace DentOffice.WinUI
             // pregledTerminaToolStripMenuItem
             // 
             this.pregledTerminaToolStripMenuItem.Name = "pregledTerminaToolStripMenuItem";
-            this.pregledTerminaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.pregledTerminaToolStripMenuItem.Size = new System.Drawing.Size(198, 26);
             this.pregledTerminaToolStripMenuItem.Text = "Pregled termina";
             this.pregledTerminaToolStripMenuItem.Click += new System.EventHandler(this.pregledTerminaToolStripMenuItem_Click);
             // 
             // dodajTerminToolStripMenuItem
             // 
             this.dodajTerminToolStripMenuItem.Name = "dodajTerminToolStripMenuItem";
-            this.dodajTerminToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.dodajTerminToolStripMenuItem.Size = new System.Drawing.Size(198, 26);
             this.dodajTerminToolStripMenuItem.Text = "Novi termin";
             this.dodajTerminToolStripMenuItem.Click += new System.EventHandler(this.dodajTerminToolStripMenuItem_Click);
+            // 
+            // pregledToolStripMenuItem
+            // 
+            this.pregledToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.pretragaToolStripMenuItem1,
+            this.noviPregledToolStripMenuItem});
+            this.pregledToolStripMenuItem.Name = "pregledToolStripMenuItem";
+            this.pregledToolStripMenuItem.Size = new System.Drawing.Size(74, 24);
+            this.pregledToolStripMenuItem.Text = "Pregled";
+            // 
+            // pretragaToolStripMenuItem1
+            // 
+            this.pretragaToolStripMenuItem1.Name = "pretragaToolStripMenuItem1";
+            this.pretragaToolStripMenuItem1.Size = new System.Drawing.Size(212, 26);
+            this.pretragaToolStripMenuItem1.Text = "Pretraga pregleda";
+            this.pretragaToolStripMenuItem1.Click += new System.EventHandler(this.pretragaPregledaToolStripMenuItem_Click);
+            // 
+            // noviPregledToolStripMenuItem
+            // 
+            this.noviPregledToolStripMenuItem.Name = "noviPregledToolStripMenuItem";
+            this.noviPregledToolStripMenuItem.Size = new System.Drawing.Size(212, 26);
+            this.noviPregledToolStripMenuItem.Text = "Novi pregled";
+            this.noviPregledToolStripMenuItem.Click += new System.EventHandler(this.noviPregledToolStripMenuItem_Click);
             // 
             // racunToolStripMenuItem
             // 
@@ -170,16 +174,30 @@ namespace DentOffice.WinUI
             // pregledRačunaToolStripMenuItem
             // 
             this.pregledRačunaToolStripMenuItem.Name = "pregledRačunaToolStripMenuItem";
-            this.pregledRačunaToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.pregledRačunaToolStripMenuItem.Size = new System.Drawing.Size(191, 26);
             this.pregledRačunaToolStripMenuItem.Text = "Pregled računa";
             this.pregledRačunaToolStripMenuItem.Click += new System.EventHandler(this.pregledRačunaToolStripMenuItem_Click);
             // 
             // racuniToolStripMenuItem
             // 
             this.racuniToolStripMenuItem.Name = "racuniToolStripMenuItem";
-            this.racuniToolStripMenuItem.Size = new System.Drawing.Size(224, 26);
+            this.racuniToolStripMenuItem.Size = new System.Drawing.Size(191, 26);
             this.racuniToolStripMenuItem.Text = "Izdaj račun";
             this.racuniToolStripMenuItem.Click += new System.EventHandler(this.racuniToolStripMenuItem_Click);
+            // 
+            // izvjestajToolStripMenuItem
+            // 
+            this.izvjestajToolStripMenuItem.Name = "izvjestajToolStripMenuItem";
+            this.izvjestajToolStripMenuItem.Size = new System.Drawing.Size(76, 24);
+            this.izvjestajToolStripMenuItem.Text = "Izvjestaj";
+            this.izvjestajToolStripMenuItem.Click += new System.EventHandler(this.izvjestajToolStripMenuItem_Click);
+            // 
+            // odjavaToolStripMenuItem
+            // 
+            this.odjavaToolStripMenuItem.Name = "odjavaToolStripMenuItem";
+            this.odjavaToolStripMenuItem.Size = new System.Drawing.Size(70, 24);
+            this.odjavaToolStripMenuItem.Text = "Odjava";
+            this.odjavaToolStripMenuItem.Click += new System.EventHandler(this.odjavaToolStripMenuItem_Click);
             // 
             // frmIndex
             // 
@@ -219,6 +237,8 @@ namespace DentOffice.WinUI
         private System.Windows.Forms.ToolStripMenuItem noviPregledToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem racuniToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem pregledRačunaToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem izvjestajToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem odjavaToolStripMenuItem;
     }
 }
 

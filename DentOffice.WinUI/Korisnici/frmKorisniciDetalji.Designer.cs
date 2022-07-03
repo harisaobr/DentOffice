@@ -62,6 +62,8 @@ namespace DentOffice.WinUI.Korisnik
             this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
             this.label13 = new System.Windows.Forms.Label();
             this.cmbSpol = new System.Windows.Forms.ComboBox();
+            this.label14 = new System.Windows.Forms.Label();
+            this.cmbUloga = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.errorProvider)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pic_Slika)).BeginInit();
             this.SuspendLayout();
@@ -256,7 +258,7 @@ namespace DentOffice.WinUI.Korisnik
             this.cmbGrad.FormattingEnabled = true;
             this.cmbGrad.Location = new System.Drawing.Point(12, 509);
             this.cmbGrad.Name = "cmbGrad";
-            this.cmbGrad.Size = new System.Drawing.Size(200, 24);
+            this.cmbGrad.Size = new System.Drawing.Size(183, 24);
             this.cmbGrad.TabIndex = 24;
             this.cmbGrad.Validating += new System.ComponentModel.CancelEventHandler(this.cmbGrad_Validating);
             // 
@@ -304,7 +306,7 @@ namespace DentOffice.WinUI.Korisnik
             // label13
             // 
             this.label13.AutoSize = true;
-            this.label13.Location = new System.Drawing.Point(217, 489);
+            this.label13.Location = new System.Drawing.Point(213, 489);
             this.label13.Name = "label13";
             this.label13.Size = new System.Drawing.Size(36, 17);
             this.label13.TabIndex = 31;
@@ -313,17 +315,36 @@ namespace DentOffice.WinUI.Korisnik
             // cmbSpol
             // 
             this.cmbSpol.FormattingEnabled = true;
-            this.cmbSpol.Location = new System.Drawing.Point(220, 509);
+            this.cmbSpol.Location = new System.Drawing.Point(216, 509);
             this.cmbSpol.Name = "cmbSpol";
-            this.cmbSpol.Size = new System.Drawing.Size(200, 24);
+            this.cmbSpol.Size = new System.Drawing.Size(149, 24);
             this.cmbSpol.TabIndex = 30;
             this.cmbSpol.Validating += new System.ComponentModel.CancelEventHandler(this.cmbSpol_Validating);
+            // 
+            // label14
+            // 
+            this.label14.AutoSize = true;
+            this.label14.Location = new System.Drawing.Point(387, 487);
+            this.label14.Name = "label14";
+            this.label14.Size = new System.Drawing.Size(45, 17);
+            this.label14.TabIndex = 33;
+            this.label14.Text = "Uloga";
+            // 
+            // cmbUloga
+            // 
+            this.cmbUloga.FormattingEnabled = true;
+            this.cmbUloga.Location = new System.Drawing.Point(386, 507);
+            this.cmbUloga.Name = "cmbUloga";
+            this.cmbUloga.Size = new System.Drawing.Size(181, 24);
+            this.cmbUloga.TabIndex = 32;
             // 
             // frmKorisniciDetalji
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(941, 619);
+            this.Controls.Add(this.label14);
+            this.Controls.Add(this.cmbUloga);
             this.Controls.Add(this.label13);
             this.Controls.Add(this.cmbSpol);
             this.Controls.Add(this.label12);
@@ -413,5 +434,7 @@ namespace DentOffice.WinUI.Korisnik
         private System.Windows.Forms.OpenFileDialog openFileDialog;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.ComboBox cmbSpol;
+        private System.Windows.Forms.Label label14;
+        private System.Windows.Forms.ComboBox cmbUloga;
     }
 }

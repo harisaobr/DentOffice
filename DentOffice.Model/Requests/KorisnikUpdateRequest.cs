@@ -25,6 +25,7 @@ namespace DentOffice.Model.Requests
         public string DatumRodjenja { get; set; }
 
         public int? GradID{ get; set; }
+        public int UlogaID { get; set; }
         public Spol Spol { get; set; }
 
         public string Password { get; set; }
