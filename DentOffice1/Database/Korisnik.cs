@@ -9,7 +9,6 @@ namespace DentOffice.WebAPI.Database
     {
         public Korisnik()
         {
-            CreditCards = new HashSet<CreditCard>();
             Pacijents = new HashSet<Pacijent>();
             Pregleds = new HashSet<Pregled>();
             Racuns = new HashSet<Racun>();
@@ -33,7 +32,6 @@ namespace DentOffice.WebAPI.Database
 
         public virtual Grad Grad { get; set; }
         public virtual Uloga Uloga { get; set; }
-        public virtual ICollection<CreditCard> CreditCards { get; set; }
         public virtual ICollection<Pacijent> Pacijents { get; set; }
         public virtual ICollection<Pregled> Pregleds { get; set; }
         public virtual ICollection<Racun> Racuns { get; set; }
