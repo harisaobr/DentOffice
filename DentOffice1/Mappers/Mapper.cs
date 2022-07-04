@@ -57,7 +57,6 @@ namespace DentOffice.WebAPI.Mappers
 
             CreateMap<Uloga, Model.Uloga>();
 
-            CreateMap<CreditCard, Model.CreditCard>();
             CreateMap<Payment, Model.Payment>();
 
 

@@ -17,7 +17,6 @@ namespace DentOffice.WebAPI.Database
         {
         }
 
-        public virtual DbSet<CreditCard> CreditCards { get; set; }
         public virtual DbSet<Dijagnoza> Dijagnozas { get; set; }
         public virtual DbSet<Drzava> Drzavas { get; set; }
         public virtual DbSet<Grad> Grads { get; set; }
@@ -44,23 +43,6 @@ namespace DentOffice.WebAPI.Database
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.HasAnnotation("Relational:Collation", "Croatian_CI_AS");
-
-            modelBuilder.Entity<CreditCard>(entity =>
-            {
-                entity.ToTable("CreditCard");
-
-                entity.Property(e => e.CreditCardId).HasColumnName("CreditCardID");
-
-                entity.Property(e => e.Ime).IsRequired();
-
-                entity.Property(e => e.KorisnikId).HasColumnName("KorisnikID");
-
-                entity.HasOne(d => d.Korisnik)
-                    .WithMany(p => p.CreditCards)
-                    .HasForeignKey(d => d.KorisnikId)
-                    .OnDelete(DeleteBehavior.ClientSetNull)
-                    .HasConstraintName("FK__CreditCar__Koris__38996AB5");
-            });
 
             modelBuilder.Entity<Dijagnoza>(entity =>
             {
@@ -187,16 +169,11 @@ namespace DentOffice.WebAPI.Database
 
                 entity.Property(e => e.PaymentId).HasColumnName("PaymentID");
 
-                entity.Property(e => e.CreditCardId).HasColumnName("CreditCardID");
 
                 entity.Property(e => e.Datum).HasColumnType("datetime");
 
                 entity.Property(e => e.Metoda).IsRequired();
 
-                entity.HasOne(d => d.CreditCard)
-                    .WithMany(p => p.Payments)
-                    .HasForeignKey(d => d.CreditCardId)
-                    .HasConstraintName("FK__Payment__CreditC__44FF419A");
             });
 
             modelBuilder.Entity<Pregled>(entity =>
