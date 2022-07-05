@@ -1,8 +1,6 @@
 import 'dart:convert';
 import 'dart:core';
 
-import 'package:decimal/decimal.dart';
-import 'package:dentofficemobile/main.dart';
 import 'package:dentofficemobile/models/payment.dart';
 import 'package:dentofficemobile/models/termin.dart';
 import 'package:dentofficemobile/models/usluga.dart';
@@ -388,10 +386,8 @@ class _TextScreenState extends State<TextScreen> {
               merchantDisplayName: 'Dent Office'))
           .then((value) {});
 
-      await insertUplata(iznos);
-
       ///now finally display payment sheeet
-      displayPaymentSheet();
+      displayPaymentSheet(iznos);
     } catch (e, s) {
       print('exception:$e$s');
     }
@@ -429,7 +425,7 @@ class _TextScreenState extends State<TextScreen> {
     await APIService.post("Payment", json.encode(request.toJson()));
   }
 
-  displayPaymentSheet() async {
+  displayPaymentSheet(double iznos) async {
     try {
       await flutter_stripe.Stripe.instance
           .presentPaymentSheet(
@@ -441,7 +437,7 @@ class _TextScreenState extends State<TextScreen> {
         print('Exception/DISPLAYPAYMENTSHEET==> $error $stackTrace');
       });
 
-
+      await insertUplata(iznos);
 
       ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
         content: SizedBox(
