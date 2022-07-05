@@ -2,6 +2,7 @@ import 'dart:convert';
 import 'package:decimal/decimal.dart';
 import 'package:dentofficemobile/models/korisnik.dart';
 import 'package:dentofficemobile/models/ocjene.dart';
+import 'package:dentofficemobile/pages/Stomatolog.dart';
 import 'package:dentofficemobile/widgets/ListViewRowWidget.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -119,7 +120,14 @@ class _MojeOcjeneState extends State<MojeOcjene> {
       color: const Color.fromRGBO(51, 169, 255, 1),
       margin: EdgeInsets.zero,
       child: TextButton(
-        onPressed: () {},
+        onPressed: () {
+          Navigator.push(
+              context,
+              MaterialPageRoute(
+                  builder: (context) => Stomatolog(stomatologId: korisnik.korisnikID)
+              )
+          );
+        },
         child: Padding(
           padding: const EdgeInsets.all(10),
           child: Column(
