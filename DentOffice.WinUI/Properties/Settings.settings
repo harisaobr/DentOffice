@@ -3,22 +3,7 @@
   <Profiles />
   <Settings>
     <Setting Name="APIUrl" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">http://localhost:59296/api</Value>
-    </Setting>
-    <Setting Name="LijekUrl" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">http://localhost:59296/api/lijek</Value>
-    </Setting>
-    <Setting Name="DijagnozaUrl" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">http://localhost:59296/api/dijagnoza</Value>
-    </Setting>
-    <Setting Name="TerminUrl" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">http://localhost:59296/api/termin</Value>
-    </Setting>
-    <Setting Name="KorisnikUrl" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">http://localhost:59296/api/korisnik</Value>
-    </Setting>
-    <Setting Name="PregledUrl" Type="System.String" Scope="Application">
-      <Value Profile="(Default)">http://localhost:59296/api/pregled</Value>
+      <Value Profile="(Default)">http://localhost:5001/api</Value>
     </Setting>
   </Settings>
 </SettingsFile>
