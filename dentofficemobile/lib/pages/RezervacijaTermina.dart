@@ -11,29 +11,14 @@ import 'package:flutter_stripe/flutter_stripe.dart' as flutter_stripe;
 import 'package:intl/intl.dart';
 import 'package:http/http.dart' as http;
 
-class RezervacijaTermina extends StatelessWidget {
+class RezervacijaTermina extends StatefulWidget {
   const RezervacijaTermina({Key? key}) : super(key: key);
 
-
   @override
-  Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: TextScreen(),
-    );
-  }
+  State<RezervacijaTermina> createState() => _RezervacijaTerminaState();
 }
 
-class TextScreen extends StatefulWidget {
-  const TextScreen({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  State<TextScreen> createState() => _TextScreenState();
-}
-
-class _TextScreenState extends State<TextScreen> {
+class _RezervacijaTerminaState extends State<RezervacijaTermina> {
   TextEditingController razlogController = new TextEditingController();
 
   DateTime selectedDate = DateTime.now();
