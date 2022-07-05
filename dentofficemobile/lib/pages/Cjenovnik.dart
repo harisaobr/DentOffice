@@ -1,11 +1,9 @@
 import 'dart:async';
-import 'package:dentofficemobile/models/termin.dart';
 import 'package:dentofficemobile/models/usluga.dart';
 import 'package:flutter/material.dart';
 import 'package:dentofficemobile/services/APIService.dart';
 
 import '../widgets/ListViewRowWidget.dart';
-import '../helper.dart';
 
 class Usluge extends StatefulWidget {
   @override

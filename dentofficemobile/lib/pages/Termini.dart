@@ -189,13 +189,6 @@ class _TerminiState extends State<Termini> {
                 )
               ),
             ],
-            /* child: Row(
-            children: [
-              Expanded(
-
-              ),
-            ],
-          ),*/
           ),
         ),
       ),
