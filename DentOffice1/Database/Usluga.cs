@@ -17,7 +17,6 @@ namespace DentOffice.WebAPI.Database
         public double? Cijena { get; set; }
 
         public virtual ICollection<Termin> Termins { get; set; }
-        public virtual ICollection<Ocjene> Ocjenes { get; set; }
 
     }
 }

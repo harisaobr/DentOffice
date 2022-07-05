@@ -65,7 +65,9 @@ namespace DentOffice1
 
             services.AddScoped<IKorisnikService, KorisnikService>();
             services.AddScoped<ITerminService, TerminService>();
+            services.AddScoped<IPaymentService, PaymentService>();
             services.AddScoped<IIzvjestajService, IzvjestajService>();
+            services.AddScoped<IRecommenderService, RecommendedService>();
             services.AddScoped<ICRUDService<DentOffice.Model.Dijagnoza, DijagnozaSearchRequest, DijagnozaInsertRequest, DijagnozaInsertRequest>, DijagnozaService>();
             services.AddScoped<IService<DentOffice.Model.Uloga, object>, BaseService<DentOffice.Model.Uloga, object, Uloga>>();
             services.AddScoped<IService<DentOffice.Model.Usluga, object>, BaseService<DentOffice.Model.Usluga, object, Usluga>>();
@@ -78,6 +80,9 @@ namespace DentOffice1
             services.AddScoped<ICRUDService<DentOffice.Model.Uloga, UlogaSearchRequest, UlogaUpsertRequest, UlogaUpsertRequest>, UlogaService>();
             services.AddScoped<ICRUDService<DentOffice.Model.Usluga, UslugaSearchRequest, UslugaUpsertRequest, UslugaUpsertRequest>, UslugaService>();
             services.AddScoped<ICRUDService<DentOffice.Model.Racun, RacunSearchRequest, RacunInsertRequest, RacunInsertRequest>, RacunService>();
+            services.AddScoped<ICRUDService<DentOffice.Model.Ocjene, OcjeneSearchRequest, OcjeneUpsertRequest, OcjeneUpsertRequest>, OcjenaService>();
+
+
             services.AddDbContext<eDentOfficeContext>(options =>
             {
                 options.UseSqlServer(
@@ -88,7 +93,12 @@ namespace DentOffice1
             //    options.UseSqlServer(
             //        Configuration.GetConnectionString("DefaultConnection"));
             //}, ServiceLifetime.Transient);
-
+            services.AddCors(o => o.AddDefaultPolicy(builder =>
+            {
+                builder.AllowAnyOrigin()
+                       .AllowAnyMethod()
+                       .AllowAnyHeader();
+            }));
 
             services.AddAuthentication("BasicAuthentication")
                .AddScheme<AuthenticationSchemeOptions, BasicAuthenticationHandler>("BasicAuthentication", null);
@@ -110,6 +120,9 @@ namespace DentOffice1
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
+
+
+            app.UseCors();
 
             app.UseRouting();
 

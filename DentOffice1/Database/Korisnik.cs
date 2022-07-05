@@ -35,6 +35,8 @@ namespace DentOffice.WebAPI.Database
         public virtual ICollection<Pacijent> Pacijents { get; set; }
         public virtual ICollection<Pregled> Pregleds { get; set; }
         public virtual ICollection<Racun> Racuns { get; set; }
+        public virtual ICollection<Ocjene> Ocjenes { get; set; }
+
         public override string ToString()
         {
             return $"{Ime} {Prezime}";

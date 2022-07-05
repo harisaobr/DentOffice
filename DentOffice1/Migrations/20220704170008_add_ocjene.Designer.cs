@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DentOffice.WebAPI.Migrations
 {
     [DbContext(typeof(eDentOfficeContext))]
-    [Migration("20220704160017_add_ocjene")]
+    [Migration("20220704170008_add_ocjene")]
     partial class add_ocjene
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -461,7 +461,7 @@ namespace DentOffice.WebAPI.Migrations
                         new
                         {
                             MedicinskiKartonId = 1,
-                            Datum = new DateTime(2022, 7, 4, 18, 0, 16, 299, DateTimeKind.Local).AddTicks(110),
+                            Datum = new DateTime(2022, 7, 4, 19, 0, 7, 170, DateTimeKind.Local).AddTicks(293),
                             Napomena = "Pacijent se javio sa velikim upalama oko zuba, meko tkivo i živci",
                             PacijentId = 1,
                             PregledId = 1
@@ -480,6 +480,9 @@ namespace DentOffice.WebAPI.Migrations
                         .HasMaxLength(300)
                         .HasColumnType("nvarchar(300)");
 
+                    b.Property<int>("KorisnikId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("Kreirano")
                         .HasColumnType("datetime2");
 
@@ -489,16 +492,13 @@ namespace DentOffice.WebAPI.Migrations
                     b.Property<int>("PacijentId")
                         .HasColumnType("int");
 
-                    b.Property<int>("UslugaId")
-                        .HasColumnType("int");
-
                     b.HasKey("OcjenaId");
+
+                    b.HasIndex("KorisnikId");
 
                     b.HasIndex("PacijentId");
 
-                    b.HasIndex("UslugaId");
-
-                    b.ToTable("Ocjene");
+                    b.ToTable("Ocjenes");
                 });
 
             modelBuilder.Entity("DentOffice.WebAPI.Database.Pacijent", b =>
@@ -659,7 +659,7 @@ namespace DentOffice.WebAPI.Migrations
                         new
                         {
                             RacunId = 1,
-                            DatumIzdavanjaRacuna = new DateTime(2022, 7, 4, 18, 0, 16, 299, DateTimeKind.Local).AddTicks(2262),
+                            DatumIzdavanjaRacuna = new DateTime(2022, 7, 4, 19, 0, 7, 170, DateTimeKind.Local).AddTicks(2676),
                             IsPlaceno = false,
                             KorisnikId = 4,
                             PregledId = 1,
@@ -707,7 +707,7 @@ namespace DentOffice.WebAPI.Migrations
                         new
                         {
                             TerminId = 1,
-                            DatumVrijeme = new DateTime(2022, 7, 6, 18, 0, 16, 295, DateTimeKind.Local).AddTicks(9560),
+                            DatumVrijeme = new DateTime(2022, 7, 6, 19, 0, 7, 166, DateTimeKind.Local).AddTicks(2371),
                             Hitno = true,
                             Odobreno = true,
                             PacijentId = 1,
@@ -717,7 +717,7 @@ namespace DentOffice.WebAPI.Migrations
                         new
                         {
                             TerminId = 2,
-                            DatumVrijeme = new DateTime(2022, 7, 8, 18, 0, 16, 298, DateTimeKind.Local).AddTicks(1560),
+                            DatumVrijeme = new DateTime(2022, 7, 8, 19, 0, 7, 169, DateTimeKind.Local).AddTicks(646),
                             Hitno = false,
                             Odobreno = true,
                             PacijentId = 1,
@@ -727,7 +727,7 @@ namespace DentOffice.WebAPI.Migrations
                         new
                         {
                             TerminId = 3,
-                            DatumVrijeme = new DateTime(2022, 7, 9, 18, 0, 16, 298, DateTimeKind.Local).AddTicks(1597),
+                            DatumVrijeme = new DateTime(2022, 7, 9, 19, 0, 7, 169, DateTimeKind.Local).AddTicks(690),
                             Hitno = false,
                             Odobreno = false,
                             PacijentId = 1,
@@ -737,7 +737,7 @@ namespace DentOffice.WebAPI.Migrations
                         new
                         {
                             TerminId = 4,
-                            DatumVrijeme = new DateTime(2022, 7, 14, 18, 0, 16, 298, DateTimeKind.Local).AddTicks(1604),
+                            DatumVrijeme = new DateTime(2022, 7, 14, 19, 0, 7, 169, DateTimeKind.Local).AddTicks(697),
                             Hitno = false,
                             Odobreno = false,
                             PacijentId = 1,
@@ -1028,21 +1028,21 @@ namespace DentOffice.WebAPI.Migrations
 
             modelBuilder.Entity("DentOffice.WebAPI.Database.Ocjene", b =>
                 {
+                    b.HasOne("DentOffice.WebAPI.Database.Korisnik", "Stomatolog")
+                        .WithMany("Ocjenes")
+                        .HasForeignKey("KorisnikId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
                     b.HasOne("DentOffice.WebAPI.Database.Pacijent", "Pacijent")
                         .WithMany("Ocjenes")
                         .HasForeignKey("PacijentId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("DentOffice.WebAPI.Database.Usluga", "Usluga")
-                        .WithMany("Ocjenes")
-                        .HasForeignKey("UslugaId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("Pacijent");
 
-                    b.Navigation("Usluga");
+                    b.Navigation("Stomatolog");
                 });
 
             modelBuilder.Entity("DentOffice.WebAPI.Database.Pacijent", b =>
@@ -1152,6 +1152,8 @@ namespace DentOffice.WebAPI.Migrations
 
             modelBuilder.Entity("DentOffice.WebAPI.Database.Korisnik", b =>
                 {
+                    b.Navigation("Ocjenes");
+
                     b.Navigation("Pacijents");
 
                     b.Navigation("Pregleds");
@@ -1192,8 +1194,6 @@ namespace DentOffice.WebAPI.Migrations
 
             modelBuilder.Entity("DentOffice.WebAPI.Database.Usluga", b =>
                 {
-                    b.Navigation("Ocjenes");
-
                     b.Navigation("Termins");
                 });
 #pragma warning restore 612, 618

@@ -1,20 +1,21 @@
-// -- credit_card.dart --
+// -- cocjene.dart --
+import 'package:decimal/decimal.dart';
 import 'package:dentofficemobile/models/payment.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 import 'korisnik.dart';
 
-part 'credit_card.g.dart';
+part 'ocjene.g.dart';
 
 @JsonSerializable()
-class CreditCard {
-  int creditCardId;
+class Ocjene {
+  int ocjenaId;
   int korisnikId;
-  String ime;
+  DateTime kreirano;
+  Decimal ocjena;
+  String komentar;
   Korisnik korisnik;
-  List<Payment> payments;
 
-  CreditCard({required this.creditCardId,required this.korisnikId,required this.ime,required this.korisnik,required this.payments,});
 
   factory CreditCard.fromJson(Map<String, dynamic> json) => _$CreditCardFromJson(json);
 

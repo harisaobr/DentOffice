@@ -2,17 +2,14 @@
 using System.Collections.Generic;
 using System.Text;
 
-namespace DentOffice.Model
+namespace DentOffice.Model.Requests
 {
-    public class Ocjene
+    public class OcjeneSearchRequest
     {
-        public int OcjenaId { get; set; }
-
         public int PacijentId { get; set; }
-        public Pacijent Pacijent { get; set; }
         public int KorisnikId { get; set; }
-        public Korisnik Stomatolog { get; set; }
-        public DateTime Kreirano { get; set; }
+        public int MjesecOcjene { get; set; }
+        public int GodinaOcjene { get; set; }
         public decimal Ocjena { get; set; }
         public string Komentar { get; set; }
     }

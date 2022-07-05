@@ -88,6 +88,13 @@ namespace DentOffice.WebAPI.Services
                 x.KorisnikId == korisnik.KorisnikID || // Stomatolog
                 x.Termin.Pacijent.KorisnikId == korisnik.KorisnikID // Pacijent
                 );
+
+                if (search.ShowMojeOcjene && LogiraniKorisnik.Uloga.Naziv == "Pacijent")
+                {
+                    var ocjena = _context.Ocjenes.Where(x => x.Pacijent.KorisnikId == LogiraniKorisnik.KorisnikID && x.KorisnikId == korisnik.KorisnikID).FirstOrDefault();
+                    if(ocjena != null)
+                        korisnik.MojaOcjena = ocjena.Ocjena;
+                }
             }
 
 

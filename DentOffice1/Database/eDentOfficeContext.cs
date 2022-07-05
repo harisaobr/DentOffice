@@ -29,6 +29,7 @@ namespace DentOffice.WebAPI.Database
         public virtual DbSet<Racun> Racuns { get; set; }
         public virtual DbSet<Termin> Termins { get; set; }
         public virtual DbSet<Uloga> Ulogas { get; set; }
+        public virtual DbSet<Ocjene> Ocjenes { get; set; }
         public virtual DbSet<Usluga> Uslugas { get; set; }
 
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -275,7 +276,12 @@ namespace DentOffice.WebAPI.Database
                 entity.Property(e => e.Naziv).IsRequired();
             });
 
-            OnModelCreatingPartial(modelBuilder);
+            modelBuilder.Entity<Ocjene>(entity =>
+            {
+                entity.ToTable("Ocjene");
+            });
+
+                OnModelCreatingPartial(modelBuilder);
         }
 
         partial void OnModelCreatingPartial(ModelBuilder modelBuilder);

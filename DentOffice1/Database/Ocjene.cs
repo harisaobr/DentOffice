@@ -16,9 +16,9 @@ namespace DentOffice.WebAPI.Database
         public int PacijentId { get; set; }
         public Pacijent Pacijent { get; set; }
 
-        [ForeignKey(nameof(Usluga))]
-        public int UslugaId { get; set; }
-        public Usluga Usluga { get; set; }
+        [ForeignKey(nameof(Korisnik))]
+        public int KorisnikId { get; set; }
+        public Korisnik Stomatolog { get; set; }
 
         [Required]
         [DataType(DataType.Date)]

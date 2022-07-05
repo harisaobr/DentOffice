@@ -47,6 +47,9 @@ namespace DentOffice.WebAPI.Mappers
 
             CreateMap<Racun, Model.Racun>();
             CreateMap<RacunInsertRequest, Racun>();
+            
+            CreateMap<Ocjene, Model.Ocjene>();
+            CreateMap<OcjeneUpsertRequest, Ocjene>();
 
             CreateMap<Termin, Model.Termin>();
             CreateMap<TerminInsertRequest, Termin>();
@@ -58,7 +61,7 @@ namespace DentOffice.WebAPI.Mappers
             CreateMap<Uloga, Model.Uloga>();
 
             CreateMap<Payment, Model.Payment>();
-
+            CreateMap<PaymentInsertRequest, Payment>();
 
         }
     }
