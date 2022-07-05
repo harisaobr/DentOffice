@@ -8,7 +8,11 @@ class APIService{
   static String? username;
   static String? password;
   static Korisnik? prijavljeniKorisnik;
-  static String apiBase = "http://192.168.31.250:5000/api/";
+
+  static String apiAddress = "172.19.144.1";
+  static int apiPort = 5001;
+  static String apiBase = "http://$apiAddress:$apiPort/api/";
+
   String route;
 
   APIService({required this.route});
