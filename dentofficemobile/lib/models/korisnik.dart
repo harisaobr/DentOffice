@@ -32,10 +32,11 @@ class Korisnik {
   int ulogaID;
   List<Pacijent_Data> pacijents;
   Decimal? mojaOcjena;
+  Decimal? prosjecnaOcjena;
 
   Uint8List get slikaArray => base64Decode(slika);
 
-  Korisnik({required this.korisnikID,required this.ime,required this.prezime,required this.korisnickoIme,required this.email,required this.jmbg,required this.slika,required this.adresa,required this.brojTelefona,required this.datumRodjenja,required this.spol,required this.gradID,required this.grad,required this.obavljenoPregleda,required this.uloga,required this.ulogaID,required this.pacijents,this.mojaOcjena});
+  Korisnik({required this.korisnikID,required this.ime,required this.prezime,required this.korisnickoIme,required this.email,required this.jmbg,required this.slika,required this.adresa,required this.brojTelefona,required this.datumRodjenja,required this.spol,required this.gradID,required this.grad,required this.obavljenoPregleda,required this.uloga,required this.ulogaID,required this.pacijents,this.mojaOcjena, this.prosjecnaOcjena});
 
   factory Korisnik.fromJson(Map<String, dynamic> json) => _$KorisnikFromJson(json);
 

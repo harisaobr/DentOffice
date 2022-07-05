@@ -27,6 +27,8 @@ namespace DentOffice.Model
         public int UlogaID { get; set; }
         public ICollection<Pacijent_Data> Pacijents { get; set; }
         public decimal? MojaOcjena { get; set; }
+        public decimal? ProsjecnaOcjena { get; set; }
+
 
         public override string ToString()
         {

@@ -58,7 +58,14 @@ namespace DentOffice.WebAPI.Services
                 recommendedStomatolozi = recommendedStomatolozi.Take(5).ToList();
             }
 
-            return _mapper.Map<List<Model.Korisnik>>(recommendedStomatolozi);
+            var mappedList = _mapper.Map<List<Model.Korisnik>>(recommendedStomatolozi);
+
+            foreach (var item in mappedList)
+            {
+                item.ProsjecnaOcjena = _db.Ocjenes.Where(x => x.KorisnikId == item.KorisnikID).Average(x => (decimal?)x.Ocjena) ?? 0m;
+            }
+
+            return mappedList;
         }
 
         private void LoadStomatologRatings(int stomatologId)

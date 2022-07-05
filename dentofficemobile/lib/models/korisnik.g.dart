@@ -27,6 +27,9 @@ Korisnik _$KorisnikFromJson(Map<String, dynamic> json) => Korisnik(
       mojaOcjena: json['mojaOcjena'] == null
           ? null
           : Decimal.fromJson(json['mojaOcjena'].toString()),
+      prosjecnaOcjena: json['prosjecnaOcjena'] == null
+          ? null
+          : Decimal.fromJson(json['prosjecnaOcjena'].toString()),
       obavljenoPregleda: json['obavljenoPregleda'] as int,
       uloga: json['uloga'] == null
           ? null
@@ -52,6 +55,7 @@ Map<String, dynamic> _$KorisnikToJson(Korisnik instance) => <String, dynamic>{
       'gradID': instance.gradID,
       'grad': instance.grad,
       'mojaOcjena': instance.mojaOcjena,
+      'prosjecnaOcjena': instance.prosjecnaOcjena,
       'obavljenoPregleda': instance.obavljenoPregleda,
       'uloga': instance.uloga,
       'ulogaID': instance.ulogaID,
