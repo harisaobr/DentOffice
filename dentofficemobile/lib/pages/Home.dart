@@ -14,6 +14,7 @@ class _HomeState extends State<Home> {
         title: Text('Izbornik'),
         backgroundColor: Colors.blue,
       ),
+
       drawer: Drawer(
         child: ListView(
           children: [
@@ -41,6 +42,12 @@ class _HomeState extends State<Home> {
               },
             ),
             ListTile(
+              title: Text('Ocjeni stomatologa'),
+              onTap: () {
+                Navigator.of(context).pushNamed('/ocjene');
+              },
+            ),
+            ListTile(
               title: Text('Odjava'),
               onTap: () {
                 APIService.username = null;
@@ -52,17 +59,17 @@ class _HomeState extends State<Home> {
           ],
         ),
       ),
-      body: Center(
-        child: new RichText(
-          text: new TextSpan(
-            children: <TextSpan>[
-              new TextSpan(
-                text: ' Radno vrijeme \n Od ponedjeljka do petka: 8:00 - 16:00 \n Subotom: 8:00 - 12:00 \n Nedjeljom i državnim praznicima ne radimo ',
-                style: new TextStyle(color: Colors.black),
-              ),
-            ],
+      body:Stack(
+        children: <Widget>[
+          Align(
+            alignment: Alignment.topCenter,
+            child: Image.asset('images/logo.png'),
           ),
-        ),
+          Align(
+            alignment: Alignment.center,
+            child: Text('\n \n Radno vrijeme \n Od ponedjeljka do subote: 8:00 - 16:00 \n \n Nedjeljom i državnim praznicima ne radimo '),
+          ),
+        ],
       ),
     );
   }

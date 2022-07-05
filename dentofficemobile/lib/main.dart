@@ -1,3 +1,4 @@
+import 'package:dentofficemobile/pages/OcijeniStomatologa.dart';
 import 'package:dentofficemobile/pages/RezervacijaTermina.dart';
 import 'package:flutter/material.dart';
 import 'package:dentofficemobile/pages/Login.dart';
@@ -27,7 +28,8 @@ class MyApp extends StatelessWidget {
         '/home':(context)=>Home(),
         '/termini':(context)=>Termini(),
         '/cjenovnik':(context)=>Usluge(),
-        '/rezervacija':(context)=>RezervacijaTermina()
+        '/rezervacija':(context)=>RezervacijaTermina(),
+        '/ocjene':(context)=>MojeOcjene()
       },
     );
   }
