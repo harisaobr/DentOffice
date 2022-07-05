@@ -328,5 +328,9 @@ namespace DentOffice.WinUI.Korisnik
             }
         }
 
+        private void cmbUloga_Validating(object sender, CancelEventArgs e)
+        {
+            errorProvider.ValidirajKontrolu(sender, e, Properties.Resources.Validation_RequiredField);
+        }
     }
 }

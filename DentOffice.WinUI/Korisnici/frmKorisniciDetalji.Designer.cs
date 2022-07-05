@@ -337,6 +337,7 @@ namespace DentOffice.WinUI.Korisnik
             this.cmbUloga.Name = "cmbUloga";
             this.cmbUloga.Size = new System.Drawing.Size(181, 24);
             this.cmbUloga.TabIndex = 32;
+            this.cmbUloga.Validating += new System.ComponentModel.CancelEventHandler(this.cmbUloga_Validating);
             // 
             // frmKorisniciDetalji
             // 
