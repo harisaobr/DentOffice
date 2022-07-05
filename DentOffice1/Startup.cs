@@ -86,13 +86,8 @@ namespace DentOffice1
             services.AddDbContext<eDentOfficeContext>(options =>
             {
                 options.UseSqlServer(
-                    Configuration.GetConnectionString("UserDatabase"));
+                    Configuration.GetConnectionString("DefaultConnection"));
             }, ServiceLifetime.Transient);
-
-            //services.AddDbContext<eDentOfficeContext>(options => {
-            //    options.UseSqlServer(
-            //        Configuration.GetConnectionString("DefaultConnection"));
-            //}, ServiceLifetime.Transient);
             services.AddCors(o => o.AddDefaultPolicy(builder =>
             {
                 builder.AllowAnyOrigin()
