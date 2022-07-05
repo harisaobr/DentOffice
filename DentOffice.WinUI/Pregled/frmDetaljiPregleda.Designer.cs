@@ -54,7 +54,7 @@ namespace DentOffice.WinUI.Pregled
             this.btnSnimiPregled.Location = new System.Drawing.Point(185, 348);
             this.btnSnimiPregled.Name = "btnSnimiPregled";
             this.btnSnimiPregled.Size = new System.Drawing.Size(267, 55);
-            this.btnSnimiPregled.TabIndex = 64;
+            this.btnSnimiPregled.TabIndex = 8;
             this.btnSnimiPregled.Text = "Snimi pregled";
             this.btnSnimiPregled.UseVisualStyleBackColor = true;
             this.btnSnimiPregled.Click += new System.EventHandler(this.btnSnimiPregled_Click);
@@ -64,7 +64,7 @@ namespace DentOffice.WinUI.Pregled
             this.txtNapomenaPregleda.Location = new System.Drawing.Point(316, 232);
             this.txtNapomenaPregleda.Name = "txtNapomenaPregleda";
             this.txtNapomenaPregleda.Size = new System.Drawing.Size(241, 22);
-            this.txtNapomenaPregleda.TabIndex = 63;
+            this.txtNapomenaPregleda.TabIndex = 7;
             // 
             // label9
             // 
@@ -80,7 +80,7 @@ namespace DentOffice.WinUI.Pregled
             this.txtTrajanje.Location = new System.Drawing.Point(62, 232);
             this.txtTrajanje.Name = "txtTrajanje";
             this.txtTrajanje.Size = new System.Drawing.Size(233, 22);
-            this.txtTrajanje.TabIndex = 61;
+            this.txtTrajanje.TabIndex = 6;
             this.txtTrajanje.Validating += new System.ComponentModel.CancelEventHandler(this.txtTrajanje_Validating);
             // 
             // label8
@@ -143,7 +143,7 @@ namespace DentOffice.WinUI.Pregled
             this.cmbDijagnoza.Location = new System.Drawing.Point(61, 168);
             this.cmbDijagnoza.Name = "cmbDijagnoza";
             this.cmbDijagnoza.Size = new System.Drawing.Size(233, 24);
-            this.cmbDijagnoza.TabIndex = 72;
+            this.cmbDijagnoza.TabIndex = 4;
             this.cmbDijagnoza.Validating += new System.ComponentModel.CancelEventHandler(this.cmbDijagnoza_Validating);
             // 
             // cmbLijek
@@ -152,7 +152,7 @@ namespace DentOffice.WinUI.Pregled
             this.cmbLijek.Location = new System.Drawing.Point(317, 168);
             this.cmbLijek.Name = "cmbLijek";
             this.cmbLijek.Size = new System.Drawing.Size(240, 24);
-            this.cmbLijek.TabIndex = 73;
+            this.cmbLijek.TabIndex = 5;
             this.cmbLijek.Validating += new System.ComponentModel.CancelEventHandler(this.cmbLijek_Validating);
             // 
             // cmbUsluga
@@ -161,7 +161,7 @@ namespace DentOffice.WinUI.Pregled
             this.cmbUsluga.Location = new System.Drawing.Point(60, 107);
             this.cmbUsluga.Name = "cmbUsluga";
             this.cmbUsluga.Size = new System.Drawing.Size(233, 24);
-            this.cmbUsluga.TabIndex = 74;
+            this.cmbUsluga.TabIndex = 2;
             this.cmbUsluga.SelectedIndexChanged += new System.EventHandler(this.cmbUsluga_SelectedIndexChanged);
             this.cmbUsluga.Validating += new System.ComponentModel.CancelEventHandler(this.cmbUsluga_Validating);
             // 
@@ -171,7 +171,7 @@ namespace DentOffice.WinUI.Pregled
             this.cmbPacijent.Location = new System.Drawing.Point(59, 50);
             this.cmbPacijent.Name = "cmbPacijent";
             this.cmbPacijent.Size = new System.Drawing.Size(498, 24);
-            this.cmbPacijent.TabIndex = 75;
+            this.cmbPacijent.TabIndex = 1;
             this.cmbPacijent.SelectedIndexChanged += new System.EventHandler(this.cmbPacijent_SelectedIndexChanged);
             this.cmbPacijent.Validating += new System.ComponentModel.CancelEventHandler(this.cmbPacijent_Validating);
             // 
@@ -181,7 +181,7 @@ namespace DentOffice.WinUI.Pregled
             this.cmbTermin.Location = new System.Drawing.Point(317, 107);
             this.cmbTermin.Name = "cmbTermin";
             this.cmbTermin.Size = new System.Drawing.Size(240, 24);
-            this.cmbTermin.TabIndex = 76;
+            this.cmbTermin.TabIndex = 3;
             this.cmbTermin.Validating += new System.ComponentModel.CancelEventHandler(this.cmbTermin_Validating);
             // 
             // err

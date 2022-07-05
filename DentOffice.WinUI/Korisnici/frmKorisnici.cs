@@ -61,7 +61,7 @@ namespace DentOffice.WinUI.Korisnik
         private void btnDodajNovog_Click(object sender, EventArgs e)
         {
             Form frm = new frmKorisniciDetalji();
-            frm.Show();
+            frm.ShowDialog();
         }
     }
 }

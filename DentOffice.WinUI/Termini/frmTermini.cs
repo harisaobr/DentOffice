@@ -40,7 +40,7 @@ namespace DentOffice.WinUI.Termini
         private async Task LoadPacijente()
         {
             var result = await _korisniciService.GetAll<List<Model.KorisnikPacijent>>(null, "KorisnikPacijenti");
-            cmbPacijent.DisplayMember = "Ime";
+            cmbPacijent.DisplayMember = "ImePrezime";
             cmbPacijent.ValueMember = "PacijentID";
 
             result.Insert(0, new Model.KorisnikPacijent { Ime = "Odaberite pacijenta" });
@@ -103,6 +103,14 @@ namespace DentOffice.WinUI.Termini
         private void cmbPacijent_Validating(object sender, CancelEventArgs e)
         {
             err.ValidirajKontrolu(sender, e, Properties.Resources.Validation_RequiredField);
+            if(sender is ComboBox box)
+            {
+                if(box.SelectedIndex == 0)
+                {
+                    err.SetError(box, Properties.Resources.Validation_RequiredField);
+                    e.Cancel = true;
+                }
+            }
         }
 
         private void cmbUsluga_Validating(object sender, CancelEventArgs e)

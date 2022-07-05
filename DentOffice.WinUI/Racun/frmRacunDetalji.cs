@@ -141,6 +141,15 @@ namespace DentOffice.WinUI.Racun
         private void cmbPacijent_Validating(object sender, CancelEventArgs e)
         {
             err.ValidirajKontrolu(sender, e, Properties.Resources.Validation_RequiredField);
+
+            if (sender is ComboBox box)
+            {
+                if (box.SelectedIndex == 0)
+                {
+                    err.SetError(box, Properties.Resources.Validation_RequiredField);
+                    e.Cancel = true;
+                }
+            }
         }
 
         private void cmbPregled_Validating(object sender, CancelEventArgs e)

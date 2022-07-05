@@ -49,7 +49,7 @@ namespace DentOffice.WinUI.Termini
             this.txtRazlog.Location = new System.Drawing.Point(27, 201);
             this.txtRazlog.Name = "txtRazlog";
             this.txtRazlog.Size = new System.Drawing.Size(547, 22);
-            this.txtRazlog.TabIndex = 2;
+            this.txtRazlog.TabIndex = 12;
             this.txtRazlog.Validating += new System.ComponentModel.CancelEventHandler(this.txtRazlog_Validating);
             // 
             // label1
@@ -94,7 +94,7 @@ namespace DentOffice.WinUI.Termini
             this.cbHitno.Location = new System.Drawing.Point(27, 333);
             this.cbHitno.Name = "cbHitno";
             this.cbHitno.Size = new System.Drawing.Size(71, 21);
-            this.cbHitno.TabIndex = 9;
+            this.cbHitno.TabIndex = 14;
             this.cbHitno.Text = "Hitno?";
             this.cbHitno.UseVisualStyleBackColor = true;
             // 
@@ -105,14 +105,14 @@ namespace DentOffice.WinUI.Termini
             this.dtpDatum.Location = new System.Drawing.Point(27, 272);
             this.dtpDatum.Name = "dtpDatum";
             this.dtpDatum.Size = new System.Drawing.Size(547, 22);
-            this.dtpDatum.TabIndex = 10;
+            this.dtpDatum.TabIndex = 13;
             // 
             // btnSpremi
             // 
             this.btnSpremi.Location = new System.Drawing.Point(499, 333);
             this.btnSpremi.Name = "btnSpremi";
             this.btnSpremi.Size = new System.Drawing.Size(75, 31);
-            this.btnSpremi.TabIndex = 11;
+            this.btnSpremi.TabIndex = 15;
             this.btnSpremi.Text = "Spremi";
             this.btnSpremi.UseVisualStyleBackColor = true;
             this.btnSpremi.Click += new System.EventHandler(this.btnSpremi_Click);
@@ -123,7 +123,7 @@ namespace DentOffice.WinUI.Termini
             this.cmbPacijent.Location = new System.Drawing.Point(27, 53);
             this.cmbPacijent.Name = "cmbPacijent";
             this.cmbPacijent.Size = new System.Drawing.Size(546, 24);
-            this.cmbPacijent.TabIndex = 12;
+            this.cmbPacijent.TabIndex = 2;
             this.cmbPacijent.Validating += new System.ComponentModel.CancelEventHandler(this.cmbPacijent_Validating);
             // 
             // label4

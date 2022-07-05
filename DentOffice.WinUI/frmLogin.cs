@@ -30,7 +30,25 @@ namespace DentOffice.WinUI
             this.UseWaitCursor = false;
 
             if (APIService.LogiraniKorisnik != null)
-                DialogResult = DialogResult.OK;
+            {
+
+                var listUloge = new List<string>
+                {
+                    "Medicinsko Osoblje",
+                    "Administrator",
+                    "Stomatolog"
+                };
+      
+                if (!listUloge.Contains(APIService.LogiraniKorisnik.Uloga.Naziv))
+                {
+                    APIService.Username = null;
+                    APIService.Password = null;
+                    APIService.LogiraniKorisnik = null;
+                    MessageBox.Show("Prijava je omogućena samo osoblju", "Greška", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+                else
+                    DialogResult = DialogResult.OK;
+            }
         }
     }
 }

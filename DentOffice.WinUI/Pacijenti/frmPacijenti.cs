@@ -45,7 +45,7 @@ namespace DentOffice.WinUI.Pacijenti
         private void btnDodajNovog_Click(object sender, EventArgs e)
         {
             Form frm = new frmPacijentiDetalji();
-            frm.Show();
+            frm.ShowDialog();
         }
 
         private async void frmPacijenti_Load(object sender, EventArgs e)

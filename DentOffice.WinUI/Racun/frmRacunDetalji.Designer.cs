@@ -52,7 +52,7 @@ namespace DentOffice.WinUI.Racun
             this.cmbPacijent.Location = new System.Drawing.Point(24, 49);
             this.cmbPacijent.Name = "cmbPacijent";
             this.cmbPacijent.Size = new System.Drawing.Size(397, 24);
-            this.cmbPacijent.TabIndex = 77;
+            this.cmbPacijent.TabIndex = 1;
             this.cmbPacijent.SelectedIndexChanged += new System.EventHandler(this.cmbPacijent_SelectedIndexChanged);
             this.cmbPacijent.Validating += new System.ComponentModel.CancelEventHandler(this.cmbPacijent_Validating);
             // 
@@ -71,7 +71,7 @@ namespace DentOffice.WinUI.Racun
             this.dtpDatumUplate.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.dtpDatumUplate.Name = "dtpDatumUplate";
             this.dtpDatumUplate.Size = new System.Drawing.Size(397, 22);
-            this.dtpDatumUplate.TabIndex = 81;
+            this.dtpDatumUplate.TabIndex = 3;
             // 
             // label7
             // 
@@ -106,7 +106,7 @@ namespace DentOffice.WinUI.Racun
             this.txtIznos.Margin = new System.Windows.Forms.Padding(3, 2, 3, 2);
             this.txtIznos.Name = "txtIznos";
             this.txtIznos.Size = new System.Drawing.Size(75, 22);
-            this.txtIznos.TabIndex = 82;
+            this.txtIznos.TabIndex = 4;
             this.txtIznos.Validating += new System.ComponentModel.CancelEventHandler(this.txtIznos_Validating);
             // 
             // label2
@@ -124,7 +124,7 @@ namespace DentOffice.WinUI.Racun
             this.cbPlaceno.Location = new System.Drawing.Point(32, 337);
             this.cbPlaceno.Name = "cbPlaceno";
             this.cbPlaceno.Size = new System.Drawing.Size(81, 21);
-            this.cbPlaceno.TabIndex = 86;
+            this.cbPlaceno.TabIndex = 5;
             this.cbPlaceno.Text = "Placeno";
             this.cbPlaceno.UseVisualStyleBackColor = true;
             // 
@@ -134,7 +134,7 @@ namespace DentOffice.WinUI.Racun
             this.cmbPregled.Location = new System.Drawing.Point(24, 132);
             this.cmbPregled.Name = "cmbPregled";
             this.cmbPregled.Size = new System.Drawing.Size(397, 24);
-            this.cmbPregled.TabIndex = 88;
+            this.cmbPregled.TabIndex = 2;
             this.cmbPregled.SelectedIndexChanged += new System.EventHandler(this.cmbPregled_SelectedIndexChanged);
             this.cmbPregled.Validating += new System.ComponentModel.CancelEventHandler(this.cmbPregled_Validating);
             // 
@@ -152,7 +152,7 @@ namespace DentOffice.WinUI.Racun
             this.btnPotvrdi.Location = new System.Drawing.Point(287, 325);
             this.btnPotvrdi.Name = "btnPotvrdi";
             this.btnPotvrdi.Size = new System.Drawing.Size(124, 33);
-            this.btnPotvrdi.TabIndex = 89;
+            this.btnPotvrdi.TabIndex = 6;
             this.btnPotvrdi.Text = "Potvrdi";
             this.btnPotvrdi.UseVisualStyleBackColor = true;
             this.btnPotvrdi.Click += new System.EventHandler(this.btnPotvrdi_Click);

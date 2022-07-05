@@ -86,7 +86,7 @@ namespace DentOffice.WinUI.Pregled
         private async Task LoadPacijent()
         {
             var result = await _serviceKorisnici.GetAll<List<Model.KorisnikPacijent>>(null, "KorisnikPacijenti");
-            cmbPacijent.DisplayMember = "Ime";
+            cmbPacijent.DisplayMember = "ImePrezime";
             cmbPacijent.ValueMember = "PacijentID";
 
             result.Insert(0, new Model.KorisnikPacijent { Ime = "Odaberite pacijenta" });
@@ -105,8 +105,12 @@ namespace DentOffice.WinUI.Pregled
         {
             cmbTermin.Text = "";
 
-            if (cmbPacijent.SelectedValue == null || cmbUsluga.SelectedValue == null)
+            if (cmbPacijent.SelectedValue == null || cmbUsluga.SelectedValue == null || cmbPacijent.SelectedIndex == 0)
+            {
+                cmbTermin.DataSource = null;
                 return;
+            }
+
 
             var request = new TerminSearchRequest
             {
@@ -148,7 +152,10 @@ namespace DentOffice.WinUI.Pregled
                         entity = await _servicePregled.Insert<Model.Pregled>(Request);
 
                     if (entity != null)
+                    {
                         MessageBox.Show("Uspješno ste " + (_id.HasValue ? "uredili" : "dodali") + " pregled!");
+                        DialogResult = DialogResult.OK;
+                    }
 
                 }
                 catch (Exception exception)
@@ -172,6 +179,15 @@ namespace DentOffice.WinUI.Pregled
         private void cmbPacijent_Validating(object sender, CancelEventArgs e)
         {
             err.ValidirajKontrolu(sender, e, Properties.Resources.Validation_RequiredField);
+
+            if (sender is ComboBox box)
+            {
+                if (box.SelectedIndex == 0)
+                {
+                    err.SetError(box, Properties.Resources.Validation_RequiredField);
+                    e.Cancel = true;
+                }
+            }
         }
 
         private void cmbUsluga_Validating(object sender, CancelEventArgs e)

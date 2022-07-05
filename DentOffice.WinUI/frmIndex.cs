@@ -23,6 +23,14 @@ namespace DentOffice.WinUI
         public frmIndex()
         {
             InitializeComponent();
+            UpdateVisibility();
+        }
+
+        private void UpdateVisibility()
+        {
+            bool isAdmin = APIService.LogiraniKorisnik.Uloga.Naziv == "Administrator";
+
+            noviKorisnikToolStripMenuItem.Visible = isAdmin;
         }
 
         private void ShowNewForm(object sender, EventArgs e)
@@ -194,6 +202,7 @@ namespace DentOffice.WinUI
                 {
                     item.Close();
                 }
+                UpdateVisibility();
                 this.Show();
             }
             else
