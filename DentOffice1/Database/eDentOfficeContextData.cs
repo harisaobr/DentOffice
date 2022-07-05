@@ -103,6 +103,24 @@ namespace DentOffice.WebAPI.Database
                     Spol = Spol.Žensko,
                     Slika = File.ReadAllBytes("Helpers/default.png"),
                 },
+                 new DentOffice.WebAPI.Database.Korisnik()
+                 {
+                     KorisnikId = 6,
+                     UlogaId = 2,
+                     GradId = 1,
+                     Ime = "Stomatolog",
+                     Prezime = "Drugi",
+                     Email = "stomatologdrugi.ordinacija@gmail.com",
+                     KorisnickoIme = "Stomatolog2",
+                     LozinkaHash = "EbAIgM1peBqerunMY9/Efjdpju4=",
+                     LozinkaSalt = "pMlLkvhpuQjpQ1IjPDOiQQ==",
+                     Jmbg = "051199015511",
+                     DatumRodjenja = new DateTime(1985, 6, 2),
+                     BrojTelefona = "38762225883",
+                     Adresa = "Druga Tita 17",
+                     Spol = Spol.Žensko,
+                     Slika = File.ReadAllBytes("Helpers/default.png"),
+                 },
                 new DentOffice.WebAPI.Database.Korisnik()
                 {
                     KorisnikId = 5,
@@ -120,7 +138,25 @@ namespace DentOffice.WebAPI.Database
                     Adresa = "Bulevar BB",
                     Spol = Spol.Muško,
                     Slika = File.ReadAllBytes("Helpers/default.png"),
-                });
+                },
+                 new DentOffice.WebAPI.Database.Korisnik()
+                 {
+                     KorisnikId = 7,
+                     GradId = 1,
+                     UlogaId = 4,
+                     Ime = "Pacijent",
+                     Prezime = "Drugi",
+                     Email = "pacijent.mobile@gmail.com",
+                     KorisnickoIme = "PacijentDrugi",
+                     LozinkaHash = "qEkPhwY9P2FiDqx1Rgg26GoapxE=",
+                     LozinkaSalt = "fVZy3b4Z1cvYNep/oXc7aA==",
+                     Jmbg = "0806997150007",
+                     DatumRodjenja = new DateTime(1998, 6, 2),
+                     BrojTelefona = "38762226238",
+                     Adresa = "Bulevar BB",
+                     Spol = Spol.Muško,
+                     Slika = File.ReadAllBytes("Helpers/default.png"),
+                 });
 
           
             modelBuilder.Entity<Pacijent>().HasData(
@@ -128,6 +164,14 @@ namespace DentOffice.WebAPI.Database
                 {
                     PacijentId = 1,
                     KorisnikId = 5,
+                    Proteza = false,
+                    Terapija = true,
+                    Aparatic = true,
+                },
+                new DentOffice.WebAPI.Database.Pacijent()
+                {
+                    PacijentId = 2,
+                    KorisnikId = 7,
                     Proteza = false,
                     Terapija = true,
                     Aparatic = true,
@@ -178,7 +222,7 @@ namespace DentOffice.WebAPI.Database
                 {
                     TerminId = 2,
                     PacijentId = 1,
-                    DatumVrijeme = DateTime.Now.AddDays(4),
+                    DatumVrijeme = DateTime.Now.AddDays(-4),
                     Razlog = "Termin 2 razlog",
                     Hitno = false,
                     Odobreno = true,
@@ -239,6 +283,16 @@ namespace DentOffice.WebAPI.Database
                     Napomena = "Pacijent se javio sa velikim upalama oko zuba, meko tkivo i živci",
                     DijagnozaId = 1,
                     LijekId = 1
+                },
+                new DentOffice.WebAPI.Database.Pregled()
+                {
+                    PregledId = 2,
+                    KorisnikId = 4,
+                    TerminId = 2,
+                    TrajanjePregleda = 30,
+                    Napomena = "Pacijent se javio sa velikim upalama oko zuba, meko tkivo i živci",
+                    DijagnozaId = 2,
+                    LijekId = 2
                 });
 
             modelBuilder.Entity<MedicinskiKarton>().HasData(
@@ -260,6 +314,79 @@ namespace DentOffice.WebAPI.Database
                     UkupnaCijena = 36,
                     DatumIzdavanjaRacuna = DateTime.Now,
                     IsPlaceno = false
+                },
+                 new DentOffice.WebAPI.Database.Racun()
+                 {
+                     RacunId = 2,
+                     KorisnikId = 4,
+                     PregledId = 2,
+                     UkupnaCijena = 20,
+                     DatumIzdavanjaRacuna = DateTime.Now,
+                     IsPlaceno = false
+                 });
+
+            modelBuilder.Entity<Payment>().HasData(
+               new DentOffice.WebAPI.Database.Payment()
+               {
+                   PaymentId = 1,
+                   KorisnikId = 5,
+                   Metoda = "credit_card",
+                   Iznos = 30,
+                   Datum = DateTime.Now,
+               },
+                new DentOffice.WebAPI.Database.Payment()
+                {
+                    PaymentId = 2,
+                    KorisnikId = 5,
+                    Metoda = "credit_card",
+                    Iznos = 40,
+                    Datum = DateTime.Now,
+                },
+                 new DentOffice.WebAPI.Database.Payment()
+                 {
+                     PaymentId = 3,
+                     KorisnikId = 7,
+                     Metoda = "credit_card",
+                     Iznos = 50,
+                     Datum = DateTime.Now,
+                 });
+
+            modelBuilder.Entity<Ocjene>().HasData(
+                new DentOffice.WebAPI.Database.Ocjene()
+                {
+                    OcjenaId = 1,
+                    PacijentId = 1,
+                    KorisnikId = 4,
+                    Kreirano = DateTime.Now,
+                    Ocjena = 5,
+                    Komentar = "Dobra obavljena usluga, vrlo profesionalno."
+                },
+                new DentOffice.WebAPI.Database.Ocjene()
+                {
+                    OcjenaId = 2,
+                    PacijentId = 2,
+                    KorisnikId = 4,
+                    Kreirano = DateTime.Now,
+                    Ocjena = 4,
+                    Komentar = "Dobra usluga."
+                },
+                new DentOffice.WebAPI.Database.Ocjene()
+                {
+                    OcjenaId = 3,
+                    PacijentId = 1,
+                    KorisnikId = 6,
+                    Kreirano = DateTime.Now,
+                    Ocjena = 1,
+                    Komentar = "Loše obavljena usluga."
+                },
+                new DentOffice.WebAPI.Database.Ocjene()
+                {
+                    OcjenaId = 4,
+                    PacijentId = 2,
+                    KorisnikId = 6,
+                    Kreirano = DateTime.Now,
+                    Ocjena = 3,
+                    Komentar = "Uredu usluga."
                 });
 
 
