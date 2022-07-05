@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'dart:typed_data';
 
+import 'package:decimal/decimal.dart';
 import 'package:dentofficemobile/models/pacijent_data.dart';
 
 import 'grad.dart';
@@ -30,10 +31,11 @@ class Korisnik {
   Uloga? uloga;
   int ulogaID;
   List<Pacijent_Data> pacijents;
+  Decimal? mojaOcjena;
 
   Uint8List get slikaArray => base64Decode(slika);
 
-  Korisnik({required this.korisnikID,required this.ime,required this.prezime,required this.korisnickoIme,required this.email,required this.jmbg,required this.slika,required this.adresa,required this.brojTelefona,required this.datumRodjenja,required this.spol,required this.gradID,required this.grad,required this.obavljenoPregleda,required this.uloga,required this.ulogaID,required this.pacijents,});
+  Korisnik({required this.korisnikID,required this.ime,required this.prezime,required this.korisnickoIme,required this.email,required this.jmbg,required this.slika,required this.adresa,required this.brojTelefona,required this.datumRodjenja,required this.spol,required this.gradID,required this.grad,required this.obavljenoPregleda,required this.uloga,required this.ulogaID,required this.pacijents,this.mojaOcjena});
 
   factory Korisnik.fromJson(Map<String, dynamic> json) => _$KorisnikFromJson(json);
 

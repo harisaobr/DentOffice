@@ -24,6 +24,9 @@ Korisnik _$KorisnikFromJson(Map<String, dynamic> json) => Korisnik(
       grad: json['grad'] == null
           ? null
           : Grad.fromJson(json['grad'] as Map<String, dynamic>),
+      mojaOcjena: json['mojaOcjena'] == null
+          ? null
+          : Decimal.fromJson(json['mojaOcjena'].toString()),
       obavljenoPregleda: json['obavljenoPregleda'] as int,
       uloga: json['uloga'] == null
           ? null
@@ -48,6 +51,7 @@ Map<String, dynamic> _$KorisnikToJson(Korisnik instance) => <String, dynamic>{
       'spol': _$SpolEnumMap[instance.spol],
       'gradID': instance.gradID,
       'grad': instance.grad,
+      'mojaOcjena': instance.mojaOcjena,
       'obavljenoPregleda': instance.obavljenoPregleda,
       'uloga': instance.uloga,
       'ulogaID': instance.ulogaID,
